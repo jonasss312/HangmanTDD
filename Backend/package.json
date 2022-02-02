@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "src/Models/test.ts",
+  "main": "no need",
   "scripts": {
     "compile": "tsc",
     "test": "jest",
