@@ -1,14 +1,14 @@
 export class Game {
     private readonly id: number;
-    private readonly guessedLetters: String[];
-    private readonly wrongLetters: String[];
-    private readonly word: String;
-    private readonly hiddenWord: String;
+    private readonly guessedLetters: string[];
+    private readonly wrongLetters: string[];
+    private readonly word: string;
+    private readonly hiddenWord: string;
     private readonly guesses: number;
     private readonly won: Boolean;
 
-    constructor(id: number, guessedLetters: String[], wrongLetters: String[],
-        word: String, hiddenWord: String, guesses: number, won: Boolean) {
+    constructor(id: number, guessedLetters: string[], wrongLetters: string[],
+        word: string, hiddenWord: string, guesses: number, won: Boolean) {
         this.id = id;
         this.guessedLetters = guessedLetters;
         this.wrongLetters = wrongLetters;
@@ -18,3 +18,5 @@ export class Game {
         this.won = won;
     }
 }
+
+//reikes boundary
