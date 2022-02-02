@@ -18,4 +18,5 @@ export class WordsFromFile implements WordsInterface {
         return words[Math.floor(Math.random() * (words.length))]
             .replace(/\r?\n|\r/g, "")
     }
+    // gitflow
 }
