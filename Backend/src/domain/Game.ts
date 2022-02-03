@@ -56,19 +56,27 @@ export class Game {
         return this.wrongLetters.length == 10
     }
 
-    getStatus() {
+    getStatus(): GameStatus {
         return this.status;
     }
 
-    getId() {
+    getId(): number {
         return this.id;
     }
 
-    getHiddenWord() {
+    getHiddenWord(): string {
         return this.hiddenWord;
     }
 
-    getGuesses(){
+    getGuessedLetters(): string[] {
+        return this.guessedLetters;
+    }
+
+    getWrongLetters(): string[] {
+        return this.wrongLetters;
+    }
+
+    getGuesses(): number {
         return this.guesses;
     }
 }

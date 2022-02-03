@@ -1,4 +1,4 @@
-import { BoundaryGame } from "./BoundaryGame";
+import { BoundaryGame } from "../model/BoundaryGame";
 
 export default interface GameCreatorInterface {
     createGame() : BoundaryGame;

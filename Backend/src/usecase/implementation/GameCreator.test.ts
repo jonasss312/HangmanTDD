@@ -2,7 +2,7 @@ import {GameCreator} from './GameCreator'
 
 import {WordsFromFile} from '../../gateway/implementation/WordsFromFile'
 import {GamesStorage} from '../../gateway/implementation/GamesInMemmory'
-import { BoundaryGame } from '../api/BoundaryGame';
+import { BoundaryGame } from '../model/BoundaryGame';
 
 
 const testFileName: string = '../../../testWords.txt';

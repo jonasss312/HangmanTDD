@@ -1,4 +1,6 @@
-import { BoundaryGame } from '../api/BoundaryGame';
+import { BoundaryGame } from '../model/BoundaryGame';
+import { Game } from '../../domain/Game';
+import { GameD2BConverter } from './GameD2BConverter';
 
 import GameCreatorInterface from '../api/GameCreationInterface';
 import WordsGateway from '../../gateway/api/WordsGateway';
@@ -14,7 +16,16 @@ export class GameCreator implements GameCreatorInterface {
     }
 
     createGame(): BoundaryGame {
-        // sitas usecase galetu matyt domain/Game ?
-        return new BoundaryGame()
+        const newGame =
+            new Game(
+                this.gamesGateway.generateId(),
+                [],
+                [],
+                this.wordsGateway.loadWord()
+            )
+
+        this.gamesGateway.addGame(newGame);
+
+        return new GameD2BConverter().convert(newGame);
     }
 }
