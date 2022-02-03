@@ -6,7 +6,7 @@ let wordGenerator: WordsFromFile = new WordsFromFile(testFileName);
 describe("WordReader", () => {
   test("Can get random word", () => {
     let expectedResult: string[] = ["testing", "words", "guess me"];
-    let result: string = wordGenerator.getWord()
+    let result: string = wordGenerator.loadWord()
     expect(expectedResult).toContain(result);
   });
 });
