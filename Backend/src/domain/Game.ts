@@ -32,11 +32,11 @@ export class Game {
         return this.wrongLetters.length == 10 ? true : false
     }
 
-    getGameStatus() {
+    getStatus() {
         return this.status;
     }
 
-    getGameIdentifier(){
+    getId(){
         return this.id;
     }
 }

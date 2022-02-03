@@ -11,14 +11,14 @@ describe("GamesStorage", () => {
     });
 
     test("Can get game by id", () => {
-        const foudGame = storage.getGame(1);
-        expect(foudGame).toEqual(game);
+        const foundGame = storage.getGame(1);
+        expect(foundGame).toEqual(game);
     });
     
     test("Can update game by id" , () =>{
         storage.addGame(game);
         const updatedGame = new Game(1,["a"],["b"],"cvbn", "####", 0);
-        storage.updateGame(1, updatedGame);
+        storage.upsertGame(1, updatedGame);
         expect(storage.getGame(1)).toEqual(updatedGame);
     });
   });
