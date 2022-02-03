@@ -13,7 +13,7 @@ export class WordsFromFile implements WordsInterface {
         return fs.readFileSync(path.join(__dirname, this.fileName), 'utf8').split('\n');
     }
 
-    getWord(): string {
+    loadWord(): string {
         let words: string[] = this.readWords();
         return words[Math.floor(Math.random() * (words.length))]
             .replace(/\r?\n|\r/g, "")

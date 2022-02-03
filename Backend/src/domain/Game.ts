@@ -1,3 +1,5 @@
+import {GameStatus} from './GameStatus'
+
 export class Game {
     private readonly id: number;
     private readonly guessedLetters: string[];
@@ -5,18 +7,38 @@ export class Game {
     private readonly word: string;
     private readonly hiddenWord: string;
     private readonly guesses: number;
-    private readonly won: Boolean;
+    private readonly status: GameStatus;
 
     constructor(id: number, guessedLetters: string[], wrongLetters: string[],
-        word: string, hiddenWord: string, guesses: number, won: Boolean) {
+        word: string, hiddenWord: string, guesses: number) {
         this.id = id;
         this.guessedLetters = guessedLetters;
         this.wrongLetters = wrongLetters;
         this.word = word;
         this.hiddenWord = hiddenWord;
         this.guesses = guesses;
-        this.won = won;
+        this.status = this.decideGameStatus();
+    }
+
+    private decideGameStatus() {
+        if (this.thereIsNoMoreHiddenLetters())
+            return GameStatus.Won;
+        else
+            return this.wasGuessedTenTimesWrongly() ? GameStatus.Lost : GameStatus.inProgress
+    }
+
+    private thereIsNoMoreHiddenLetters(): Boolean {
+        return !this.hiddenWord.includes("#")
+    }
+
+    private wasGuessedTenTimesWrongly(): Boolean {
+        return this.wrongLetters.length == 10
+    }
+
+    getGameStatus() {
+        return this.status;
     }
 }
 
 //reikes boundary
+
