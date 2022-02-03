@@ -19,17 +19,18 @@ export class Game {
     }
 
     private decideGameStatus() {
-        return this.thereIsNoMoreHiddenLetters() ?
-            "Won" : this.wasGuessedTenTimesWrongly() ?
-                "Lost" : "inProgress"
+        if (this.thereIsNoMoreHiddenLetters())
+            return "Won";
+        else
+            return this.wasGuessedTenTimesWrongly() ? "Lost" : "inProgress"
     }
 
     private thereIsNoMoreHiddenLetters(): Boolean {
-        return !this.hiddenWord.includes("#") ? true : false
+        return !this.hiddenWord.includes("#")
     }
 
     private wasGuessedTenTimesWrongly(): Boolean {
-        return this.wrongLetters.length == 10 ? true : false
+        return this.wrongLetters.length == 10
     }
 
     getGameStatus() {
