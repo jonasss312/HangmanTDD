@@ -15,7 +15,7 @@ describe("GamesStorage", () => {
         expect(foundGame).toEqual(game);
     });
     
-    test("Can update game by id" , () =>{
+    test("Can upsert game by id" , () =>{
         storage.addGame(game);
         const updatedGame = new Game(1,["a"],["b"],"cvbn", "####", 0);
         storage.upsertGame(1, updatedGame);

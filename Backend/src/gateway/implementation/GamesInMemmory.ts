@@ -23,7 +23,7 @@ export class GamesStorage implements GamesGateway {
         return new Game(0, [], [], "", "", 0);
     }
 
-    private tryFindGame(id: number) {
+    private tryFindGame(id: number) : Game | undefined {
         return this.games.find(game => game.getId() === id);
     }
 
@@ -32,10 +32,9 @@ export class GamesStorage implements GamesGateway {
         if (foundGame) {
             const gameIndexInStorage = this.tryGetIndexInStorage(foundGame);
             if (this.indexIsValid(gameIndexInStorage))
-                this.updateGameInStorage(gameIndexInStorage, game);
-            else
-                this.storeNewGame();
+                return this.updateGameInStorage(gameIndexInStorage, game);
         }
+        this.storeNewGame();
     }
 
     private tryGetIndexInStorage(game: Game): number{
