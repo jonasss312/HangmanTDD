@@ -6,12 +6,12 @@ describe("Game", () => {
         return new Game(1, [], wrongLetters, "testing with a space", hiddenWord, 0);
     }
     test("Can approve if game won", () => {
-        let game = new Game(1,[],[],"testing with a space", "testing_with_a_space", 0);
-        expect(game.getStatus()).toEqual("Won");
+        let game = createGame([], "testing_with_a_space");
+        expect(game.getStatus()).toEqual(GameStatus.Won);
     });
 
     test("Can approve if game is lost", () => {
-        let game = new Game(1,[],["a","a","a","a","a","a","a","a","a","a"],"testing with a space", "#######_###_#_#####", 0);
-        expect(game.getStatus()).toEqual("Lost");
+        let game = createGame(["a","a","a","a","a","a","a","a","a","a"], "#######_###_#_#####");
+        expect(game.getStatus()).toEqual(GameStatus.Lost);
     });
 });
