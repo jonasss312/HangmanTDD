@@ -1,3 +1,5 @@
+import {GameStatus} from './GameStatus'
+
 export class Game {
     private readonly id: number;
     private readonly guessedLetters: string[];
@@ -5,7 +7,7 @@ export class Game {
     private readonly word: string;
     private readonly hiddenWord: string;
     private readonly guesses: number;
-    private readonly status: string;
+    private readonly status: GameStatus;
 
     constructor(id: number, guessedLetters: string[], wrongLetters: string[],
         word: string, hiddenWord: string, guesses: number) {
@@ -20,9 +22,9 @@ export class Game {
 
     private decideGameStatus() {
         if (this.thereIsNoMoreHiddenLetters())
-            return "Won";
+            return GameStatus.Won;
         else
-            return this.wasGuessedTenTimesWrongly() ? "Lost" : "inProgress"
+            return this.wasGuessedTenTimesWrongly() ? GameStatus.Lost : GameStatus.inProgress
     }
 
     private thereIsNoMoreHiddenLetters(): Boolean {
