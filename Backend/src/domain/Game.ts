@@ -35,6 +35,10 @@ export class Game {
     getGameStatus() {
         return this.status;
     }
+
+    getGameIdentifier(){
+        return this.id;
+    }
 }
 
 //reikes boundary
