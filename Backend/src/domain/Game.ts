@@ -1,4 +1,4 @@
-import {GameStatus} from './GameStatus'
+import { GameStatus } from './GameStatus'
 
 export class Game {
     private readonly id: number;
@@ -10,21 +10,42 @@ export class Game {
     private readonly status: GameStatus;
 
     constructor(id: number, guessedLetters: string[], wrongLetters: string[],
-        word: string, hiddenWord: string, guesses: number) {
+        word: string) {
         this.id = id;
         this.guessedLetters = guessedLetters;
         this.wrongLetters = wrongLetters;
         this.word = word;
-        this.hiddenWord = hiddenWord;
-        this.guesses = guesses;
+        this.hiddenWord = this.hideWord();
+        this.guesses = this.getGuessesCount();
         this.status = this.decideGameStatus();
+    }
+
+    private getGuessesCount(): number {
+        return this.guessedLetters.length + this.wrongLetters.length;
+    }
+
+    private hideWord(): string {
+        return Array.from(this.word).map(letter => {
+            if (this.inGuessedLettersIsThisLetter(letter))
+                return letter
+            else
+                return this.isWhiteSpace(letter) ? ' ' : '#'
+        }).join('');
+    }
+
+    private inGuessedLettersIsThisLetter(letter: string) {
+        return this.guessedLetters.indexOf(letter) > -1;
+    }
+
+    private isWhiteSpace(letter: string): Boolean {
+        return letter === ' ' ? true : false;
     }
 
     private decideGameStatus() {
         if (this.thereIsNoMoreHiddenLetters())
             return GameStatus.Won;
         else
-            return this.wasGuessedTenTimesWrongly() ? GameStatus.Lost : GameStatus.inProgress
+            return this.wasGuessedTenTimesWrongly() ? GameStatus.Lost : GameStatus.InProgress
     }
 
     private thereIsNoMoreHiddenLetters(): Boolean {
@@ -39,10 +60,16 @@ export class Game {
         return this.status;
     }
 
-    getId(){
+    getId() {
         return this.id;
     }
-}
 
-//reikes boundary
+    getHiddenWord() {
+        return this.hiddenWord;
+    }
+
+    getGuesses(){
+        return this.guesses;
+    }
+}
 
