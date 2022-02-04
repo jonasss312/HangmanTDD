@@ -30,7 +30,7 @@ describe("GameCreator", () => {
 
         assertCreatedGameForGateway(newGame, id, testWord);
 
-        assertCreatedGameBoundary(createdGame, id, hiddenTestWord);
+        assertInteractorOutput(createdGame, id, hiddenTestWord);
     });
 
     function assertCreatedGameForGateway(game: Game, id:number, word: string){
@@ -40,7 +40,7 @@ describe("GameCreator", () => {
         expect(game.getWord()).toEqual(word);
     }
 
-    function assertCreatedGameBoundary(game: BoundaryGame, id:number, word: string){
+    function assertInteractorOutput(game: BoundaryGame, id:number, word: string){
         expect(game.getId()).toEqual(id)
         expect(game.getGuessedLetters()).toEqual([])
         expect(game.getWrongLetters()).toEqual([])
