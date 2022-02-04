@@ -14,7 +14,7 @@ export class Game {
         this.id = id;
         this.guessedLetters = guessedLetters;
         this.wrongLetters = wrongLetters;
-        this.word = word;
+        this.word = word.toUpperCase();
         this.hiddenWord = this.hideWord();
         this.guesses = this.getGuessesCount();
         this.status = this.decideGameStatus();
