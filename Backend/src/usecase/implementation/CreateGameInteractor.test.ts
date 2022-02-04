@@ -23,7 +23,6 @@ describe("GameCreator", () => {
 
         const createdGame = gameCreator.createGame()
 
-        const isGameBoundary = createdGame instanceof BoundaryGame;
         const newGame = GAMES_GW.addGame.mock.calls[0][0];
         
         expect(WORDS_GW.loadWord).toHaveBeenCalled();
@@ -32,8 +31,6 @@ describe("GameCreator", () => {
         assertCreatedGameForGateway(newGame, id, testWord);
 
         assertCreatedGameBoundary(createdGame, id, hiddenTestWord);
-        
-        expect(isGameBoundary).toEqual(true);
     });
 
     function assertCreatedGameForGateway(game: Game, id:number, word: string){
