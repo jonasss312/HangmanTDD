@@ -28,12 +28,12 @@ describe("GameCreator", () => {
         expect(WORDS_GW.loadWord).toHaveBeenCalled();
         expect(GAMES_GW.generateId).toHaveBeenCalled();
 
-        assertCreatedGameForGateway(newGame, id, testWord);
+        assertGameGatewayAddGameParam(newGame, id, testWord);
 
         assertInteractorOutput(createdGame, id, hiddenTestWord);
     });
 
-    function assertCreatedGameForGateway(game: Game, id:number, word: string){
+    function assertGameGatewayAddGameParam(game: Game, id:number, word: string){
         expect(game.getId()).toEqual(id)
         expect(game.getGuessedLetters()).toEqual([])
         expect(game.getWrongLetters()).toEqual([])
