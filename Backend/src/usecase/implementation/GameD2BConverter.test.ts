@@ -2,12 +2,12 @@ import { GameD2BConverter } from '../implementation/GameD2BConverter'
 import { Game } from '../../domain/Game'
 import { BoundaryGame } from '../model/BoundaryGame';
 
-const gameD2BConverter = new GameD2BConverter();
-const game = new Game(1, ["a", "b"], ["c", "d"], "test");
+const GAME_D2B_CONVERTER = new GameD2BConverter();
 
 describe("GameCreator", () => {
     test("Can trasnfer attributes", () => {
-        const boudaryGame : BoundaryGame = gameD2BConverter.convert(game);
+        const game = new Game(1, ["a", "b"], ["c", "d"], "test");
+        const boudaryGame : BoundaryGame = GAME_D2B_CONVERTER.convert(game);
 
         expect(boudaryGame.getId()).toEqual(game.getId())
         expect(boudaryGame.getGuessedLetters()).toEqual(game.getGuessedLetters())
