@@ -11,7 +11,7 @@ beforeEach(() => {
 describe("GameCreator", () => {
     test("Can transfer attributes", () => {
         const game = new Game(1, ["a", "b"], ["c", "d"], "test");
-        const boudaryGame : BoundaryGame = gameD2BConverter.convertGameToBoundary(game);
+        const boudaryGame : BoundaryGame = gameD2BConverter.convert(game);
 
         expect(boudaryGame.getId()).toEqual(game.getId())
         expect(boudaryGame.getGuessedLetters()).toEqual(game.getGuessedLetters())

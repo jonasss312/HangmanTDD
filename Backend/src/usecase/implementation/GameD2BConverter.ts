@@ -2,7 +2,7 @@ import { Game } from "../../domain/Game";
 import { BoundaryGame } from "../model/BoundaryGame";
 
 export class GameD2BConverter {
-    convertGameToBoundary(game: Game): BoundaryGame {
+    convert(game: Game): BoundaryGame {
         return new BoundaryGame(
             game.getId(),
             game.getGuessedLetters(),
