@@ -25,8 +25,9 @@ describe("UpdateGameInteractor", () => {
         const requestingToUpdateGameBoundary = new BoundaryGame(gameId, ["T", "B"], ["C", "D"], hiddenWord);
         const expectedGameBoundary = new BoundaryGame(gameId, ["T", "B"], ["C", "D"], updatedHiddenWord)
 
-        GAMES_GW.getGame.mockReturnValue(new Game(gameId, [], [], word));
-        GAMES_GW.getGame.mockReturnValue(new Game(gameId, ["T", "B"], ["C", "D"], word));
+        GAMES_GW.getGame
+            .mockReturnValue(new Game(gameId, [], [], word))
+            .mockReturnValue(new Game(gameId, ["T", "B"], ["C", "D"], word));
 
         const updatedGameBoundary = updateGameInteractor.updateGame(requestingToUpdateGameBoundary);
 
