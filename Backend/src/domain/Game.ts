@@ -26,13 +26,13 @@ export class Game {
 
     private hideWord(): string {
         return Array.from(this.word).map(letter => {
-            if (this.inGuessedLettersIsThisLetter(letter))
+            if (this.isGuessedLetter(letter))
                 return letter
             return this.isWhiteSpace(letter) ? ' ' : '#'
         }).join('');
     }
 
-    private inGuessedLettersIsThisLetter(letter: string) {
+    private isGuessedLetter(letter: string) {
         return this.guessedLetters.indexOf(letter) > -1;
     }
 
