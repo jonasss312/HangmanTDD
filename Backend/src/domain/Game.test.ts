@@ -25,7 +25,7 @@ describe("Game", () => {
             Array.from(testWord).map(letter => {
                 return letter;
             }).filter(letter => letter!= ' ');
-        const game = createGame(["t", "e", "s", "c", "i", "n", "g", "w", "a", "s", "p", "h"], []);
+        const game = createGame(guessedAllWordLetters, []);
         expect(game.getStatus()).toEqual(GameStatus.Won);
     });
 
