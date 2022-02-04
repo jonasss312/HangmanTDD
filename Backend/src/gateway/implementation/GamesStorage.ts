@@ -38,7 +38,7 @@ export class GamesStorage implements GamesGateway {
             if (this.indexIsValid(gameIndexInStorage))
                 return this.updateGameInStorage(gameIndexInStorage, game);
         }
-        this.storeNewGame();
+        this.storeNewGame(game);
     }
 
     private tryGetIndexInStorage(game: Game): number {
@@ -53,7 +53,7 @@ export class GamesStorage implements GamesGateway {
         this.games[index] = game;
     }
 
-    private storeNewGame() {
-        this.addGame(new Game(0, [], [], ""));
+    private storeNewGame(game:Game) {
+        this.addGame(game);
     }
 }
