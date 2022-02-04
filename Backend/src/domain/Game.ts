@@ -28,8 +28,7 @@ export class Game {
         return Array.from(this.word).map(letter => {
             if (this.inGuessedLettersIsThisLetter(letter))
                 return letter
-            else
-                return this.isWhiteSpace(letter) ? ' ' : '#'
+            return this.isWhiteSpace(letter) ? ' ' : '#'
         }).join('');
     }
 

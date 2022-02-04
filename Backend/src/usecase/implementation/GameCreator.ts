@@ -2,11 +2,11 @@ import { BoundaryGame } from '../model/BoundaryGame';
 import { Game } from '../../domain/Game';
 import { GameD2BConverter } from './GameD2BConverter';
 
-import GameCreatorInterface from '../api/GameCreationInterface';
 import WordsGateway from '../../gateway/api/WordsGateway';
 import GamesGateway from '../../gateway/api/GamesGateway'
+import CreateGameUseCase from '../api/GameCreationInterface';
 
-export class GameCreator implements GameCreatorInterface {
+export class CreateGameInteractor implements CreateGameUseCase {
     private readonly gamesGateway: GamesGateway;
     private readonly wordsGateway: WordsGateway;
 
