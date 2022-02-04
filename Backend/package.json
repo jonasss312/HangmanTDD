@@ -5,7 +5,7 @@
   "main": "no need",
   "scripts": {
     "compile": "tsc",
-    "test": "jest --coverage",
+    "test": "jest",
     "dev": "nodemon --config nodemon.json",
     "dev:debug": "nodemon --config nodemon.json --inspect-brk src/index.ts"
   },
