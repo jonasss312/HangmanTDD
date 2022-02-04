@@ -35,8 +35,12 @@ export class Game {
         return this.wrongLetters.length == 10
     }
 
-    getGameStatus() {
+    getStatus() {
         return this.status;
+    }
+
+    getId(){
+        return this.id;
     }
 }
 
