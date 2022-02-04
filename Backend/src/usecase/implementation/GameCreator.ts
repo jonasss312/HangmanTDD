@@ -4,7 +4,7 @@ import { GameD2BConverter } from './GameD2BConverter';
 
 import WordsGateway from '../../gateway/api/WordsGateway';
 import GamesGateway from '../../gateway/api/GamesGateway'
-import CreateGameUseCase from '../api/GameCreationInterface';
+import CreateGameUseCase from '../api/CreateGameUseCase';
 
 export class CreateGameInteractor implements CreateGameUseCase {
     private readonly gamesGateway: GamesGateway;
