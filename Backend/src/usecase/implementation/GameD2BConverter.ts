@@ -10,13 +10,4 @@ export class GameD2BConverter {
             game.getHiddenWord()
         )
     }
-
-    convertBoundaryToGame(boundary: BoundaryGame, word: string): Game {
-        return new Game(
-            boundary.getId(),
-            boundary.getGuessedLetters(),
-            boundary.getWrongLetters(),
-            word
-        )
-    }
 }
