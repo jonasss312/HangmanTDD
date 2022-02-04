@@ -1,3 +1,3 @@
-export default interface GamesGatewayWordsGateway {
+export default interface WordsGateway {
     loadWord(): string;
 }
