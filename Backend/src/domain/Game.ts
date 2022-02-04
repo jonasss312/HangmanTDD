@@ -78,5 +78,9 @@ export class Game {
     getGuesses(): number {
         return this.guesses;
     }
+
+    getWord(): string {
+        return this.word;
+    }
 }
 

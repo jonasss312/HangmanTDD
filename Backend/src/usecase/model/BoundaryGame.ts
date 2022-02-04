@@ -11,4 +11,20 @@ export class BoundaryGame {
         this.wrongLetters = wrongLetters;
         this.hiddenWord = hiddenWord;
     }
+
+    getId(): number {
+        return this.id;
+    }
+
+    getGuessedLetters(): string[] {
+        return this.guessedLetters;
+    }
+
+    getWrongLetters(): string[] {
+        return this.wrongLetters;
+    }
+
+    getHiddenWord(): string {
+        return this.hiddenWord;
+    }
 }
