@@ -31,8 +31,8 @@ export class GamesStorage implements GamesGateway {
         return this.games.find(game => game.getId() === id);
     }
 
-    upsertGame(id: number, game: Game): void {
-        const foundGame = this.tryFindGame(id);
+    upsertGame(game: Game): void {
+        const foundGame = this.tryFindGame(game.getId());
         if (foundGame) {
             this.updateFoundGameIfPossible(foundGame, game);
         }
@@ -49,7 +49,7 @@ export class GamesStorage implements GamesGateway {
         return this.games.indexOf(game);
     }
 
-    private indexIsValid(index: number) {
+    private indexIsValid(index: number) : Boolean {
         return index >= 0
     }
 

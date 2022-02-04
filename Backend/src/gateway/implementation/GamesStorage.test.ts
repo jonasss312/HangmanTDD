@@ -29,14 +29,14 @@ describe("GamesStorage", () => {
   test("Can upsert game by id", () => {
     storage.addGame(GAME);
     const updatedGame = new Game(1, ["a"], ["b"], "cvbn");
-    storage.upsertGame(1, updatedGame);
+    storage.upsertGame(updatedGame);
     expect(storage.getGame(1)).toEqual(updatedGame);
   });
 
   test("Can upsert game by id if game does not exist", () => {
     const gameId = 1
     const updatedGame = new Game(gameId, ["a"], ["b"], "cvbn");
-    storage.upsertGame(updatedGame.getId(), updatedGame);
+    storage.upsertGame(updatedGame);
     expect(storage.getGame(gameId)).toEqual(updatedGame);
   });
 
