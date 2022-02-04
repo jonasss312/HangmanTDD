@@ -1,7 +1,7 @@
 import { Game } from './Game'
 import { GameStatus } from './GameStatus'
 
-const testWord = "testing with a space";
+const testWord = "TESTING WITH A SPACE";
 
 describe("Game", () => {
     function createGame(correctLetters: string[], wrongLetters: string[]): Game {
@@ -9,14 +9,14 @@ describe("Game", () => {
     }
 
     test("Can guess one letter", () => {
-        const game = createGame(["t"], []);
-        expect(game.getHiddenWord()).toEqual("t##t### ##t# # #####");
+        const game = createGame(["T"], []);
+        expect(game.getHiddenWord()).toEqual("T##T### ##T# # #####");
         expect(game.getStatus()).toEqual(GameStatus.InProgress);
         expect(game.getGuesses()).toEqual(1);
     })
 
     test("Can check if game is in progress", () => {
-        const game = createGame(["t"], []);
+        const game = createGame(["T"], []);
         expect(game.getStatus()).toEqual(GameStatus.InProgress);
     })
 
