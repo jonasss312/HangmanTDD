@@ -16,7 +16,7 @@ beforeEach(() => {
 })
 
 describe("UpdateGameInteractor", () => {
-    test("Can update existing game", () => {
+    test("Can update game", () => {
         const updatedHiddenWord = "T##T";
         const hiddenWord = "####";
         const word = "TEST";

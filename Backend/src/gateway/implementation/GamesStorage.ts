@@ -45,7 +45,7 @@ export class GamesStorage implements GamesGateway {
         return this.games.indexOf(game);
     }
 
-    private indexIsValid(index: number) {
+    private indexIsValid(index: number) : Boolean {
         return index >= 0
     }
 
