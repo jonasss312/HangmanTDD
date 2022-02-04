@@ -31,8 +31,8 @@ export class GamesStorage implements GamesGateway {
         return this.games.find(game => game.getId() === id);
     }
 
-    upsertGame(id: number, game: Game): void {
-        const foundGame = this.tryFindGame(id);
+    upsertGame(game: Game): void {
+        const foundGame = this.tryFindGame(game.getId());
         if (foundGame) {
             const gameIndexInStorage = this.tryGetIndexInStorage(foundGame);
             if (this.indexIsValid(gameIndexInStorage))

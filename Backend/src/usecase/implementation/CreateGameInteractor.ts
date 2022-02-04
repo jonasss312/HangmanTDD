@@ -26,6 +26,6 @@ export class CreateGameInteractor implements CreateGameUseCase {
                 this.wordsGateway.loadWord()
             )
         this.gamesGateway.addGame(newGame);
-        return this.gameD2BConverter.convert(newGame);
+        return this.gameD2BConverter.convertGameToBoundary(newGame);
     }
 }
