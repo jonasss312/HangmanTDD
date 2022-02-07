@@ -1,6 +1,6 @@
 import { GameStatus } from "./GameStatus";
 
-export interface GameDto {
+export interface RestGame {
     id: number
     guessedLetters : string[]
     wrongLetters :string[]
