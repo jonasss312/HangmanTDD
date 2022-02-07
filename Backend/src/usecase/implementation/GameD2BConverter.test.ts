@@ -17,5 +17,6 @@ describe("GameD2BConverter", () => {
         expect(boudaryGame.getGuessedLetters()).toEqual(game.getGuessedLetters())
         expect(boudaryGame.getWrongLetters()).toEqual(game.getWrongLetters())
         expect(boudaryGame.getHiddenWord()).toEqual(game.getHiddenWord())
+        expect(boudaryGame.getStatus()).toEqual("IN_PROGRESS")
     });
 });

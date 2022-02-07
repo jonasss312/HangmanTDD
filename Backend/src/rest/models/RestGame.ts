@@ -1,5 +1,3 @@
-import { GameStatus } from "./GameStatus";
-
 export interface RestGame {
     id: number
     guessedLetters : string[]
@@ -7,5 +5,5 @@ export interface RestGame {
     hiddenWord : string
     guessingLetter : string
     guesses : number
-    status: GameStatus 
+    status: string 
   }

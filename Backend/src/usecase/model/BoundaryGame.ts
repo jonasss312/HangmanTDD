@@ -8,10 +8,10 @@ export class BoundaryGame {
     private readonly hiddenWord: string;
     private readonly guessingLetter: string;
     private readonly guesses: number;
-    private readonly status: GameStatus;
+    private readonly status: string;
 
     constructor(id: number, guessedLetters: string[], wrongLetters: string[],
-        hiddenWord: string, guessingLetter: string, guesses:number, status: GameStatus) {
+        hiddenWord: string, guessingLetter: string, guesses:number, status: string) {
         this.id = id;
         this.guessedLetters = guessedLetters;
         this.wrongLetters = wrongLetters;
@@ -41,7 +41,7 @@ export class BoundaryGame {
         return this.guessingLetter;
     }
 
-    getStatus(): GameStatus {
+    getStatus(): string {
         return this.status;
     }
 

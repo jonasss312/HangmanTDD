@@ -1,20 +1,15 @@
 import CreateGameUseCase from "../../usecase/api/CreateGameUseCase";
-import UpdateGameUseCase from "../../usecase/api/UpdateGameUseCase";
 import { BoundaryGame } from "../../usecase/model/BoundaryGame";
-import { ControllerApi } from "../api/ControllerApi";
 import { RestGame } from "../models/RestGame";
-import { GameStatus } from "../models/GameStatus";
 
-export class Controller implements ControllerApi {
+export class CreateGameRoute {
     private readonly createGameUseCase: CreateGameUseCase;
-    private readonly updateGameUseCase: UpdateGameUseCase;
-    constructor(createGameUseCase: CreateGameUseCase, updateGameUseCase: UpdateGameUseCase) {
+    constructor(createGameUseCase: CreateGameUseCase) {
         this.createGameUseCase = createGameUseCase;
-        this.updateGameUseCase = updateGameUseCase;
     }
 
-    public async createGame(req: any, res:any): Promise<any> {
-        const gameBoundary: BoundaryGame = await this.createGameUseCase.createGame();
+    public createGame(req: any, res:any) : void {
+        const gameBoundary: BoundaryGame = this.createGameUseCase.createGame();
         const game : RestGame = {
             id: gameBoundary.getId(),
             guessedLetters: gameBoundary.getGuessedLetters(),
@@ -25,9 +20,5 @@ export class Controller implements ControllerApi {
             guessingLetter: ""
         }
         res.status(201).send(game);
-    }
-
-    updateGame(game: RestGame): RestGame {
-        throw new Error("Method not implemented.");
     }
 }
