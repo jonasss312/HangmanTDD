@@ -1,51 +1,60 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 
 import { UpdateGameInteractor } from './UpdateGameInteractor'
+import { CreateGameInteractor } from './CreateGameInteractor';
 
 import { BoundaryGame } from '../model/BoundaryGame';
 import { Game } from '../../domain/Game';
 
 import GamesGateway from '../../gateway/api/GamesGateway'
+import WordsGateway from '../../gateway/api/WordsGateway';
 
 const GAMES_GW: MockProxy<GamesGateway> = mock<GamesGateway>();
+const WORDS_GW: MockProxy<WordsGateway> = mock<WordsGateway>();
+
+const CREATE_GAME_INTERACTOR = new CreateGameInteractor(WORDS_GW, GAMES_GW);
 
 let updateGameInteractor: UpdateGameInteractor;
 
 beforeEach(() => {
-    updateGameInteractor = new UpdateGameInteractor(GAMES_GW);
+    updateGameInteractor = new UpdateGameInteractor(GAMES_GW, CREATE_GAME_INTERACTOR);
 })
 
 describe("UpdateGameInteractor", () => {
-    /*test("Can update game", () => {
+    test("Can update existing game", () => {
         const updatedHiddenWord = "T##T";
         const hiddenWord = "####";
         const word = "TEST";
-        const gameId = 1;
+        const gameId = 100;
 
-        const requestingToUpdateGameBoundary = new BoundaryGame(gameId, ["T", "B"], ["C", "D"], hiddenWord);
-        const expectedGameBoundary = new BoundaryGame(gameId, ["T", "B"], ["C", "D"], updatedHiddenWord)
+        const requestingToUpdateGameBoundary = new BoundaryGame(gameId, ["B"], ["C", "D"], hiddenWord, "T");
+        const expectedGameBoundary = new BoundaryGame(gameId, ["B","T" ], ["C", "D"], updatedHiddenWord, "");
 
         GAMES_GW.getGame
-            .mockReturnValue(new Game(gameId, [], [], word))
-            .mockReturnValue(new Game(gameId, ["T", "B"], ["C", "D"], word));
+            .mockReturnValue(new Game(gameId, ["B"], ["C", "D"], word));
 
-        const updatedGameBoundary = updateGameInteractor.updateGame(requestingToUpdateGameBoundary);
+        const updatedGameBoundary = updateGameInteractor.upsertGame(requestingToUpdateGameBoundary);
 
         expect(updatedGameBoundary).toEqual(expectedGameBoundary);
-    });*/
+    });
 
-    test("Can update game", () => {
+    test("Can create new game if game that we want to update does not exist", () => {
+        const hiddenWord = "####";
         const word = "TEST";
-        const gameId = 1;
+        const gameId = 100;
 
-        const requestingToUpdateGame = new Game(gameId, ["T", "B"], ["C", "D"], word);
-        const expectedGame = new Game(gameId, ["T", "B"], ["C", "D"], word)
+        const requestingToUpdateGameBoundary = new BoundaryGame(gameId, ["B"], ["C", "D"], hiddenWord, "T");
 
-        GAMES_GW.getGame
-            .mockReturnValue(expectedGame);
+        WORDS_GW.loadWord.mockReturnValue(word);
+        GAMES_GW.generateId.mockReturnValue(gameId+1);
+        GAMES_GW.getGame.mockReturnValue(new Game(0, [], [], ""));
 
-        const updatedGame = updateGameInteractor.updateGame(requestingToUpdateGame);
+        const updatedGameBoundary = updateGameInteractor.upsertGame(requestingToUpdateGameBoundary);
 
-        expect(updatedGame).toEqual(expectedGame);
+        expect(updatedGameBoundary.getId()).toEqual(gameId+1);
+        expect(updatedGameBoundary.getGuessedLetters()).toEqual([]);
+        expect(updatedGameBoundary.getWrongLetters()).toEqual([]);
+        expect(updatedGameBoundary.getHiddenWord()).toEqual(hiddenWord);
+        expect(updatedGameBoundary.getGuessingLetter()).toEqual("");
     });
 });

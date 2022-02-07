@@ -3,13 +3,15 @@ export class BoundaryGame {
     private readonly guessedLetters: string[];
     private readonly wrongLetters: string[];
     private readonly hiddenWord: string;
+    private readonly guessingLetter: string;
 
     constructor(id: number, guessedLetters: string[], wrongLetters: string[],
-        hiddenWord: string) {
+        hiddenWord: string, guessingLetter: string) {
         this.id = id;
         this.guessedLetters = guessedLetters;
         this.wrongLetters = wrongLetters;
         this.hiddenWord = hiddenWord;
+        this.guessingLetter =guessingLetter;
     }
 
     getId(): number {
@@ -26,5 +28,9 @@ export class BoundaryGame {
 
     getHiddenWord(): string {
         return this.hiddenWord;
+    }
+
+    getGuessingLetter(): string{
+        return this.guessingLetter;
     }
 }

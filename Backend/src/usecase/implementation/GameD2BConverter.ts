@@ -11,7 +11,8 @@ export class GameD2BConverter {
             game.getId(),
             game.getGuessedLetters(),
             game.getWrongLetters(),
-            game.getHiddenWord()
+            game.getHiddenWord(),
+            ""
         )
     }
 }

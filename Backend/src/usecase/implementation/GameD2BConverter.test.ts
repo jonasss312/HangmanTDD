@@ -1,4 +1,4 @@
-import { GameD2BConverter } from '../implementation/GameD2BConverter'
+import { GameD2BConverter } from './GameD2BConverter'
 import { Game } from '../../domain/Game'
 import { BoundaryGame } from '../model/BoundaryGame';
 
@@ -8,7 +8,7 @@ beforeEach(() => {
     gameD2BConverter = new GameD2BConverter();
 })
 
-describe("GameCreator", () => {
+describe("GameD2BConverter", () => {
     test("Can transfer attributes", () => {
         const game = new Game(1, ["a", "b"], ["c", "d"], "test");
         const boudaryGame : BoundaryGame = gameD2BConverter.convert(game);
