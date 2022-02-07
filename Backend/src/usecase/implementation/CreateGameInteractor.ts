@@ -9,15 +9,13 @@ import CreateGameUseCase from '../api/CreateGameUseCase';
 export class CreateGameInteractor implements CreateGameUseCase {
     private readonly gamesGateway: GamesGateway;
     private readonly wordsGateway: WordsGateway;
-    private readonly gameD2BConverter : GameD2BConverter;
 
     constructor(wordsGateway: WordsGateway, gamesGateway: GamesGateway) {
         this.wordsGateway = wordsGateway;
         this.gamesGateway = gamesGateway;
-        this.gameD2BConverter = new GameD2BConverter();
     }
 
-    createGame(): BoundaryGame {
+    createGame(): Game {
         const newGame =
             new Game(
                 this.gamesGateway.generateId(),
@@ -26,6 +24,6 @@ export class CreateGameInteractor implements CreateGameUseCase {
                 this.wordsGateway.loadWord()
             )
         this.gamesGateway.addGame(newGame);
-        return this.gameD2BConverter.convert(newGame);
+        return newGame;
     }
 }

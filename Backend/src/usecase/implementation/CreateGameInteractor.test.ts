@@ -13,7 +13,7 @@ const GAMES_GW: MockProxy<GamesGateway> = mock<GamesGateway>();
 const gameCreator = new CreateGameInteractor(WORDS_GW, GAMES_GW);
 
 describe("GameCreator", () => {
-    test("Can create game", () => {
+    /*test("Can create game", () => {
         const id = 1
         const testWord = "TEST"
         const hiddenTestWord = "####"
@@ -45,5 +45,31 @@ describe("GameCreator", () => {
         expect(game.getGuessedLetters()).toEqual([])
         expect(game.getWrongLetters()).toEqual([])
         expect(game.getHiddenWord()).toEqual(word);
+    }*/
+
+    test("Can create game", () => {
+        const id = 1
+        const testWord = "TEST"
+
+        WORDS_GW.loadWord.mockReturnValue(testWord)
+        GAMES_GW.generateId.mockReturnValue(id)
+
+        const createdGame = gameCreator.createGame()
+
+        const newGame = GAMES_GW.addGame.mock.calls[0][0];
+        
+        expect(WORDS_GW.loadWord).toHaveBeenCalled();
+        expect(GAMES_GW.generateId).toHaveBeenCalled();
+
+        assertGameParams(newGame, id, testWord);
+
+        assertGameParams(createdGame, id, testWord);
+    });
+
+    function assertGameParams(game: Game, id:number, word: string){
+        expect(game.getId()).toEqual(id)
+        expect(game.getGuessedLetters()).toEqual([])
+        expect(game.getWrongLetters()).toEqual([])
+        expect(game.getWord()).toEqual(word);
     }
 });

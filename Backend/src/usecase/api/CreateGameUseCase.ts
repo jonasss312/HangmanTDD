@@ -1,5 +1,5 @@
-import { BoundaryGame } from "../model/BoundaryGame";
+import { Game } from "../../domain/Game";
 
 export default interface CreateGameUseCase {
-    createGame() : BoundaryGame;
+    createGame() : Game;
 }
