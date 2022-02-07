@@ -16,7 +16,7 @@ beforeEach(() => {
 })
 
 describe("UpdateGameInteractor", () => {
-    test("Can update game", () => {
+    /*test("Can update game", () => {
         const updatedHiddenWord = "T##T";
         const hiddenWord = "####";
         const word = "TEST";
@@ -32,5 +32,20 @@ describe("UpdateGameInteractor", () => {
         const updatedGameBoundary = updateGameInteractor.updateGame(requestingToUpdateGameBoundary);
 
         expect(updatedGameBoundary).toEqual(expectedGameBoundary);
+    });*/
+
+    test("Can update game", () => {
+        const word = "TEST";
+        const gameId = 1;
+
+        const requestingToUpdateGame = new Game(gameId, ["T", "B"], ["C", "D"], word);
+        const expectedGame = new Game(gameId, ["T", "B"], ["C", "D"], word)
+
+        GAMES_GW.getGame
+            .mockReturnValue(expectedGame);
+
+        const updatedGame = updateGameInteractor.updateGame(requestingToUpdateGame);
+
+        expect(updatedGame).toEqual(expectedGame);
     });
 });
