@@ -8,6 +8,7 @@ import { Game } from '../../domain/Game';
 
 import GamesGateway from '../../gateway/api/GamesGateway'
 import WordsGateway from '../../gateway/api/WordsGateway';
+import { GameStatus } from '../../domain/GameStatus';
 
 const GAMES_GW: MockProxy<GamesGateway> = mock<GamesGateway>();
 const WORDS_GW: MockProxy<WordsGateway> = mock<WordsGateway>();
@@ -26,9 +27,10 @@ describe("UpdateGameInteractor", () => {
         const hiddenWord = "####";
         const word = "TEST";
         const gameId = 100;
+        const guessNumber = 3;
 
-        const requestingToUpdateGameBoundary = new BoundaryGame(gameId, ["B"], ["C", "D"], hiddenWord, "T");
-        const expectedGameBoundary = new BoundaryGame(gameId, ["B","T" ], ["C", "D"], updatedHiddenWord, "");
+        const requestingToUpdateGameBoundary = new BoundaryGame(gameId, ["B"], ["C", "D"], hiddenWord, "T", guessNumber, GameStatus.InProgress);
+        const expectedGameBoundary = new BoundaryGame(gameId, ["B","T" ], ["C", "D"], updatedHiddenWord, "", guessNumber +1, GameStatus.InProgress);
 
         GAMES_GW.getGame
             .mockReturnValue(new Game(gameId, ["B"], ["C", "D"], word));
@@ -43,7 +45,7 @@ describe("UpdateGameInteractor", () => {
         const word = "TEST";
         const gameId = 100;
 
-        const requestingToUpdateGameBoundary = new BoundaryGame(gameId, ["B"], ["C", "D"], hiddenWord, "T");
+        const requestingToUpdateGameBoundary = new BoundaryGame(gameId, ["B"], ["C", "D"], hiddenWord, "T", 3, GameStatus.InProgress);
 
         WORDS_GW.loadWord.mockReturnValue(word);
         GAMES_GW.generateId.mockReturnValue(gameId+1);
