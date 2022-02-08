@@ -6,7 +6,7 @@ const routes = require('./Router')
 
 export async function createServer(): Promise<Express> {
     const server = express();
-    const port = 8080; // default port to listen
+    const port = 8080;
 
     server.use(bodyParser.json())
     server.use("/api/games", routes)
