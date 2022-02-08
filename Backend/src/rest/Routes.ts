@@ -1,14 +1,14 @@
 
 import express, { Router } from "express";
 
-import CreateGameUseCase from "../usecase/api/CreateGameUseCase";
+import { CreateGameRoute } from "./implementation/CreateGameRoute";
 
 export class Routes {
     private readonly router: Router;
-    private readonly createGameUseCase : CreateGameUseCase; 
+    private readonly createGameRoute : CreateGameRoute; 
 
-    constructor(createGameUseCase : CreateGameUseCase) {
-        this.createGameUseCase = createGameUseCase;
+    constructor(createGameRoute : CreateGameRoute) {
+        this.createGameRoute = createGameRoute;
         this.router = this.configureRouter();
     }
 
@@ -16,7 +16,7 @@ export class Routes {
         let router = express.Router();
 
         router.post('/', (request: any, response: any) => {
-            const game = this.createGameUseCase.createGame();
+            const game = this.createGameRoute.createGame();
             response.status(201).json(game);
         });
 

@@ -8,16 +8,19 @@ import CreateGameUseCase from '../../usecase/api/CreateGameUseCase'
 
 import { mock, MockProxy } from 'jest-mock-extended';
 import { BoundaryGame } from '../../usecase/model/BoundaryGame';
-
+import { CreateGameRoute } from './CreateGameRoute';
+import { GameB2RConverter } from './GameB2RConverter';
 
 const CREATE_GAME_USE_CASE: MockProxy<CreateGameUseCase> = mock<CreateGameUseCase>();
+const GAME_B2R_CONVERTER =  new GameB2RConverter();
 const GAME_BOUNDARY = new BoundaryGame(4, [], [], "####", "", 0, "IN_PROGRESS");
 
 let server: Express
 
 beforeAll(() => {
     CREATE_GAME_USE_CASE.createGame.mockReturnValue(GAME_BOUNDARY);
-    const router = new Routes(CREATE_GAME_USE_CASE)
+    let createGameRoute = new CreateGameRoute(CREATE_GAME_USE_CASE, GAME_B2R_CONVERTER);
+    let router = new Routes(createGameRoute)
     server = new Server(true, router).getServer();
 })
 
