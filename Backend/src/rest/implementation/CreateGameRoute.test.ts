@@ -11,12 +11,6 @@ beforeAll(async () => {
 })
 
 describe("CreateGameRoute", () => {
-    it("Hello API Request", async () => {
-        const result = await request(server).get("/api/games");
-        expect(result.text).toEqual("Hello");
-        expect(result.statusCode).toEqual(200);
-    });
-
     it("Create game API Request", async () => {
         const result = await request(server).post("/api/games");
         const newGame : RestGame = result.body;

@@ -1,6 +1,6 @@
 import { createServer } from './Server'
 
-let server =  createServer();
+let server = createServer();
 
 const port = 8080;
 server.listen(port, () => {
