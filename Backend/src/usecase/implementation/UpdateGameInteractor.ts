@@ -3,19 +3,16 @@ import UpdateGameUseCase from '../api/UpdateGameUseCase'
 
 import { Game } from '../../domain/Game';
 import { BoundaryGame } from '../model/BoundaryGame';
-import { GameB2DConverter } from './GameB2DConverter';
 import { GameD2BConverter } from './GameD2BConverter';
 import { CreateGameInteractor } from './CreateGameInteractor';
 
 export class UpdateGameInteractor implements UpdateGameUseCase {
     private readonly gamesGateway: GamesGateway;
     private readonly gameD2BConverter: GameD2BConverter;
-    private readonly createGameInteractor : CreateGameInteractor;
 
-    constructor(gamesGateway: GamesGateway, createGameInteractor : CreateGameInteractor, gameD2BConverter : GameD2BConverter) {
+    constructor(gamesGateway: GamesGateway, gameD2BConverter : GameD2BConverter) {
         this.gamesGateway = gamesGateway;
         this.gameD2BConverter = gameD2BConverter;
-        this.createGameInteractor = createGameInteractor;
     }
 
     upsertGame(gameBoundary: BoundaryGame): BoundaryGame {
@@ -24,7 +21,7 @@ export class UpdateGameInteractor implements UpdateGameUseCase {
             return this.gameD2BConverter.convert(this.updateGame(gameBoundary, foundGame));
         }
         else {
-            return this.createGameInteractor.createGame();
+            throw new Error(`No such game id: ${gameBoundary.getId()}`);
         }
     }
 
