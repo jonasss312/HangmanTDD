@@ -10,7 +10,11 @@ import GamesGateway from '../../gateway/api/GamesGateway'
 const WORDS_GW: MockProxy<WordsGateway> = mock<WordsGateway>();
 const GAMES_GW: MockProxy<GamesGateway> = mock<GamesGateway>();
 
-const CREATE_GAME_INTERACTOR = new CreateGameInteractor(WORDS_GW, GAMES_GW);
+let createGameInteractor: CreateGameInteractor;
+
+beforeEach(() => {
+    createGameInteractor = new CreateGameInteractor(WORDS_GW, GAMES_GW);
+});
 
 describe("GameCreator", () => {
     test("Can create game", () => {
@@ -21,7 +25,7 @@ describe("GameCreator", () => {
         WORDS_GW.loadWord.mockReturnValue(testWord)
         GAMES_GW.generateId.mockReturnValue(id)
 
-        const createdGame = CREATE_GAME_INTERACTOR.createGame()
+        const createdGame = createGameInteractor.createGame()
 
         const newGame = GAMES_GW.addGame.mock.calls[0][0];
         
