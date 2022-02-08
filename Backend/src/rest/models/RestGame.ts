@@ -3,7 +3,6 @@ export interface RestGame {
     guessedLetters : string[]
     wrongLetters :string[]
     hiddenWord : string
-    guessingLetter : string
     guesses : number
     status: string 
   }

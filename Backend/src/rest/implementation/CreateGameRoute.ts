@@ -16,8 +16,7 @@ export class CreateGameRoute {
             wrongLetters: gameBoundary.getWrongLetters(),
             hiddenWord: gameBoundary.getHiddenWord(),
             guesses: gameBoundary.getGuesses(),
-            status: gameBoundary.getStatus(),
-            guessingLetter: ""
+            status: gameBoundary.getStatus()
         }
         return game;
     }
