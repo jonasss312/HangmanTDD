@@ -1,5 +1,5 @@
 import { BoundaryGame } from "../model/BoundaryGame";
 
-export default interface RestCreateGame {
+export default interface CreateGameUseCase {
     createGame() : BoundaryGame;
 }
