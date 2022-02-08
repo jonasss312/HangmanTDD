@@ -16,9 +16,9 @@ export function createRouter(): Router {
 
     let router = express.Router();
 
-    router.post('/', (response: any) => {
+    router.post('/', (request: any, response: any) => {
         const game = CREATE_GAME_ROUTE.createGame();
-        response.status(201).send(game);
+        response.status(201).json(game);
     });
     return router;
 }
