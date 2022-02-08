@@ -1,15 +1,25 @@
 import express from "express";
-import path from "path";
-const app = express();
-const port = 8080; // default port to listen
+import bodyParser from 'body-parser';
+import {Express} from 'express-serve-static-core'
+const routes = require('./Router')
 
-// define a route handler for the default home page
-app.get( "/", ( req : any, res : any ) => {
-    res.send("Hello")
-} );
 
-// start the express server
-app.listen( port, () => {
-    // tslint:disable-next-line:no-console
-    console.log( `Listening on http://localhost:${ port }` );
-} );
+export async function createServer(): Promise<Express> {
+    const server = express();
+    const port = 8080; // default port to listen
+
+    // define a route handler for the default home page
+    server.get("/", (req: any, res: any) => {
+        res.send("Hello")
+    });
+
+    server.use(bodyParser.json())
+    server.use("/api/games", routes)
+    // start the express server
+    server.listen(port, () => {
+        // tslint:disable-next-line:no-console
+        console.log(`Listening on http://localhost:${port}`);
+    });
+
+    return server;
+}
