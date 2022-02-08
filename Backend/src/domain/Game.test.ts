@@ -22,9 +22,7 @@ describe("Game", () => {
 
     test("Can check if game won", () => {
         const guessedAllWordLetters =
-            Array.from(TEST_WORD).map(letter => {
-                return letter;
-            }).filter(letter => letter!= ' ');
+            Array.from(TEST_WORD).filter(letter => letter!= ' ');
         const game = createGame(guessedAllWordLetters, []);
         expect(game.getStatus()).toEqual(GameStatus.Won);
     });
