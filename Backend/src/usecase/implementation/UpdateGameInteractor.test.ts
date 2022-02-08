@@ -9,16 +9,18 @@ import { Game } from '../../domain/Game';
 import GamesGateway from '../../gateway/api/GamesGateway'
 import WordsGateway from '../../gateway/api/WordsGateway';
 import { GameStatus } from '../../domain/GameStatus';
+import { GameD2BConverter } from './GameD2BConverter';
 
 const GAMES_GW: MockProxy<GamesGateway> = mock<GamesGateway>();
 const WORDS_GW: MockProxy<WordsGateway> = mock<WordsGateway>();
 
 const CREATE_GAME_INTERACTOR = new CreateGameInteractor(WORDS_GW, GAMES_GW);
+const GAME_D2B_CONVERTER = new GameD2BConverter();
 
 let updateGameInteractor: UpdateGameInteractor;
 
 beforeEach(() => {
-    updateGameInteractor = new UpdateGameInteractor(GAMES_GW, CREATE_GAME_INTERACTOR);
+    updateGameInteractor = new UpdateGameInteractor(GAMES_GW, CREATE_GAME_INTERACTOR, GAME_D2B_CONVERTER);
 })
 
 describe("UpdateGameInteractor", () => {

@@ -10,13 +10,11 @@ import { CreateGameInteractor } from './CreateGameInteractor';
 export class UpdateGameInteractor implements UpdateGameUseCase {
     private readonly gamesGateway: GamesGateway;
     private readonly gameD2BConverter: GameD2BConverter;
-    private readonly gameB2DConverter: GameB2DConverter;
     private readonly createGameInteractor : CreateGameInteractor;
 
-    constructor(gamesGateway: GamesGateway, createGameInteractor : CreateGameInteractor) {
+    constructor(gamesGateway: GamesGateway, createGameInteractor : CreateGameInteractor, gameD2BConverter : GameD2BConverter) {
         this.gamesGateway = gamesGateway;
-        this.gameD2BConverter = new GameD2BConverter();
-        this.gameB2DConverter = new GameB2DConverter();
+        this.gameD2BConverter = gameD2BConverter;
         this.createGameInteractor = createGameInteractor;
     }
 
