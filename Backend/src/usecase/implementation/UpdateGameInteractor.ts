@@ -9,22 +9,20 @@ export class UpdateGameInteractor implements UpdateGameUseCase {
     private readonly gamesGateway: GamesGateway;
     private readonly gameD2BConverter: GameD2BConverter;
 
-    constructor(gamesGateway: GamesGateway, gameD2BConverter : GameD2BConverter) {
+    constructor(gamesGateway: GamesGateway, gameD2BConverter: GameD2BConverter) {
         this.gamesGateway = gamesGateway;
         this.gameD2BConverter = gameD2BConverter;
     }
 
     upsertGame(gameBoundary: BoundaryGame): BoundaryGame {
         const foundGame = this.gamesGateway.getGame(gameBoundary.getId())
-        if (this.gameExists(foundGame)) {
+        if (this.gameExists(foundGame))
             return this.gameD2BConverter.convert(this.updateGame(gameBoundary, foundGame));
-        }
-        else {
+        else
             throw new Error(`No such game id: ${gameBoundary.getId()}`);
-        }
     }
 
-    private gameExists(game:Game):Boolean{
+    private gameExists(game: Game): Boolean {
         return game.getId() > 0
     }
 
@@ -44,7 +42,7 @@ export class UpdateGameInteractor implements UpdateGameUseCase {
             wrongLetters = this.appendLetterToArray(wrongLetters, game.getGuessingLetter());
         return [guessedLetters, wrongLetters];
     }
-    private appendLetterToArray(letters: string[], letter:string): string[] {
+    private appendLetterToArray(letters: string[], letter: string): string[] {
         if (this.letterIsNotInArray(letters, letter))
             letters.push(letter);
         return letters;
