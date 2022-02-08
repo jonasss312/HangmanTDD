@@ -4,7 +4,6 @@ import UpdateGameUseCase from '../api/UpdateGameUseCase'
 import { Game } from '../../domain/Game';
 import { BoundaryGame } from '../model/BoundaryGame';
 import { GameD2BConverter } from './GameD2BConverter';
-import { CreateGameInteractor } from './CreateGameInteractor';
 
 export class UpdateGameInteractor implements UpdateGameUseCase {
     private readonly gamesGateway: GamesGateway;

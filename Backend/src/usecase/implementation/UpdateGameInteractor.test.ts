@@ -27,11 +27,12 @@ describe("UpdateGameInteractor", () => {
         const gameId = 100;
         const guessNumber = 3;
 
-        const requestingToUpdateGameBoundary = new BoundaryGame(gameId, ["B"], ["C", "D"], hiddenWord, "T", guessNumber, GameStatus.InProgress);
-        const expectedGameBoundary = new BoundaryGame(gameId, ["B","T" ], ["C", "D"], updatedHiddenWord, "", guessNumber +1, GameStatus.InProgress);
+        const requestingToUpdateGameBoundary =
+            new BoundaryGame(gameId, ["B"], ["C", "D"], hiddenWord, "T", guessNumber, GameStatus.InProgress);
+        const expectedGameBoundary =
+            new BoundaryGame(gameId, ["B", "T"], ["C", "D"], updatedHiddenWord, "", guessNumber + 1, GameStatus.InProgress);
 
-        GAMES_GW.getGame
-            .mockReturnValue(new Game(gameId, ["B"], ["C", "D"], word));
+        GAMES_GW.getGame.mockReturnValue(new Game(gameId, ["B"], ["C", "D"], word));
 
         const updatedGameBoundary = updateGameInteractor.upsertGame(requestingToUpdateGameBoundary);
 
@@ -42,12 +43,13 @@ describe("UpdateGameInteractor", () => {
         const hiddenWord = "####";
         const gameId = 100;
 
-        const requestingToUpdateGameBoundary = new BoundaryGame(gameId, ["B"], ["C", "D"], hiddenWord, "T", 3, GameStatus.InProgress);
-        
+        const requestingToUpdateGameBoundary =
+            new BoundaryGame(gameId, ["B"], ["C", "D"], hiddenWord, "T", 3, GameStatus.InProgress);
+
         GAMES_GW.getGame.mockReturnValue(new Game(0, [], [], ""));
-        try{
+        try {
             updateGameInteractor.upsertGame(requestingToUpdateGameBoundary);
-        } catch(error: any){
+        } catch (error: any) {
             expect(error).toBeInstanceOf(Error);
             expect(error.message).toContain(gameId.toString());
         }
