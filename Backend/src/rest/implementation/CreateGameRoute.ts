@@ -8,7 +8,7 @@ export class CreateGameRoute {
         this.createGameUseCase = createGameUseCase;
     }
 
-    createGame(req: any, res: any): void {
+    createGame() : RestGame {
         const gameBoundary: BoundaryGame = this.createGameUseCase.createGame();
         const game: RestGame = {
             id: gameBoundary.getId(),
@@ -19,6 +19,6 @@ export class CreateGameRoute {
             status: gameBoundary.getStatus(),
             guessingLetter: ""
         }
-        res.status(201).send(game);
+        return game;
     }
 }
