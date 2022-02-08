@@ -1,6 +1,7 @@
 
-const express = require('express');
-const router = express.Router();
+//const express = require('express');
+import express, { Router } from "express";
+import { Express } from 'express-serve-static-core'
 
 import { CreateGameRoute } from './implementation/CreateGameRoute';
 import { CreateGameInteractor } from '../usecase/implementation/CreateGameInteractor';
@@ -14,13 +15,18 @@ const CREATE_GAME_INTERACTOR = new CreateGameInteractor(WORDS_FROM_FILE, GAMES_S
 const CREATE_GAME_ROUTE = new CreateGameRoute(CREATE_GAME_INTERACTOR);
 
 
-router.post('/', (request: any, response: any) => {
-    const game = CREATE_GAME_ROUTE.createGame();
-    response.status(201).send(game);
-});
+export function createRouter(): Router {
 
-router.get('/',  (req: any, res: any) => {
-    res.send("Hello")
-});
+    let router = express.Router();
 
-module.exports = router;
+    router.post('/', (request: any, response: any) => {
+        const game = CREATE_GAME_ROUTE.createGame();
+        response.status(201).send(game);
+    });
+
+    router.get('/', (req: any, res: any) => {
+        res.send("Hello")
+    });
+
+    return router;
+}

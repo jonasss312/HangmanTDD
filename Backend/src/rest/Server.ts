@@ -1,19 +1,11 @@
 import express from "express";
 import bodyParser from 'body-parser';
-import {Express} from 'express-serve-static-core'
-const routes = require('./Router')
+import { Express } from 'express-serve-static-core'
+import { createRouter } from './Router'
 
-
-export async function createServer(): Promise<Express> {
+export function createServer(): Express {
     const server = express();
-    const port = 8080;
-
     server.use(bodyParser.json())
-    server.use("/api/games", routes)
-
-    server.listen(port, () => {
-        console.log(`Listening on http://localhost:${port}`);
-    });
-
+    server.use("/api/games", createRouter())
     return server;
 }
