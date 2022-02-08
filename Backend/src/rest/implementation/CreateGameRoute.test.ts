@@ -3,11 +3,12 @@ import { Express } from 'express-serve-static-core'
 
 import { createServer } from '../Server'
 import { RestGame } from "../models/RestGame";
+import {Response} from 'express';
 
 let server: Express
 
-beforeAll(async () => {
-    server = await createServer()
+beforeAll(() => {
+    server = createServer()
 })
 
 describe("CreateGameRoute", () => {
