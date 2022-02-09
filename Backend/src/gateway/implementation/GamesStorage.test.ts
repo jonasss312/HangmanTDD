@@ -3,13 +3,14 @@ import { Game } from '../../domain/Game'
 
 const GAME = new Game(1, [], [], "");
 
-let storage = new GamesStorage();
-
-beforeEach(() => {
-  storage = new GamesStorage();
-})
 
 describe("GamesStorage", () => {
+  let storage = new GamesStorage();
+
+  beforeEach(() => {
+    storage = new GamesStorage();
+  })
+
   test("Can add game", () => {
     storage.addGame(GAME);
     expect(storage.getGames()).toContain(GAME);
