@@ -32,32 +32,7 @@ export class GamesStorage implements GamesGateway {
     }
 
     upsertGame(game: Game): void {
-        const foundGame = this.tryFindGame(game.getId());
-        if (foundGame) {
-            this.updateFoundGameIfPossible(foundGame, game);
-        }
-        this.storeNewGame(game);
-    }
-
-    private updateFoundGameIfPossible(foundGame: Game, game: Game) {
-        const gameIndexInStorage = this.tryGetIndexInStorage(foundGame);
-        if (this.indexIsValid(gameIndexInStorage))
-            this.updateGameInStorage(gameIndexInStorage, game);
-    }
-
-    private tryGetIndexInStorage(game: Game): number {
-        return this.games.indexOf(game);
-    }
-
-    private indexIsValid(index: number) : Boolean {
-        return index >= 0
-    }
-
-    private updateGameInStorage(index: number, game: Game) {
-        this.games[index] = game;
-    }
-
-    private storeNewGame(game:Game) {
-        this.addGame(game);
+        this.games = this.games.filter(g => g.getId() !== game.getId());
+        this.games.push(game);
     }
 }

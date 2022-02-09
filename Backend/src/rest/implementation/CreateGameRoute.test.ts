@@ -1,38 +1,39 @@
-import request from 'supertest'
-import { Express } from 'express-serve-static-core'
-
-import { Server } from '../Server'
 import { RestGame } from "../models/RestGame";
-import { Routes } from '../Routes'
-import CreateGameUseCase from '../../usecase/api/CreateGameUseCase'
-
 import { mock, MockProxy } from 'jest-mock-extended';
 import { BoundaryGame } from '../../usecase/model/BoundaryGame';
 import { CreateGameRoute } from './CreateGameRoute';
 import { GameB2RConverter } from './GameB2RConverter';
+import CreateGameUseCase from '../../usecase/api/CreateGameUseCase';
 
-const CREATE_GAME_USE_CASE: MockProxy<CreateGameUseCase> = mock<CreateGameUseCase>();
-const GAME_B2R_CONVERTER =  new GameB2RConverter();
-const GAME_BOUNDARY = new BoundaryGame(4, [], [], "####", "", 0, "IN_PROGRESS");
+const MockExpressRequest = require('mock-express-request');
+const MockExpressResponse = require('mock-express-response');
 
-let server: Express
-
-beforeAll(() => {
-    CREATE_GAME_USE_CASE.createGame.mockReturnValue(GAME_BOUNDARY);
-    let createGameRoute = new CreateGameRoute(CREATE_GAME_USE_CASE, GAME_B2R_CONVERTER);
-    let router = new Routes(createGameRoute)
-    server = new Server(true, router).getServer();
-})
+const GAME_BOUNDARY = new BoundaryGame(4, ["T"], [], "T##T", 1, "IN_PROGRESS");
+const GAME_REST = new RestGame(4, ["T"], [], "T##T", 1, "IN_PROGRESS");
 
 describe("CreateGameRoute", () => {
+    let createGameRoute: CreateGameRoute;
+    let createGameUC: MockProxy<CreateGameUseCase>;
+    let gameConverter: MockProxy<GameB2RConverter>;
+
+    beforeEach(() => {
+        createGameUC = mock<CreateGameUseCase>();
+        gameConverter = mock<GameB2RConverter>();
+        createGameRoute = new CreateGameRoute(createGameUC, gameConverter);
+    });
+
     it("Create game API Request", async () => {
-        const result = await request(server).post("/api/games");
-        const newGame: RestGame = result.body;
-        expect(result.type).toEqual("application/json");
-        expect(result.statusCode).toEqual(201);
-        expect(newGame.id).toEqual(4);
-        expect(newGame.hiddenWord).not.toEqual("");
-        expect(newGame.guesses).toEqual(0);
-        expect(newGame.status).toEqual("IN_PROGRESS");
+        createGameUC.createGame.mockReturnValue(GAME_BOUNDARY);
+        gameConverter.convert.calledWith(GAME_BOUNDARY).mockReturnValue(GAME_REST);
+
+        const request = new MockExpressRequest();
+        const response = new MockExpressResponse();
+
+        createGameRoute.createGame(request , response);
+
+        expect(createGameUC.createGame).toBeCalledTimes(1);
+        expect(gameConverter.convert).toHaveBeenCalledWith(GAME_BOUNDARY);
+        expect(response._getJSON()).toEqual(GAME_REST);
+        expect(response.statusCode).toEqual(201);
     });
 });

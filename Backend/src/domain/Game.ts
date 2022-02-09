@@ -52,7 +52,7 @@ export class Game {
     }
 
     private wasGuessedTenTimesWrongly(): Boolean {
-        return this.wrongLetters.length == 10
+        return this.wrongLetters.length === 10
     }
 
     getStatus(): GameStatus {

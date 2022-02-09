@@ -7,14 +7,13 @@ export class GameB2RConverter {
     }
 
     private createRestGame(gameBoundary: BoundaryGame): RestGame {
-        const game: RestGame = {
-            id: gameBoundary.getId(),
-            guessedLetters: gameBoundary.getGuessedLetters(),
-            wrongLetters: gameBoundary.getWrongLetters(),
-            hiddenWord: gameBoundary.getHiddenWord(),
-            guesses: gameBoundary.getGuesses(),
-            status: gameBoundary.getStatus()
-        }
-        return game;
+        return new RestGame(
+            gameBoundary.getId(),
+            gameBoundary.getGuessedLetters(),
+            gameBoundary.getWrongLetters(),
+            gameBoundary.getHiddenWord(),
+            gameBoundary.getGuesses(),
+            gameBoundary.getStatus()
+        )
     }
 }
