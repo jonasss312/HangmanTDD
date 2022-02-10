@@ -19,8 +19,7 @@ export class UpsertGameInteractor implements UpsertGameUseCase {
         const foundGame = this.gamesGateway.getGame(updateGameBoundary.getId())
         if (this.gameExists(foundGame))
             return this.gameD2BConverter.convert(this.updateGame(updateGameBoundary, foundGame));
-        else
-            throw new Error(`No such game id: ${updateGameBoundary.getId()}`);
+        throw new Error(`No such game id: ${updateGameBoundary.getId()}`);
     }
 
     private gameExists(game: Game): Boolean {
