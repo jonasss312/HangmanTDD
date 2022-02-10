@@ -44,7 +44,7 @@ describe("UpsertGameRoute", () => {
         expect(response.statusCode).toEqual(200);
     });
 
-    it("Throw error if game does not exist API Request", async () => {
+    it("Throw error if game does not exist API Request", () => {
         const request = new MockExpressRequest({ body: { id: 5, guessingLetter: "T" } });
         const response = new MockExpressResponse();
 
