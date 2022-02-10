@@ -5,7 +5,7 @@ import { GameB2RConverter } from "./GameB2RConverter";
 describe("GameB2RConverter", () => {
     let gameB2RConverter: GameB2RConverter
 
-    beforeAll(async () => {
+    beforeAll(() => {
         gameB2RConverter = new GameB2RConverter()
     })
     
