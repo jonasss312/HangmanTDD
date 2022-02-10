@@ -43,7 +43,7 @@ export class UpsertGameInteractor implements UpsertGameUseCase {
         return [guessedLetters, wrongLetters];
     }
     private appendLetterToArray(letters: string[], letter: string): string[] {
-        if (this.letterIsNotInArray(letters, letter) && Array.isArray(letters))
+        if (this.letterIsNotInArray(letters, letter))
             letters.push(letter);
         return letters;
     }
