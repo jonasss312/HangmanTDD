@@ -13,12 +13,12 @@ describe("UpsertGameAcceptance", () => {
 
   it("PATCH upsert game route API request", async () => {
       const gameId = 5;
-    const expectedNewGameBoundary = new RestGame(gameId, ["T"], ["B"], "T##T", 2, "IN_PROGRESS");
+    const expectedGame = new RestGame(gameId, ["T"], ["B"], "T##T", 2, "IN_PROGRESS");
     const requestingRestGameUpdate = new RestGameUpdate(gameId, "T");
 
     const result = await request(server).patch("/api/games/5").send(requestingRestGameUpdate);
 
-    expect(result.body).toEqual(expectedNewGameBoundary);
+    expect(result.body).toEqual(expectedGame);
     expect(result.statusCode).toEqual(200);
   });
 });
