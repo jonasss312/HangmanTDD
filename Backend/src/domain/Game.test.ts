@@ -1,11 +1,11 @@
 import { Game } from './Game'
 import { GameStatus } from './GameStatus'
 
-const testWord = "TESTING WITH A SPACE";
+const TEST_WORD = "TESTING WITH A SPACE";
 
 describe("Game", () => {
     function createGame(correctLetters: string[], wrongLetters: string[]): Game {
-        return new Game(1, correctLetters, wrongLetters, testWord);
+        return new Game(1, correctLetters, wrongLetters, TEST_WORD);
     }
 
     test("Can guess one letter", () => {
@@ -22,9 +22,7 @@ describe("Game", () => {
 
     test("Can check if game won", () => {
         const guessedAllWordLetters =
-            Array.from(testWord).map(letter => {
-                return letter;
-            }).filter(letter => letter!= ' ');
+            Array.from(TEST_WORD).filter(letter => letter!= ' ');
         const game = createGame(guessedAllWordLetters, []);
         expect(game.getStatus()).toEqual(GameStatus.Won);
     });

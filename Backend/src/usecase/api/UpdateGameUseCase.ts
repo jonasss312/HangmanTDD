@@ -1,5 +1,5 @@
 import { BoundaryGame } from "../model/BoundaryGame";
 
-export default interface CreateGameUseCase {
-    updateGame(game: BoundaryGame): BoundaryGame;
+export default interface UpsertGameUseCase {
+    upsertGame(game: BoundaryGame): BoundaryGame;
 }

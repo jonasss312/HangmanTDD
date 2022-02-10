@@ -9,7 +9,8 @@ import CreateGameUseCase from '../api/CreateGameUseCase';
 export class CreateGameInteractor implements CreateGameUseCase {
     private readonly gamesGateway: GamesGateway;
     private readonly wordsGateway: WordsGateway;
-    private readonly gameD2BConverter : GameD2BConverter;
+    private readonly gameD2BConverter: GameD2BConverter;
+    
 
     constructor(wordsGateway: WordsGateway, gamesGateway: GamesGateway) {
         this.wordsGateway = wordsGateway;
