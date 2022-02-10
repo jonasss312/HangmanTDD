@@ -6,11 +6,11 @@ const MockExpressRequest = require('mock-express-request');
 describe("UpdateR2BConverter", () => {
     let updateR2BConverter: UpdateR2BConverter
 
-    beforeAll(async () => {
+    beforeAll(() => {
         updateR2BConverter = new UpdateR2BConverter()
     })
 
-    it("can trasnfer attributes", async () => {
+    it("can trasnfer attributes", () => {
         const request = new MockExpressRequest({ body: { id: 4, guessingLetter: "T" } });
         const expectedUpdateBoundary = new BoundaryUpdate(4, "T");
 
