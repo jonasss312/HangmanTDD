@@ -48,7 +48,6 @@ describe("UpsertGameRoute", () => {
 
         upsertGameUC.upsertGame.mockImplementation(() => { throw new Error('No such game id: 4'); });
         updateConverter.convert.calledWith(request).mockReturnValue(UPDATE_BOUNDARY);
-        gameConverter.convert.calledWith(GAME_BOUNDARY).mockReturnValue(GAME_REST);
 
         upsertGameRoute.upsertGame(request, response);
 
