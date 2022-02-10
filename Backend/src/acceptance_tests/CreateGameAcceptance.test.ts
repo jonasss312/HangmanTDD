@@ -11,11 +11,11 @@ describe("CreateGameAcceptance", () => {
     })
 
     it("POST create game route API request", async () => {
-        const expectedNewGameBoundary = new RestGame(5, [], [], "____", 0, "IN_PROGRESS");
+        const expectedNewGame = new RestGame(5, [], [], "____", 0, "IN_PROGRESS");
 
         const result = await request(server).post("/api/games");
 
-        expect(result.body).toEqual(expectedNewGameBoundary);
+        expect(result.body).toEqual(expectedNewGame);
         expect(result.statusCode).toEqual(201);
     });
 });
