@@ -27,7 +27,7 @@ describe("UpsertGameRoute", () => {
         upsertGameRoute = new UpsertGameRoute(upsertGameUC, gameConverter, updateConverter);
     });
 
-    it("Patch game API Request", async () => {
+    it("Patch game API Request", () => {
         const request = new MockExpressRequest({ body: { id: 4, guessingLetter: "T" } });
         const response = new MockExpressResponse();
 

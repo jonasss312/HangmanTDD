@@ -1,10 +1,10 @@
 export class RestGame {
-    private id: number
-    private guessedLetters : string[]
-    private wrongLetters :string[]
-    private hiddenWord : string
-    private guesses : number
-    private status: string 
+    readonly id: number
+    readonly guessedLetters : string[]
+    readonly wrongLetters :string[]
+    readonly hiddenWord : string
+    readonly guesses : number
+    readonly status: string 
 
     constructor(id: number, guessedLetters : string[], wrongLetters :string[], hiddenWord : string, guesses : number, status: string) {
       this.id = id;

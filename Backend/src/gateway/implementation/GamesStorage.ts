@@ -2,7 +2,7 @@ import { Game } from '../../domain/Game'
 import GamesGateway from '../api/GamesGateway';
 
 export class GamesStorage implements GamesGateway {
-    private games: Game[];
+    private readonly games: Game[];
 
     constructor() {
         this.games = [];
@@ -32,7 +32,10 @@ export class GamesStorage implements GamesGateway {
     }
 
     upsertGame(game: Game): void {
-        this.games = this.games.filter(g => g.getId() !== game.getId());
+        const index = this.games.findIndex(item => item.getId() === game.getId());
+        if (index > -1) {
+            this.games.splice(index,1);
+        }
         this.games.push(game);
     }
 }
