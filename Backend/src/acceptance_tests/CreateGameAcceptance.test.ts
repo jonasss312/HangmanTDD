@@ -1,7 +1,7 @@
 import request from "supertest";
 import { Express } from 'express-serve-static-core'
-import { BoundaryGame } from "../usecase/model/BoundaryGame";
 import { performSetup } from "./AcceptanceSetup";
+import { RestGame } from "../rest/models/RestGame";
 
 describe("CreateGameAcceptance", () => {
     let server: Express;
@@ -11,7 +11,7 @@ describe("CreateGameAcceptance", () => {
     })
 
     it("POST create game route API request", async () => {
-        const expectedNewGameBoundary = new BoundaryGame(5, [], [], "####", 0, "IN_PROGRESS");
+        const expectedNewGameBoundary = new RestGame(5, [], [], "####", 0, "IN_PROGRESS");
 
         const result = await request(server).post("/api/games");
 
