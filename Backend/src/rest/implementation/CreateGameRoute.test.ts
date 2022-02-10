@@ -22,7 +22,7 @@ describe("CreateGameRoute", () => {
         createGameRoute = new CreateGameRoute(createGameUC, gameConverter);
     });
 
-    it("Create game API Request", async () => {
+    it("Create game API Request", () => {
         createGameUC.createGame.mockReturnValue(GAME_BOUNDARY);
         gameConverter.convert.calledWith(GAME_BOUNDARY).mockReturnValue(GAME_REST);
 

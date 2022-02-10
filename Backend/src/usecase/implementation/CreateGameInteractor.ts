@@ -10,12 +10,12 @@ export class CreateGameInteractor implements CreateGameUseCase {
     private readonly gamesGateway: GamesGateway;
     private readonly wordsGateway: WordsGateway;
     private readonly gameD2BConverter: GameD2BConverter;
-    
 
-    constructor(wordsGateway: WordsGateway, gamesGateway: GamesGateway) {
+
+    constructor(wordsGateway: WordsGateway, gamesGateway: GamesGateway, gameD2BConverter: GameD2BConverter) {
         this.wordsGateway = wordsGateway;
         this.gamesGateway = gamesGateway;
-        this.gameD2BConverter = new GameD2BConverter();
+        this.gameD2BConverter = gameD2BConverter;
     }
 
     createGame(): BoundaryGame {

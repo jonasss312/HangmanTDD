@@ -20,8 +20,12 @@ export class UpsertGameRoute {
 
     upsertGame(request: Request, response: Response) {
         const gameUpdateBoundary: BoundaryUpdate = this.updateR2BConverter.convert(request);
-        const updatedGameBoundary: BoundaryGame = this.upsertGameUseCase.upsertGame(gameUpdateBoundary);
-        const updatedRestModel: RestGame = this.gameB2RConverter.convert(updatedGameBoundary);
-        response.status(200).json(updatedRestModel);
+        try {
+            const updatedGameBoundary: BoundaryGame = this.upsertGameUseCase.upsertGame(gameUpdateBoundary);
+            const updatedRestModel: RestGame = this.gameB2RConverter.convert(updatedGameBoundary);
+            response.status(200).json(updatedRestModel);
+        } catch (error){
+            response.status(404).json((error as Error).message);
+        }
     }
 }
