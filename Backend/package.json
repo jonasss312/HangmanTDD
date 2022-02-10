@@ -30,7 +30,5 @@
     "sinon": "^13.0.1",
     "supertest": "^6.2.2"
   },
-  "dependencies": {
-    "rxjs": "^7.5.4"
-  }
+  "dependencies": {}
 }
