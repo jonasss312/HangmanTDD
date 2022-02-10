@@ -24,7 +24,7 @@ describe("GameCreator", () => {
     test("Can create game", () => {
         const id = 1;
         const testWord = "TEST";
-        const hiddenTestWord = "####";
+        const hiddenTestWord = "____";
         const convertedGame: BoundaryGame = new BoundaryGame(id, [], [], hiddenTestWord, 0, "IN_PROGRESS")
 
         wordsGW.loadWord.mockReturnValue(testWord);

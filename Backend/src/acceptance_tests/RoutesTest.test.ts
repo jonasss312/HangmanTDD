@@ -38,7 +38,7 @@ describe("Router", () => {
   })
 
   it("POST create game route API request", async () => {
-    const expectedNewGameBoundary = new BoundaryGame(GAME_ID, [], [], "####", 0, "IN_PROGRESS");
+    const expectedNewGameBoundary = new BoundaryGame(GAME_ID, [], [], "____", 0, "IN_PROGRESS");
 
     const result = await request(server).post("/api/games");
 
@@ -47,7 +47,7 @@ describe("Router", () => {
   });
 
   it("PATCH upsert game route API request", async () => {
-    const expectedNewGameBoundary = new BoundaryGame(GAME_ID, ["T"], ["B"], "T##T", 2, "IN_PROGRESS");
+    const expectedNewGameBoundary = new BoundaryGame(GAME_ID, ["T"], ["B"], "T__T", 2, "IN_PROGRESS");
     const requestingRestGameUpdate = new RestGameUpdate(GAME_ID, "T");
 
     const result = await request(server).patch("/api/games/5").send(requestingRestGameUpdate);

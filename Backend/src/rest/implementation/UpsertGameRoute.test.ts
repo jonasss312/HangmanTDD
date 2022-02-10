@@ -10,9 +10,9 @@ import UpsertGameUseCase from '../../usecase/api/UpsertGameUseCase';
 const MockExpressRequest = require('mock-express-request');
 const MockExpressResponse = require('mock-express-response');
 
-const GAME_BOUNDARY = new BoundaryGame(4, ["T"], [], "T##T", 1, "IN_PROGRESS");
+const GAME_BOUNDARY = new BoundaryGame(4, ["T"], [], "T__T", 1, "IN_PROGRESS");
 const UPDATE_BOUNDARY = new BoundaryUpdate(4, "T");
-const GAME_REST = new RestGame(4, ["T"], [], "T##T", 1, "IN_PROGRESS");
+const GAME_REST = new RestGame(4, ["T"], [], "T__T", 1, "IN_PROGRESS");
 
 describe("UpsertGameRoute", () => {
     let upsertGameRoute: UpsertGameRoute;

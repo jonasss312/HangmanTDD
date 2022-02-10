@@ -28,7 +28,7 @@ export class Game {
         return Array.from(this.word).map(letter => {
             if (this.isGuessedLetter(letter))
                 return letter
-            return this.isWhiteSpace(letter) ? ' ' : '#'
+            return this.isWhiteSpace(letter) ? ' ' : '_'
         }).join('');
     }
 
@@ -48,11 +48,11 @@ export class Game {
     }
 
     private thereIsNoMoreHiddenLetters(): Boolean {
-        return !this.hiddenWord.includes("#")
+        return !this.hiddenWord.includes("_")
     }
 
     private wasGuessedTenTimesWrongly(): Boolean {
-        return this.wrongLetters.length === 10
+        return this.wrongLetters.length == 10
     }
 
     getStatus(): GameStatus {

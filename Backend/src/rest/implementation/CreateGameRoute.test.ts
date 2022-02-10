@@ -8,8 +8,8 @@ import CreateGameUseCase from '../../usecase/api/CreateGameUseCase';
 const MockExpressRequest = require('mock-express-request');
 const MockExpressResponse = require('mock-express-response');
 
-const GAME_BOUNDARY = new BoundaryGame(4, ["T"], [], "T##T", 1, "IN_PROGRESS");
-const GAME_REST = new RestGame(4, ["T"], [], "T##T", 1, "IN_PROGRESS");
+const GAME_BOUNDARY = new BoundaryGame(4, ["T"], [], "T__T", 1, "IN_PROGRESS");
+const GAME_REST = new RestGame(4, ["T"], [], "T__T", 1, "IN_PROGRESS");
 
 describe("CreateGameRoute", () => {
     let createGameRoute: CreateGameRoute;
