@@ -51,7 +51,7 @@ describe("Router", () => {
     const requestingRestGameUpdate = new RestGameUpdate(GAME_ID, "T");
 
     const result = await request(server).patch("/api/games/5").send(requestingRestGameUpdate);
-    
+
     expect(result.body).toEqual(expectedNewGameBoundary);
     expect(result.statusCode).toEqual(200);
   });
