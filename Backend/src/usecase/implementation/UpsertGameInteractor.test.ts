@@ -40,11 +40,8 @@ describe("UpdateGameInteractor", () => {
 
     test("Throws error if game does not exist", () => {
         const gameId = 100;
-
-        const requestingToUpdateGameBoundary =
-            new BoundaryUpdate(gameId, "T");
-
-        gamesGW.getGame.mockReturnValue(new Game(0, [], [], ""));
+        const requestingToUpdateGameBoundary = new BoundaryUpdate(gameId, "T");
+        
         try {
             upsertGameInteractor.upsertGame(requestingToUpdateGameBoundary);
         } catch (error: any) {

@@ -20,14 +20,7 @@ export class GamesStorage implements GamesGateway {
         this.games.push(game);
     }
 
-    getGame(id: number): Game {
-        const foundGame = this.tryFindGame(id);
-        if (foundGame)
-            return foundGame;
-        return new Game(0, [], [], "");
-    }
-
-    private tryFindGame(id: number): Game | undefined {
+    getGame(id: number): Game | undefined{
         return this.games.find(game => game.getId() === id);
     }
 

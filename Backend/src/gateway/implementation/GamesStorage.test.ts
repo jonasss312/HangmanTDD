@@ -21,9 +21,9 @@ describe("GamesStorage", () => {
     expect(foundGame).toEqual(GAME);
   });
 
-  test("Create empty game if can not get game by id", () => {
+  test("Return undefined if can not get game by id", () => {
     const foundGame = storage.getGame(1);
-    expect(foundGame).toEqual(new Game(0, [], [], ""));
+    expect(foundGame).toEqual(undefined);
   });
 
   test("Can upsert game by id", () => {
