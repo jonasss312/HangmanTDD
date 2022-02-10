@@ -28,8 +28,7 @@ describe("UpsertGameRoute", () => {
     });
 
     it("Patch game API Request", () => {
-        const request = new MockExpressRequest({ body: { id: 4, guessingLetter: "T" } });
-        const response = new MockExpressResponse();
+        const [request,response] = initializeRequestAndResponse();
 
         upsertGameUC.upsertGame.mockReturnValue(GAME_BOUNDARY);
         gameConverter.convert.calledWith(GAME_BOUNDARY).mockReturnValue(GAME_REST);
@@ -45,8 +44,7 @@ describe("UpsertGameRoute", () => {
     });
 
     it("Throw error if game does not exist API Request", () => {
-        const request = new MockExpressRequest({ body: { id: 5, guessingLetter: "T" } });
-        const response = new MockExpressResponse();
+        const [request,response] = initializeRequestAndResponse();
 
         upsertGameUC.upsertGame.mockImplementation(() => { throw new Error('No such game id: 4'); });
         updateConverter.convert.calledWith(request).mockReturnValue(UPDATE_BOUNDARY);
@@ -59,4 +57,10 @@ describe("UpsertGameRoute", () => {
         expect(response.statusCode).toEqual(404);
         expect(response._getJSON()).toEqual('No such game id: 4');
     });
+
+    function initializeRequestAndResponse() : [typeof MockExpressRequest, typeof MockExpressResponse] {
+        const request = new MockExpressRequest({ body: { id: 4, guessingLetter: "T" } });
+        const response = new MockExpressResponse();
+        return [request,response];
+    }
 });
