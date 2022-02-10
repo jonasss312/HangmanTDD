@@ -19,7 +19,7 @@ describe("UpdateGameInteractor", () => {
     })
 
     test("Can update existing game", () => {
-        const updatedHiddenWord = "T##T";
+        const updatedHiddenWord = "T__T";
         const word = "TEST";
         const gameId = 100;
         const guessNumber = 4;

@@ -25,5 +25,6 @@ export const performSetup = () => {
     let upsertGameRoute = new UpsertGameRoute(upsertGameInteractor, gameB2RConverter, updateR2BConverter);
 
     let serverClass = new Server(true, new Routes(createGameRoute, upsertGameRoute));
+    
     return serverClass.getServer();
 }

@@ -10,7 +10,7 @@ describe("Game", () => {
 
     test("Can guess one letter", () => {
         const game = createGame(["T"], []);
-        expect(game.getHiddenWord()).toEqual("T##T### ##T# # #####");
+        expect(game.getHiddenWord()).toEqual("T__T___ __T_ _ _____");
         expect(game.getStatus()).toEqual(GameStatus.InProgress);
         expect(game.getGuesses()).toEqual(1);
     })

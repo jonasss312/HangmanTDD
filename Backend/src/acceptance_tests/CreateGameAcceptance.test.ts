@@ -11,7 +11,7 @@ describe("CreateGameAcceptance", () => {
     })
 
     it("POST create game route API request", async () => {
-        const expectedNewGame = new RestGame(5, [], [], "####", 0, "IN_PROGRESS");
+        const expectedNewGame = new RestGame(5, [], [], "____", 0, "IN_PROGRESS");
 
         const result = await request(server).post("/api/games");
 
