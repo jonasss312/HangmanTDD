@@ -1,5 +1,3 @@
-import request from "supertest";
-import { Express } from 'express-serve-static-core'
 import { CreateGameRoute } from "../rest/implementation/CreateGameRoute";
 import { GameB2RConverter } from "../rest/implementation/GameB2RConverter";
 import { UpdateR2BConverter } from "../rest/implementation/UpdateR2BConverter";
@@ -9,17 +7,10 @@ import { Server } from "../rest/Server";
 import { CreateGameInteractor } from "../usecase/implementation/CreateGameInteractor";
 import { GameD2BConverter } from "../usecase/implementation/GameD2BConverter";
 import { UpsertGameInteractor } from "../usecase/implementation/UpsertGameInteractor";
-import { FakeGamesGW } from "./FakeGamesGW";
-import { FakeWordsGW } from "./FakeWordsGW";
-import { BoundaryGame } from "../usecase/model/BoundaryGame";
-import { RestGameUpdate } from "../rest/models/RestGameUpdate";
+import { FakeGamesGW } from "../gateway/fake/FakeGamesGW";
+import { FakeWordsGW } from "../gateway/fake/FakeWordsGW";
 
-const GAME_ID = 5;
-
-describe("Router", () => {
-  let server: Express;
-
-  beforeEach(() => {
+export const performSetup = () => {
     let updateR2BConverter = new UpdateR2BConverter();
     let gameB2RConverter = new GameB2RConverter();
     let gameD2BConverter = new GameD2BConverter();
@@ -34,25 +25,6 @@ describe("Router", () => {
     let upsertGameRoute = new UpsertGameRoute(upsertGameInteractor, gameB2RConverter, updateR2BConverter);
 
     let serverClass = new Server(true, new Routes(createGameRoute, upsertGameRoute));
-    server = serverClass.getServer();
-  })
-
-  it("POST create game route API request", async () => {
-    const expectedNewGameBoundary = new BoundaryGame(GAME_ID, [], [], "____", 0, "IN_PROGRESS");
-
-    const result = await request(server).post("/api/games");
-
-    expect(result.body).toEqual(expectedNewGameBoundary);
-    expect(result.statusCode).toEqual(201);
-  });
-
-  it("PATCH upsert game route API request", async () => {
-    const expectedNewGameBoundary = new BoundaryGame(GAME_ID, ["T"], ["B"], "T__T", 2, "IN_PROGRESS");
-    const requestingRestGameUpdate = new RestGameUpdate(GAME_ID, "T");
-
-    const result = await request(server).patch("/api/games/5").send(requestingRestGameUpdate);
-
-    expect(result.body).toEqual(expectedNewGameBoundary);
-    expect(result.statusCode).toEqual(200);
-  });
-});
+    
+    return serverClass.getServer();
+}

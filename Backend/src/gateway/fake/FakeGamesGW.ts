@@ -1,5 +1,5 @@
-import { Game } from '../domain/Game';
-import GamesGateway from '../gateway/api/GamesGateway'
+import { Game } from '../../domain/Game';
+import GamesGateway from '../api/GamesGateway'
 
 export class FakeGamesGW implements GamesGateway {
     getGame(id: number): Game {
