@@ -2,6 +2,7 @@ import CreateGameUseCase from "../../usecase/api/CreateGameUseCase";
 import { BoundaryGame } from "../../usecase/model/BoundaryGame";
 import { RestGame } from "../models/RestGame";
 import { GameB2RConverter } from "./GameB2RConverter";
+import { Request, Response } from "express";
 
 export class CreateGameRoute {
     private readonly createGameUseCase: CreateGameUseCase;
@@ -12,8 +13,9 @@ export class CreateGameRoute {
         this.gameB2RConverter=gameB2RConverter;
     }
 
-    createGame() : RestGame {
+    createGame(request: Request, response: Response) {
         const gameBoundary: BoundaryGame = this.createGameUseCase.createGame();
-        return this.gameB2RConverter.convert(gameBoundary);
+        const updatedGame : RestGame = this.gameB2RConverter.convert(gameBoundary);   
+        response.status(201).json(updatedGame);
     }
 }

@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from 'body-parser';
 import { Express } from 'express-serve-static-core'
 import { Routes } from './Routes'
 
@@ -17,7 +16,7 @@ export class Server {
 
     private configureServer(): Express {
         let server = express();
-        server.use(bodyParser.json());
+        server.use(express.json());
         server.use("/api/games", this.routes.getRouter());
         return server;
     }

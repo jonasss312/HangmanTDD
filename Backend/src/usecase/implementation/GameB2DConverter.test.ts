@@ -12,7 +12,7 @@ beforeEach(() => {
 describe("GameB2DConverter", () => {
     test("Can transfer attributes", () => {
         const word = "TEST"
-        const gameBoundary = new BoundaryGame(1, ["a", "b"], ["c", "d"], "####", "", 4, GameStatus.InProgress);
+        const gameBoundary = new BoundaryGame(1, ["a", "b"], ["c", "d"], "####", 4, GameStatus.InProgress);
         const game : Game = gameB2DConverter.convert(gameBoundary, word);
 
         expect(game.getId()).toEqual(gameBoundary.getId());
