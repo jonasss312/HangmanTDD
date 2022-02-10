@@ -9,7 +9,7 @@ describe("GameB2RConverter", () => {
         gameB2RConverter = new GameB2RConverter()
     })
     
-    it("can trasnfer attributes", () => {
+    it("can transfer attributes", () => {
         const requestingToConvertGameBoundary = new BoundaryGame(1, ["A", "D"], ["C", "B"], "####", 4, "IN_PROGRESS");
         const expectedRestGameModel = new RestGame(1, ["A", "D"], ["C", "B"], "####", 4, "IN_PROGRESS")
 

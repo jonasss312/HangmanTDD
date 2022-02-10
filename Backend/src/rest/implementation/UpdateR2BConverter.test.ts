@@ -10,7 +10,7 @@ describe("UpdateR2BConverter", () => {
         updateR2BConverter = new UpdateR2BConverter()
     })
 
-    it("can trasnfer attributes", () => {
+    it("can transfer attributes", () => {
         const request = new MockExpressRequest({ body: { id: 4, guessingLetter: "T" } });
         const expectedUpdateBoundary = new BoundaryUpdate(4, "T");
 
