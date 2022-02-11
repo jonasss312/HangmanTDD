@@ -1,6 +1,7 @@
 import express from "express";
 import { Express } from 'express-serve-static-core'
 import { Routes } from './Routes'
+import cors from 'cors'
 
 export class Server {
     private readonly server: Express;
@@ -16,6 +17,7 @@ export class Server {
 
     private configureServer(): Express {
         let server = express();
+        server.use(cors())
         server.use(express.json());
         server.use("/api/games", this.routes.getRouter());
         return server;
