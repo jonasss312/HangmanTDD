@@ -10,14 +10,9 @@ export class GamesAPI implements GamesGateway {
         this.connectionString = connectionString;
     }
 
-    createGame(): Observable<Game | undefined> {
-        let game: Game | undefined;
-        const subscription = ajax
-            .post<Game | undefined>(this.connectionString)
+    createGame(): Observable<Game> {
+        return ajax
+            .post<Game>(this.connectionString)
             .pipe(map((data) => data.response))
-            .subscribe((data) => (game = data));
-        subscription.unsubscribe();
-        return new Observable<Game | undefined>(subscriber => {
-            subscriber.next(game)});
     }
 }
