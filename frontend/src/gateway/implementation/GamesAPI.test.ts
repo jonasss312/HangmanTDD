@@ -3,6 +3,7 @@ import { Client } from "../../gateway/api/Client";
 import { mock, MockProxy } from "jest-mock-extended";
 import { Observable, of } from "rxjs";
 import { GamesAPI } from "./GamesAPI";
+import { CreateGameRoute } from "../../constant/RestConstants";
 
 describe("GamesAPI", () => {
   let gamesAPI: GamesAPI;
@@ -20,6 +21,9 @@ describe("GamesAPI", () => {
 
     const observableGame: Observable<Game> = gamesAPI.createGame();
 
-    observableGame.subscribe((game) => expect(game).toEqual(newGame));
+    observableGame.subscribe((game) => {
+      expect(client.post).toBeCalledWith(CreateGameRoute);
+      expect(game).toEqual(newGame);
+    });
   });
 });

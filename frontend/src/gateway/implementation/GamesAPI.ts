@@ -2,6 +2,7 @@ import { Game } from "domain/Game";
 import { Client } from "gateway/api/Client";
 import { GamesGateway } from "gateway/api/GamesGateway";
 import { Observable } from "rxjs";
+import { CreateGameRoute } from "../../constant/RestConstants";
 
 export class GamesAPI implements GamesGateway {
   private readonly client: Client;
@@ -11,6 +12,6 @@ export class GamesAPI implements GamesGateway {
   }
 
   createGame(): Observable<Game> {
-    return this.client.post<Game>("/api/games");
+    return this.client.post<Game>(CreateGameRoute);
   }
 }

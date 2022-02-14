@@ -35,7 +35,7 @@ describe("GetNewGameInteractor", () => {
 
     const observer = getObserverTemplate(done);
     observer.next = (game: BoundaryGame) => {
-      expect(game).toStrictEqual(newGame);
+      expect(game).toStrictEqual(newGameBoundary);
       expect(gamesGW.createGame).toBeCalled();
       expect(gameD2BConverter.convert).toBeCalledWith(newGame);
     };
