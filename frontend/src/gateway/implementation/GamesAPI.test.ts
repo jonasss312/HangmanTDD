@@ -1,8 +1,8 @@
-import { Game } from "domain/Game";
-import { Client } from "gateway/api/Client";
+import { Game } from "../../domain/Game";
+import { Client } from "../../gateway/api/Client";
+import { mock, MockProxy } from "jest-mock-extended";
 import { Observable, of } from "rxjs";
 import { GamesAPI } from "./GamesAPI";
-import { mock, MockProxy } from "jest-mock-extended";
 
 describe("GamesAPI", () => {
   let gamesAPI: GamesAPI;

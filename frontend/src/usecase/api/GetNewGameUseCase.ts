@@ -1,6 +1,6 @@
-import { Game } from "domain/Game";
 import { Observable } from "rxjs";
+import { BoundaryGame } from "usecase/model/BoundaryGame";
 
 export interface GetNewGameUseCase {
-  getGame(): Observable<Game>;
+  getGame(): Observable<BoundaryGame>;
 }

@@ -21,4 +21,28 @@ export class Game {
     this.guesses = guesses;
     this.status = status;
   }
+
+  getStatus(): string {
+    return this.status;
+  }
+
+  getId(): number {
+    return this.id;
+  }
+
+  getHiddenWord(): string {
+    return this.hiddenWord;
+  }
+
+  getGuessedLetters(): string[] {
+    return this.guessedLetters;
+  }
+
+  getWrongLetters(): string[] {
+    return this.wrongLetters;
+  }
+
+  getGuesses(): number {
+    return this.guesses;
+  }
 }
