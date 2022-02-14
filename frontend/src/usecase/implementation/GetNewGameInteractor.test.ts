@@ -1,10 +1,11 @@
 import { Game } from "../../domain/Game";
 import { GamesGateway } from "../../gateway/api/GamesGateway";
 import { mock, MockProxy } from "jest-mock-extended";
-import { from, Observable, of } from "rxjs";
+import { Observable, of } from "rxjs";
 import { BoundaryGame } from "../model/BoundaryGame";
 import { GameD2BConverter } from "./GameD2BConverter";
 import { GetNewGameInteractor } from "./GetNewGameInteractor";
+import { getObserverTemplate } from "../../constant/getObserverTemplate";
 
 describe("GetNewGameInteractor", () => {
   let getNewGameInteractor: GetNewGameInteractor;
@@ -32,14 +33,11 @@ describe("GetNewGameInteractor", () => {
     gamesGW.createGame.mockReturnValue(observableNewGame);
     gameD2BConverter.convert.mockReturnValue(newGameBoundary);
 
-    const observer = {
-      next: (game: BoundaryGame) => {
-        expect(game).toStrictEqual(newGameBoundary);
-        expect(gamesGW.createGame).toBeCalled();
-        expect(gameD2BConverter.convert).toBeCalledWith(newGame);
-      },
-      error: (error: Error) => done(error),
-      complete: () => done(),
+    const observer = getObserverTemplate(done);
+    observer.next = (game: BoundaryGame) => {
+      expect(game).toStrictEqual(newGame);
+      expect(gamesGW.createGame).toBeCalled();
+      expect(gameD2BConverter.convert).toBeCalledWith(newGame);
     };
 
     getNewGameInteractor.getGame().subscribe(observer);
