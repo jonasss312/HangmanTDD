@@ -1,4 +1,6 @@
-const port = 8080;
-const server = `http://localhost:${port}`;
+import dotenv from "dotenv";
 
-export const CREATE_GAME_URL: string = server + "/api/games";
+dotenv.config({ path: "./.env" });
+
+export const CREATE_GAME_URL: string =
+  process.env.REACT_APP_DOMAIN + "/api/games";
