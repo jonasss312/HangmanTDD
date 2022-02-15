@@ -8,7 +8,10 @@ export default function useCreateGame(
   const [game, setGame] = useState<ViewGame | undefined>(undefined);
 
   useEffect(() => {
-    createGameController.createNewGame().subscribe((game) => setGame(game));
+    const subscription = createGameController
+      .createNewGame()
+      .subscribe((game) => setGame(game));
+    subscription.unsubscribe();
   });
 
   return game;
