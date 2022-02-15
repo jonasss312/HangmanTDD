@@ -1,42 +1,43 @@
 import useCreateGame from "../../hook/useCreateGame";
 import { CreateGameController } from "../../controller/implementation/CreateGameController";
 import { ViewGame } from "../../controller/model/ViewGame";
-import { GameStatusDsiplay } from "../component/GameStatusDsiplay";
+import { GameStatusDisplay } from "../component/GameStatusDisplay";
+import { GuessingLettersDisplay } from "view/component/GuessingLettersDisplay";
 
 export function GameView(createGameController: CreateGameController) {
   const game: ViewGame | undefined = useCreateGame(createGameController);
 
-  const alphabet = Array.from(Array(26))
-    .map((e, i) => i + 65)
-    .map((x) => String.fromCharCode(x));
+  if (!game)
+    return (
+      <div>
+        <h1>Cannot create game.</h1>
+      </div>
+    );
 
-  function renderGame() {
-    if (game != undefined)
-      return (
-        <div>
-          <div>
-            <text>{game.hiddenWord}</text>
-          </div>
-          <div>
-            {alphabet.map((letter) => (
-              <div>
-                {game.guessedLetters.includes(letter) ||
-                game.wrongLetters.includes(letter) ? (
-                  <button disabled>{letter}</button>
-                ) : (
-                  <button>{letter}</button>
-                )}
-              </div>
-            ))}
-          </div>
-          <div>
-            <text>Guesses:</text>
-            {game.guesses}
-          </div>
-          {GameStatusDsiplay(game)}
-        </div>
-      );
-  }
+  const hiddenWord = (): JSX.Element => (
+    <div>
+      <text>{game.hiddenWord}</text>
+    </div>
+  );
+  const guessesCount = (): JSX.Element => (
+    <div>
+      <text>Guesses: {game.guesses}</text>
+    </div>
+  );
 
-  return <>{renderGame()}</>;
+  const renderGame = (game: ViewGame): JSX.Element => (
+    <div>
+      {hiddenWord()}
+
+      <GuessingLettersDisplay
+        guessedLetters={game.guessedLetters}
+        wrongLetters={game.wrongLetters}
+      />
+      {guessesCount()}
+
+      <GameStatusDisplay status={game.status} gameId={game.id} />
+    </div>
+  );
+
+  return <>{renderGame(game)}</>;
 }
