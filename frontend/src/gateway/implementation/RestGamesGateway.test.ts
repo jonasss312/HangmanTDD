@@ -1,9 +1,9 @@
 import { Game } from "../../domain/Game";
-import { Client } from "../../gateway/api/Client";
+import { Client } from "../api/Client";
 import { mock, MockProxy } from "jest-mock-extended";
 import { Observable, of } from "rxjs";
-import { GamesAPI } from "./GamesAPI";
-import { CreateGameRoute } from "../../constant/RestConstants";
+import { GamesAPI } from "./RestGamesGateway";
+import { CREATE_GAME_PATH } from "../../constant/RestConstants";
 import { getObserverTemplate } from "../../constant/getObserverTemplate";
 
 describe("GamesAPI", () => {
@@ -24,7 +24,7 @@ describe("GamesAPI", () => {
 
     const observer = getObserverTemplate(done);
     observer.next = (game) => {
-      expect(client.post).toBeCalledWith(CreateGameRoute);
+      expect(client.post).toBeCalledWith(CREATE_GAME_PATH);
       expect(game).toEqual(newGame);
     };
 
