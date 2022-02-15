@@ -4,7 +4,7 @@ import { GamesGateway } from "gateway/api/GamesGateway";
 import { Observable } from "rxjs";
 import { CREATE_GAME_URL } from "../../constant/RestConstants";
 
-export class GamesAPI implements GamesGateway {
+export class RestGamesGateway implements GamesGateway {
   private readonly client: Client;
 
   constructor(client: Client) {
