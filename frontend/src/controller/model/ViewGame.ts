@@ -1,3 +1,3 @@
-import { Game } from "../../domain/Game";
+import { BoundaryGame } from "../../usecase/model/BoundaryGame";
 
-export class ViewGame extends Game {}
+export class ViewGame extends BoundaryGame {}

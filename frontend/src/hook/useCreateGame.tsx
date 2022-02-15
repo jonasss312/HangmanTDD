@@ -11,7 +11,9 @@ export default function useCreateGame(
     const subscription = createGameController
       .createNewGame()
       .subscribe((game) => setGame(game));
-    return () => { subscription.unsubscribe() };
+    return () => {
+      subscription.unsubscribe();
+    };
   });
 
   return game;
