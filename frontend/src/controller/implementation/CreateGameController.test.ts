@@ -27,12 +27,12 @@ describe("CreateGameController", () => {
     getNewGameUseCase.getGame.mockReturnValue(of(gameBoundary));
     gameB2VConverter.convert.mockReturnValue(gameView);
 
-    const observer = getObserverTemplate(done);
-    observer.next = (game: ViewGame) => {
+    const onNext = (game: ViewGame) => {
       expect(getNewGameUseCase.getGame).toBeCalled();
       expect(gameB2VConverter.convert).toBeCalledWith(gameBoundary);
       expect(game).toStrictEqual(gameView);
     };
+    const observer = getObserverTemplate(done, onNext);
 
     createGameController.createNewGame().subscribe(observer);
   });

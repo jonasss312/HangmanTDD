@@ -22,11 +22,11 @@ describe("GamesAPI", () => {
 
     const observableGame: Observable<Game> = gamesAPI.createGame();
 
-    const observer = getObserverTemplate(done);
-    observer.next = (game) => {
+    const onNext = (game: Game) => {
       expect(client.post).toBeCalledWith(CREATE_GAME_PATH);
       expect(game).toEqual(newGame);
     };
+    const observer = getObserverTemplate(done, onNext);
 
     observableGame.subscribe(observer);
   });

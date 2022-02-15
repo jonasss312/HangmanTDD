@@ -33,12 +33,12 @@ describe("GetNewGameInteractor", () => {
     gamesGW.createGame.mockReturnValue(observableNewGame);
     gameD2BConverter.convert.mockReturnValue(newGameBoundary);
 
-    const observer = getObserverTemplate(done);
-    observer.next = (game: BoundaryGame) => {
+    const onNext = (game: BoundaryGame) => {
       expect(game).toStrictEqual(newGameBoundary);
       expect(gamesGW.createGame).toBeCalled();
       expect(gameD2BConverter.convert).toBeCalledWith(newGame);
     };
+    const observer = getObserverTemplate(done, onNext);
 
     getNewGameInteractor.getGame().subscribe(observer);
   });
