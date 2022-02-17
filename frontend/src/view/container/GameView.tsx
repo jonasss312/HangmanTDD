@@ -5,8 +5,12 @@ import { GameStatusDisplay } from "../component/GameStatusDisplay";
 import { GuessingLettersDisplay } from "view/component/GuessingLettersDisplay";
 import React from "react";
 
-export const GameView = (createGameController: CreateGameController) => {
-  const game: ViewGame | undefined = useCreateGame(createGameController);
+interface Props {
+  createGameController: CreateGameController;
+}
+
+export const GameView = (props: Props) => {
+  const game: ViewGame | undefined = useCreateGame(props.createGameController);
 
   if (!game) return <h1>Cannot create game.</h1>;
 
