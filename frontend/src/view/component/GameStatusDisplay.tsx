@@ -1,3 +1,5 @@
+import React from "react";
+
 interface Props {
   status: string;
   gameId: number;
@@ -9,22 +11,10 @@ export const GameStatusDisplay = (props: Props) => {
 
   switch (status) {
     case "WON":
-      return (
-        <div>
-          <text>YOU WIN!</text>
-        </div>
-      );
+      return <text>YOU WIN!</text>;
     case "LOST":
-      return (
-        <div>
-          <text>YOU LOSE!</text>
-        </div>
-      );
+      return <text>YOU LOSE!</text>;
     default:
-      return (
-        <div>
-          <text>Game ID: {gameId}</text>
-        </div>
-      );
+      return <text>Game ID: {gameId}</text>;
   }
 };

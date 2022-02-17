@@ -3,36 +3,24 @@ import { CreateGameController } from "../../controller/implementation/CreateGame
 import { ViewGame } from "../../controller/model/ViewGame";
 import { GameStatusDisplay } from "../component/GameStatusDisplay";
 import { GuessingLettersDisplay } from "view/component/GuessingLettersDisplay";
+import React from "react";
 
-export function GameView(createGameController: CreateGameController) {
+export const GameView = (createGameController: CreateGameController) => {
   const game: ViewGame | undefined = useCreateGame(createGameController);
 
-  if (!game)
-    return (
-      <div>
-        <h1>Cannot create game.</h1>
-      </div>
-    );
+  if (!game) return <h1>Cannot create game.</h1>;
 
-  const hiddenWord = (): JSX.Element => (
-    <div>
-      <text>{game.hiddenWord}</text>
-    </div>
-  );
-  const guessesCount = (): JSX.Element => (
-    <div>
-      <text>Guesses: {game.guesses}</text>
-    </div>
-  );
+  const allGuessedLetters = game.guessedLetters.concat(game.wrongLetters);
+
+  const hiddenWord = (): JSX.Element => <text>{game.hiddenWord}</text>;
+  const guessesCount = (): JSX.Element => <text>Guesses: {game.guesses}</text>;
 
   const renderGame = (game: ViewGame): JSX.Element => (
     <div>
       {hiddenWord()}
 
-      <GuessingLettersDisplay
-        guessedLetters={game.guessedLetters}
-        wrongLetters={game.wrongLetters}
-      />
+      <GuessingLettersDisplay allGuessedLetters={allGuessedLetters} />
+
       {guessesCount()}
 
       <GameStatusDisplay status={game.status} gameId={game.id} />
@@ -40,4 +28,4 @@ export function GameView(createGameController: CreateGameController) {
   );
 
   return <>{renderGame(game)}</>;
-}
+};
