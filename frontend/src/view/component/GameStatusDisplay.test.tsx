@@ -4,21 +4,21 @@ import { GameStatusDisplay } from "./GameStatusDisplay";
 
 describe("GameStatusDisplay", () => {
     test("Can display game won", () => {
-        Render("WON");
+        RenderWithStatus("WON");
         expect(screen.getByRole("game_status")).toHaveTextContent("YOU WIN!");
     });
 
     test("Can display game lost", () => {
-        Render("LOST");
+        RenderWithStatus("LOST");
         expect(screen.getByRole("game_status")).toHaveTextContent("YOU LOSE!");
     });
 
     test("Can display game in progress id", () => {
-        Render("IN_PROGRESS");
+        RenderWithStatus("IN_PROGRESS");
         expect(screen.getByRole("game_status")).toHaveTextContent("Game ID: 1");
     });
 
-    function Render(status: string) {
+    function RenderWithStatus(status: string) {
         render(<GameStatusDisplay status={status} gameId={1} />)
     }
 });
