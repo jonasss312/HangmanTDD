@@ -18,7 +18,7 @@ export const GuessingLettersDisplay = (props: Props) => {
   return (
     <div>
       {alphabet.map((letter) => (
-        <Button disabled={isLetterUsed(allGuessedLetters, letter)}>
+        <Button key={letter} disabled={isLetterUsed(allGuessedLetters, letter)}>
           {letter}
         </Button>
       ))}

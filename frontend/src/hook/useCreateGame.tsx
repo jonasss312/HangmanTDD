@@ -1,20 +1,21 @@
 import { CreateGameController } from "../controller/implementation/CreateGameController";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ViewGame } from "../controller/model/ViewGame";
 
+interface Props {
+  createGameController: CreateGameController;
+}
+
 export default function useCreateGame(
-  createGameController: CreateGameController
-): ViewGame | undefined {
+  props: Props
+): [ViewGame | undefined, () => void] {
   const [game, setGame] = useState<ViewGame | undefined>(undefined);
 
-  useEffect(() => {
-    const subscription = createGameController
+  const createGame = () => {
+    props.createGameController
       .createNewGame()
       .subscribe((game) => setGame(game));
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
+  };
 
-  return game;
+  return [game, createGame];
 }

@@ -1,23 +1,21 @@
-import useCreateGame from "../../hook/useCreateGame";
-import { CreateGameController } from "../../controller/implementation/CreateGameController";
 import { ViewGame } from "../../controller/model/ViewGame";
 import { GameStatusDisplay } from "../component/GameStatusDisplay";
 import { GuessingLettersDisplay } from "view/component/GuessingLettersDisplay";
 import React from "react";
 
 interface Props {
-  createGameController: CreateGameController;
+  game: ViewGame | undefined;
 }
 
 export const GameView = (props: Props) => {
-  const game: ViewGame | undefined = useCreateGame(props.createGameController);
+  const game: ViewGame | undefined = props.game;
 
   if (!game) return <h1>Cannot create game.</h1>;
 
   const allGuessedLetters = game.guessedLetters.concat(game.wrongLetters);
 
-  const hiddenWord = (): JSX.Element => <text>{game.hiddenWord}</text>;
-  const guessesCount = (): JSX.Element => <text>Guesses: {game.guesses}</text>;
+  const hiddenWord = (): JSX.Element => <p>{game.hiddenWord}</p>;
+  const guessesCount = (): JSX.Element => <p>Guesses: {game.guesses}</p>;
 
   const renderGame = (game: ViewGame): JSX.Element => (
     <div>
@@ -31,5 +29,5 @@ export const GameView = (props: Props) => {
     </div>
   );
 
-  return <>{renderGame(game)}</>;
+  return renderGame(game);
 };

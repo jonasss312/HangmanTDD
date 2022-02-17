@@ -7,14 +7,14 @@ interface Props {
 
 export const GameStatusDisplay = (props: Props) => {
   const status = props.status;
-  const gameId = props.status;
+  const gameId = props.gameId;
 
   switch (status) {
     case "WON":
-      return <text>YOU WIN!</text>;
+      return <p>YOU WIN!</p>;
     case "LOST":
-      return <text>YOU LOSE!</text>;
+      return <p>YOU LOSE!</p>;
     default:
-      return <text>Game ID: {gameId}</text>;
+      return <p>Game ID: {gameId}</p>;
   }
 };
