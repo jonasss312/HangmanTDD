@@ -1,5 +1,5 @@
 import { ViewGame } from "../../controller/model/ViewGame";
-import { GameStatusDisplay } from "../component/GameStatusDisplay";
+import { GameStatusDisplay } from "./GameStatusDisplay";
 import { GuessingLettersDisplay } from "view/component/GuessingLettersDisplay";
 import React from "react";
 

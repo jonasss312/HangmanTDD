@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import useCreateGame from "../../hook/useCreateGame";
 import React from "react";
 import { CreateGameController } from "../../controller/implementation/CreateGameController";
-import { GameView } from "./GameView";
+import { GameView } from "../component/GameView";
 
 interface Props {
   createGameController: CreateGameController;
