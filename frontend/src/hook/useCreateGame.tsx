@@ -11,11 +11,10 @@ export default function useCreateGame(
 ): [ViewGame | undefined, () => void] {
   const [game, setGame] = useState<ViewGame | undefined>(undefined);
 
-  const createGame = () => {
+  const createGame = () =>
     props.createGameController
       .createNewGame()
       .subscribe((game) => setGame(game));
-  };
 
   return [game, createGame];
 }
