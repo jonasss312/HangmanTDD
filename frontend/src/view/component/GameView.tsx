@@ -14,8 +14,12 @@ export const GameView = (props: Props) => {
 
   const allGuessedLetters = game.guessedLetters.concat(game.wrongLetters);
 
-  const hiddenWord = (): JSX.Element => <p>{game.hiddenWord}</p>;
-  const guessesCount = (): JSX.Element => <p>Guesses: {game.guesses}</p>;
+  const hiddenWord = (): JSX.Element => (
+    <p role="hidden_word">{game.hiddenWord}</p>
+  );
+  const guessesCount = (): JSX.Element => (
+    <p role="guesses">Guesses: {game.guesses}</p>
+  );
 
   const renderGame = (game: ViewGame): JSX.Element => (
     <div>
