@@ -3,7 +3,7 @@ import { Client } from "../api/Client";
 import { mock, MockProxy } from "jest-mock-extended";
 import { Observable, of } from "rxjs";
 import { RestGamesGateway } from "./RestGamesGateway";
-import { CREATE_GAME_URL } from "../../constant/RestConstants";
+import { SERVER_URL } from "../../constant/RestConstants";
 import { getObserverTemplate } from "../../constant/getObserverTemplate";
 
 describe("RestGamesGateway", () => {
@@ -23,7 +23,7 @@ describe("RestGamesGateway", () => {
     const observableGame: Observable<Game> = restGamesGateway.createGame();
 
     const onNext = (game: Game) => {
-      expect(client.post).toBeCalledWith(CREATE_GAME_URL);
+      expect(client.post).toBeCalledWith(SERVER_URL);
       expect(game).toEqual(newGame);
     };
     const observer = getObserverTemplate(done, onNext);

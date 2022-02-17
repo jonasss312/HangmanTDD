@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
+export const SERVER_URL: string = process.env.REACT_APP_DOMAIN + "/";
 
-dotenv.config({ path: "./.env" });
-
-export const CREATE_GAME_URL: string =
-  process.env.REACT_APP_DOMAIN + "/api/games";
+export const CREATE_GAME_PATH: string = "api/games";

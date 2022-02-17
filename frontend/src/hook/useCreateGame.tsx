@@ -14,7 +14,7 @@ export default function useCreateGame(
     return () => {
       subscription.unsubscribe();
     };
-  });
+  }, []);
 
   return game;
 }
