@@ -17,8 +17,10 @@ export const InitialWindow = (props: Props) => {
     <>
       {game === undefined ? (
         <>
-          <h1>HANGMAN</h1>
-          <Button onClick={createGame}>START</Button>
+          <h1 role="heading">HANGMAN</h1>
+          <Button role="start_game_button" onClick={createGame}>
+            START
+          </Button>
         </>
       ) : (
         <GameView game={game} />
