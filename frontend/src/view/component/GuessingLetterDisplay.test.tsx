@@ -8,7 +8,7 @@ describe("GuessingLettersDisplay", () => {
     RenderWithUsedLetters([]);
 
     ALPHABET.forEach((letter) => {
-      expect(screen.getByRole(letter)).toBeEnabled();
+      expect(screen.getByTestId(letter)).toBeEnabled();
     });
   });
 
@@ -16,7 +16,7 @@ describe("GuessingLettersDisplay", () => {
     RenderWithUsedLetters(ALPHABET);
 
     ALPHABET.forEach((letter) => {
-      expect(screen.getByRole(letter)).toBeDisabled();
+      expect(screen.getByTestId(letter)).toBeDisabled();
     });
   });
 

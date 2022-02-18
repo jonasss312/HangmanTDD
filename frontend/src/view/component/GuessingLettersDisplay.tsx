@@ -16,7 +16,7 @@ export const GuessingLettersDisplay = (props: Props) => {
     <div>
       {ALPHABET.map((letter) => (
         <Button
-          role={letter}
+          data-testid={letter}
           key={letter}
           disabled={isLetterUsed(allGuessedLetters, letter)}
         >

@@ -15,7 +15,11 @@ import { act } from "react-dom/test-utils";
 
 describe("useInitialWindow", () => {
   let createGameController: MockProxy<CreateGameController>;
-  let hookCreateGame: RenderHookResult<unknown, CreateGameData, Renderer<unknown>>;
+  let hookCreateGame: RenderHookResult<
+    unknown,
+    CreateGameData,
+    Renderer<unknown>
+  >;
   const game = new ViewGame(1, [], [], "____", 0, "IN_PROGRESS");
   const observableGame: Observable<ViewGame> = of(game);
 

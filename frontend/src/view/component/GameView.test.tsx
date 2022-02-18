@@ -17,8 +17,8 @@ describe("GameView", () => {
     );
     render(<GameView game={game} />);
 
-    expect(screen.getByRole("hidden_word")).toHaveTextContent(hiddenWord);
-    expect(screen.getByRole("guesses")).toHaveTextContent(
+    expect(screen.getByTestId("hidden_word")).toHaveTextContent(hiddenWord);
+    expect(screen.getByTestId("guesses")).toHaveTextContent(
       guessCount.toString()
     );
   });

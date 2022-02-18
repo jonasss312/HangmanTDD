@@ -11,10 +11,10 @@ export const GameStatusDisplay = (props: Props) => {
 
   switch (status) {
     case "WON":
-      return <p role="game_status">YOU WIN!</p>;
+      return <p data-testid="game_status">YOU WIN!</p>;
     case "LOST":
-      return <p role="game_status">YOU LOSE!</p>;
+      return <p data-testid="game_status">YOU LOSE!</p>;
     default:
-      return <p role="game_status">Game ID: {gameId}</p>;
+      return <p data-testid="game_status">Game ID: {gameId}</p>;
   }
 };
