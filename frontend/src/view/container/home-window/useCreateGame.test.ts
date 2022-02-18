@@ -1,10 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import {
-  renderHook,
-  RenderHookResult,
-} from "@testing-library/react-hooks";
+import { renderHook, RenderHookResult } from "@testing-library/react-hooks";
 import useCreateGame from "./useCreateGame";
 import { CreateGameController } from "../../../controller/implementation/CreateGameController";
 import { mock, MockProxy } from "jest-mock-extended";
@@ -13,7 +10,7 @@ import { Observable, of } from "rxjs";
 
 describe("useCreateGame", () => {
   let createGameController: MockProxy<CreateGameController>;
-  let hookCreateGame: RenderHookResult<unknown, () => void>;
+  let hookCreateGame: any;
   let setGame: (game: ViewGame | undefined) => void;
   const GAME = new ViewGame(1, [], [], "____", 0, "IN_PROGRESS");
   const OBSERVABLE_GAME: Observable<ViewGame> = of(GAME);
