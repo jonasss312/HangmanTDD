@@ -1,11 +1,9 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { InitialWindow } from "./InitialWindow";
 import { CreateGameController } from "../../../controller/implementation/CreateGameController";
 import { mock, MockProxy } from "jest-mock-extended";
 import { ViewGame } from "controller/model/ViewGame";
-import * as useInitialWindow from "./useInitialWindow";
-import { ALPHABET } from "../../../constant/Alphabet";
 
 describe("InitialWindow", () => {
   let createGameController: MockProxy<CreateGameController>;
@@ -14,42 +12,27 @@ describe("InitialWindow", () => {
     createGameController = mock<CreateGameController>();
   });
 
-  test("Can display heading and start button before starting", () => {
+  test("Can display heading and start button when game is not started", () => {
     render(<InitialWindow createGameController={createGameController} />);
 
-    expect(screen.getByTestId("heading")).toHaveTextContent("HANGMAN");
-    expect(screen.getByTestId("start_button")).toHaveTextContent("START");
+    expect(screen.getByTestId("home_window")).toBeInTheDocument();
   });
 
-  test("Can fire create new game hook when 'START' button is clicked", () => {
-    const createGameMock = jest.fn();
-    const game = undefined;
-    jest
-      .spyOn(useInitialWindow, "default")
-      .mockReturnValue({ game, createGame: createGameMock });
-
-    render(<InitialWindow createGameController={createGameController} />);
-    fireEvent.click(screen.getByTestId("start_button"));
-
-    expect(createGameMock).toBeCalled();
-  });
-
-  test("Can display game view when started", () => {
-    const createGameMock = jest.fn();
-    const hiddenWord = "____";
-    const guesses = 0;
-    const game = new ViewGame(1, [], [], hiddenWord, guesses, "IN_PROGRESS");
-    jest
-      .spyOn(useInitialWindow, "default")
-      .mockReturnValue({ game, createGame: createGameMock });
+  test("Can display game view when game is started", () => {
+    const game = new ViewGame(1, [], [], "____", 0, "IN_PROGRESS");
+    const useStateMock: any = () => [game, jest.fn()];
+    jest.spyOn(React, "useState").mockImplementation(useStateMock);
 
     render(<InitialWindow createGameController={createGameController} />);
 
-    expect(screen.getByTestId("hidden_word")).toHaveTextContent(hiddenWord);
-    expect(screen.getByTestId("guesses")).toHaveTextContent(guesses.toString());
-    ALPHABET.forEach((letter) => {
-      expect(screen.getByTestId(letter)).toBeEnabled();
-    });
-    expect(screen.getByTestId("game_status")).toHaveTextContent("Game ID: 1");
+    expect(screen.getByTestId("game_view")).toBeInTheDocument();
   });
 });
+
+jest.mock("../home-window/HomeWindow", () => ({
+  HomeWindow: () => <div data-testid="home_window" />,
+}));
+
+jest.mock("../../component/GameView", () => ({
+  GameView: () => <div data-testid="game_view" />,
+}));

@@ -1,6 +1,6 @@
 import { ViewGame } from "../../controller/model/ViewGame";
 import { GameStatusDisplay } from "./GameStatusDisplay";
-import { GuessingLettersDisplay } from "view/component/GuessingLettersDisplay";
+import { GuessingLettersDisplay } from "./GuessingLettersDisplay";
 import React from "react";
 
 interface Props {
