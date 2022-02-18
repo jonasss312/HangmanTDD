@@ -15,8 +15,8 @@ import { Dispatch, SetStateAction } from "react";
 
 describe("useCreateGame", () => {
   let createGameController: MockProxy<CreateGameController>;
-  let hookCreateGame: RenderHookResult<unknown, () => void, Renderer<unknown>>;
-  let setGame: Dispatch<SetStateAction<ViewGame | undefined>>;
+  let hookCreateGame: RenderHookResult<unknown, () => void>;
+  let setGame: (game: ViewGame | undefined) => void;
   const game = new ViewGame(1, [], [], "____", 0, "IN_PROGRESS");
   const observableGame: Observable<ViewGame> = of(game);
 
