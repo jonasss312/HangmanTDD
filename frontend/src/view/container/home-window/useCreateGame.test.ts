@@ -2,7 +2,6 @@
  * @jest-environment jsdom
  */
 import {
-  Renderer,
   renderHook,
   RenderHookResult,
 } from "@testing-library/react-hooks";
@@ -11,7 +10,6 @@ import { CreateGameController } from "../../../controller/implementation/CreateG
 import { mock, MockProxy } from "jest-mock-extended";
 import { ViewGame } from "../../../controller/model/ViewGame";
 import { Observable, of } from "rxjs";
-import { Dispatch, SetStateAction } from "react";
 
 describe("useCreateGame", () => {
   let createGameController: MockProxy<CreateGameController>;
