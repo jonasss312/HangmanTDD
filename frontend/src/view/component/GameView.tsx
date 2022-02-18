@@ -4,13 +4,11 @@ import { GuessingLettersDisplay } from "view/component/GuessingLettersDisplay";
 import React from "react";
 
 interface Props {
-  game: ViewGame | undefined;
+  game: ViewGame;
 }
 
 export const GameView = (props: Props) => {
-  const game: ViewGame | undefined = props.game;
-
-  if (!game) return <h1>Cannot create game.</h1>;
+  const game: ViewGame = props.game;
 
   const allGuessedLetters = game.guessedLetters.concat(game.wrongLetters);
 
