@@ -17,13 +17,13 @@ describe("useCreateGame", () => {
   let createGameController: MockProxy<CreateGameController>;
   let hookCreateGame: RenderHookResult<unknown, () => void>;
   let setGame: (game: ViewGame | undefined) => void;
-  const game = new ViewGame(1, [], [], "____", 0, "IN_PROGRESS");
-  const observableGame: Observable<ViewGame> = of(game);
+  const GAME = new ViewGame(1, [], [], "____", 0, "IN_PROGRESS");
+  const OBSERVABLE_GAME: Observable<ViewGame> = of(GAME);
 
   beforeEach(() => {
     createGameController = mock<CreateGameController>();
     setGame = jest.fn();
-    createGameController.createNewGame.mockReturnValue(observableGame);
+    createGameController.createNewGame.mockReturnValue(OBSERVABLE_GAME);
     hookCreateGame = renderHook(() =>
       useCreateGame(createGameController, setGame)
     );
