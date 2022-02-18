@@ -13,7 +13,7 @@ import { ViewGame } from "../controller/model/ViewGame";
 import { Observable, of } from "rxjs";
 import { act } from "react-dom/test-utils";
 
-describe("GameD2BConverter", () => {
+describe("useCreateGame", () => {
   let createGameController: MockProxy<CreateGameController>;
   let hookCreateGame: RenderHookResult<
     unknown,
