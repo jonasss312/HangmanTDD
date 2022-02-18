@@ -1,7 +1,7 @@
 import { ALPHABET } from "./Alphabet";
 
 describe("Alphabet", () => {
-  it("Can generate UPPER alphabet", () => {
+  it("Can generate UPPERCASE alphabet", () => {
     const upperCaseAlphabet = [
       "A",
       "B",
