@@ -2,7 +2,7 @@ import { Game } from "domain/Game";
 import { Client } from "gateway/api/Client";
 import { GamesGateway } from "gateway/api/GamesGateway";
 import { Observable } from "rxjs";
-import { CREATE_GAME_PATH } from "../../constant/RestConstants";
+import { GAMES_PATH } from "../../constant/RestConstants";
 
 export class RestGamesGateway implements GamesGateway {
   private readonly client: Client;
@@ -12,6 +12,6 @@ export class RestGamesGateway implements GamesGateway {
   }
 
   createGame(): Observable<Game> {
-    return this.client.post<Game>(CREATE_GAME_PATH);
+    return this.client.post<Game>(GAMES_PATH);
   }
 }
