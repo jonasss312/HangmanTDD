@@ -6,14 +6,14 @@ import { ViewGame } from "../../../controller/model/ViewGame";
 
 interface Props {
   createGameController: CreateGameController;
-  setGameCallBack: Dispatch<SetStateAction<ViewGame | undefined>>;
+  setGameCallBack: (game: ViewGame | undefined) => void;
 }
 
 export const HomeWindow = (props: Props) => {
-  const createGame = useCreateGame({
-    createGameController: props.createGameController,
-    setGameCallBack: props.setGameCallBack,
-  });
+  const createGame = useCreateGame(
+    props.createGameController,
+    props.setGameCallBack
+  );
 
   return (
     <div>

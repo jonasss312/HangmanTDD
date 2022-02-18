@@ -25,10 +25,7 @@ describe("useCreateGame", () => {
     setGame = jest.fn();
     createGameController.createNewGame.mockReturnValue(observableGame);
     hookCreateGame = renderHook(() =>
-      useCreateGame({
-        createGameController: createGameController,
-        setGameCallBack: setGame,
-      })
+      useCreateGame(createGameController, setGame)
     );
   });
 
