@@ -23,16 +23,7 @@ describe("GuessLetterInteractor", () => {
   });
 
   it("Can guess letter", (done) => {
-    const guess = new Guess(1, "T");
-    const updatedGame = new Game(1, ["T"], [], "T__T", 0, "IN_PROGRESS");
-    const updatedGameBoundary = new BoundaryGame(
-      1,
-      ["T"],
-      [],
-      "____",
-      0,
-      "IN_PROGRESS"
-    );
+    const [guess, updatedGame, updatedGameBoundary] = setup();
 
     gamesGW.guessLetter.mockReturnValue(of(updatedGame));
     gameD2BConverter.convert.mockReturnValue(updatedGameBoundary);
@@ -46,4 +37,19 @@ describe("GuessLetterInteractor", () => {
 
     guessLetterInteractor.guessLetter(guess).subscribe(observer);
   });
+
+  function setup(): [Guess, Game, BoundaryGame] {
+    const guess = new Guess(1, "T");
+    const updatedGame = new Game(1, ["T"], [], "T__T", 0, "IN_PROGRESS");
+    const updatedGameBoundary = new BoundaryGame(
+      1,
+      ["T"],
+      [],
+      "____",
+      0,
+      "IN_PROGRESS"
+    );
+
+    return [guess, updatedGame, updatedGameBoundary];
+  }
 });
