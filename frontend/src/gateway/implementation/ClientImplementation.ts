@@ -18,4 +18,14 @@ export class ClientImplementation implements Client {
       .post<T>(this.serverUrl + url, body, headers)
       .pipe(map((t) => t.response));
   }
+
+  patch<T>(
+    url: string,
+    body?: any,
+    headers?: Record<string, string>
+  ): Observable<T> {
+    return ajax
+      .patch<T>(this.serverUrl + url, body, headers)
+      .pipe(map((t) => t.response));
+  }
 }
