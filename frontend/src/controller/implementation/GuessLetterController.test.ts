@@ -6,13 +6,13 @@ import { BoundaryGame } from "../../usecase/model/BoundaryGame";
 import { of } from "rxjs";
 import { GuessLetterController } from "./GuessLetterController";
 import { GuessLetterUseCase } from "usecase/api/GuessLetterUseCase";
-import { Guess } from "domain/Guess";
 import { ViewGuess } from "controller/model/ViewGuess";
 import { GuessV2BConverter } from "./GuessV2BConverter";
+import { BoundaryGuess } from "usecase/model/BoundaryGuess";
 
 describe("GuessLetterController", () => {
   const GUESS_VIEW = new ViewGuess(1, "T");
-  const GUESS = new Guess(1, "T");
+  const GUESS_BOUNDARY = new BoundaryGuess(1, "T");
   const GAME_VIEW = new ViewGame(1, [], [], "____", 0, "IN_PROGRESS");
   const GAME_BOUNDARY = new BoundaryGame(
     1,
@@ -49,7 +49,7 @@ describe("GuessLetterController", () => {
   });
 
   function setup() {
-    guessV2BConverter.convert.mockReturnValue(GUESS);
+    guessV2BConverter.convert.mockReturnValue(GUESS_BOUNDARY);
     guessLetterUseCase.guessLetter.mockReturnValue(of(GAME_BOUNDARY));
     gameB2VConverter.convert.mockReturnValue(GAME_VIEW);
   }
