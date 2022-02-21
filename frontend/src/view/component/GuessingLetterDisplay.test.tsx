@@ -5,7 +5,7 @@ import { ALPHABET } from "../../constant/Alphabet";
 
 describe("GuessingLettersDisplay", () => {
   test("Can display all enabled letters", () => {
-    RenderWithUsedLetters([]);
+    renderWithUsedLetters([]);
 
     ALPHABET.forEach((letter) => {
       expect(screen.getByTestId(letter)).toBeEnabled();
@@ -13,14 +13,14 @@ describe("GuessingLettersDisplay", () => {
   });
 
   test("Can display all disabled letters", () => {
-    RenderWithUsedLetters(ALPHABET);
+    renderWithUsedLetters(ALPHABET);
 
     ALPHABET.forEach((letter) => {
       expect(screen.getByTestId(letter)).toBeDisabled();
     });
   });
 
-  function RenderWithUsedLetters(lettersArray: string[]) {
+  function renderWithUsedLetters(lettersArray: string[]) {
     render(<GuessingLettersDisplay allGuessedLetters={lettersArray} />);
   }
 });
