@@ -14,10 +14,7 @@ interface Props {
 }
 
 export const GuessingLettersDisplay = (props: Props) => {
-  const guess = useLetter(
-    props.guessLetterController,
-    props.setGameCallBack
-  );
+  const guess = useLetter(props.guessLetterController, props.setGameCallBack);
 
   return (
     <div>

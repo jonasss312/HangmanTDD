@@ -48,7 +48,10 @@ function App() {
 
   return (
     <div>
-      <InitialWindow createGameController={createGameController} guessLetterController={guessLetterController} />
+      <InitialWindow
+        createGameController={createGameController}
+        guessLetterController={guessLetterController}
+      />
     </div>
   );
 }
