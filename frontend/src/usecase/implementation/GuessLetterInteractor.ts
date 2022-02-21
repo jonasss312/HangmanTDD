@@ -13,6 +13,7 @@ export class GuessLetterInteractor implements GuessLetterUseCase {
     this.gamesGW = gamesGW;
     this.gameD2BConverter = gameD2BConverter;
   }
+
   guessLetter(guess: Guess): Observable<BoundaryGame> {
     return this.gamesGW
       .guessLetter(guess)

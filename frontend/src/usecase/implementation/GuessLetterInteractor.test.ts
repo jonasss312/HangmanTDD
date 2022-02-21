@@ -1,7 +1,7 @@
 import { Game } from "../../domain/Game";
 import { GamesGateway } from "../../gateway/api/GamesGateway";
 import { mock, MockProxy } from "jest-mock-extended";
-import { Observable, of } from "rxjs";
+import { of } from "rxjs";
 import { BoundaryGame } from "../model/BoundaryGame";
 import { GameD2BConverter } from "./GameD2BConverter";
 import { getObserverTemplate } from "../../constant/getObserverTemplate";
