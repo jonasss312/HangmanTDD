@@ -11,6 +11,17 @@ import { ViewGuess } from "controller/model/ViewGuess";
 import { GuessV2BConverter } from "./GuessV2BConverter";
 
 describe("GuessLetterController", () => {
+  const GUESS_VIEW = new ViewGuess(1, "T");
+  const GUESS = new Guess(1, "T");
+  const GAME_VIEW = new ViewGame(1, [], [], "____", 0, "IN_PROGRESS");
+  const GAME_BOUNDARY = new BoundaryGame(
+    1,
+    ["T"],
+    [],
+    "T__T",
+    0,
+    "IN_PROGRESS"
+  );
   let guessLetterController: GuessLetterController;
   let guessLetterUseCase: MockProxy<GuessLetterUseCase>;
   let gameB2VConverter: MockProxy<GameB2VConverter>;
@@ -27,33 +38,19 @@ describe("GuessLetterController", () => {
   });
 
   it("Can guess letter", (done) => {
-    const [guessRequest, guess, gameView, gameBoundary] = setup();
+    setup();
 
     const onNext = (game: ViewGame) => {
-      expect(game).toStrictEqual(gameView);
+      expect(game).toStrictEqual(GAME_VIEW);
     };
     const observer = getObserverTemplate(done, onNext);
 
-    guessLetterController.guessLetter(guessRequest).subscribe(observer);
+    guessLetterController.guessLetter(GUESS_VIEW).subscribe(observer);
   });
 
-  function setup(): [ViewGuess, Guess, ViewGame, BoundaryGame] {
-    const guessView = new ViewGuess(1, "T");
-    const guess = new Guess(1, "T");
-    const gameView = new ViewGame(1, [], [], "____", 0, "IN_PROGRESS");
-    const gameBoundary = new BoundaryGame(
-      1,
-      ["T"],
-      [],
-      "T__T",
-      0,
-      "IN_PROGRESS"
-    );
-
-    guessV2BConverter.convert.mockReturnValue(guess);
-    guessLetterUseCase.guessLetter.mockReturnValue(of(gameBoundary));
-    gameB2VConverter.convert.mockReturnValue(gameView);
-
-    return [guessView, guess, gameView, gameBoundary];
+  function setup() {
+    guessV2BConverter.convert.mockReturnValue(GUESS);
+    guessLetterUseCase.guessLetter.mockReturnValue(of(GAME_BOUNDARY));
+    gameB2VConverter.convert.mockReturnValue(GAME_VIEW);
   }
 });
