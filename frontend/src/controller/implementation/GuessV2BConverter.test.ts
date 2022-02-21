@@ -1,5 +1,5 @@
 import { GuessV2BConverter } from "./GuessV2BConverter";
-import { ViewGuessRequest } from "controller/model/ViewGuessRequest";
+import { ViewGuess } from "controller/model/ViewGuess";
 import { BoundaryGuess } from "usecase/model/BoundaryGuess";
 
 describe("GuessV2BConverter", () => {
@@ -10,12 +10,11 @@ describe("GuessV2BConverter", () => {
   });
 
   test("Can transfer attributes", () => {
-    const guessRequest = new ViewGuessRequest(1, "T");
+    const guessView = new ViewGuess(1, "T");
 
-    const guessBoundary: BoundaryGuess =
-      guessV2BConverter.convert(guessRequest);
+    const guessBoundary: BoundaryGuess = guessV2BConverter.convert(guessView);
 
-    expect(guessBoundary.gameId).toEqual(guessRequest.gameId);
-    expect(guessBoundary.guessingLetter).toEqual(guessRequest.guessingLetter);
+    expect(guessBoundary.gameId).toEqual(guessView.gameId);
+    expect(guessBoundary.guessingLetter).toEqual(guessView.guessingLetter);
   });
 });

@@ -1,4 +1,4 @@
-import { ViewGuessRequest } from "controller/model/ViewGuessRequest";
+import { ViewGuess } from "controller/model/ViewGuess";
 import { ViewGame } from "controller/model/ViewGame";
 import { map, Observable } from "rxjs";
 import { GuessLetterUseCase } from "usecase/api/GuessLetterUseCase";
@@ -20,9 +20,9 @@ export class GuessLetterController {
     this.guessV2BConverter = guessV2BConverter;
   }
 
-  guessLetter(guessRequest: ViewGuessRequest): Observable<ViewGame> {
+  guessLetter(guessView: ViewGuess): Observable<ViewGame> {
     return this.guessLetterUseCase
-      .guessLetter(this.guessV2BConverter.convert(guessRequest))
+      .guessLetter(this.guessV2BConverter.convert(guessView))
       .pipe(map((data) => this.gameB2VConverter.convert(data)));
   }
 }

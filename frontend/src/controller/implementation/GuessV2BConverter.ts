@@ -1,8 +1,8 @@
-import { ViewGuessRequest } from "controller/model/ViewGuessRequest";
+import { ViewGuess } from "controller/model/ViewGuess";
 import { BoundaryGuess } from "usecase/model/BoundaryGuess";
 
 export class GuessV2BConverter {
-  convert(guessRequest: ViewGuessRequest): BoundaryGuess {
-    return new BoundaryGuess(guessRequest.gameId, guessRequest.guessingLetter);
+  convert(guessView: ViewGuess): BoundaryGuess {
+    return new BoundaryGuess(guessView.gameId, guessView.guessingLetter);
   }
 }

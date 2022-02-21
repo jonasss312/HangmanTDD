@@ -7,7 +7,7 @@ import { of } from "rxjs";
 import { GuessLetterController } from "./GuessLetterController";
 import { GuessLetterUseCase } from "usecase/api/GuessLetterUseCase";
 import { Guess } from "domain/Guess";
-import { ViewGuessRequest } from "controller/model/ViewGuessRequest";
+import { ViewGuess } from "controller/model/ViewGuess";
 import { GuessV2BConverter } from "./GuessV2BConverter";
 
 describe("GuessLetterController", () => {
@@ -37,8 +37,8 @@ describe("GuessLetterController", () => {
     guessLetterController.guessLetter(guessRequest).subscribe(observer);
   });
 
-  function setup(): [ViewGuessRequest, Guess, ViewGame, BoundaryGame] {
-    const guessRequest = new ViewGuessRequest(1, "T");
+  function setup(): [ViewGuess, Guess, ViewGame, BoundaryGame] {
+    const guessView = new ViewGuess(1, "T");
     const guess = new Guess(1, "T");
     const gameView = new ViewGame(1, [], [], "____", 0, "IN_PROGRESS");
     const gameBoundary = new BoundaryGame(
@@ -54,6 +54,6 @@ describe("GuessLetterController", () => {
     guessLetterUseCase.guessLetter.mockReturnValue(of(gameBoundary));
     gameB2VConverter.convert.mockReturnValue(gameView);
 
-    return [guessRequest, guess, gameView, gameBoundary];
+    return [guessView, guess, gameView, gameBoundary];
   }
 });
