@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig-base.json",
+  "compilerOptions": {
+    "outDir": "./output",
+    "noEmit": true,
+    "baseUrl": "./src",
+    "jsx": "react"
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./src"
+    }
+  ],
+  "include": [
+    "src"
+  ]
+}
