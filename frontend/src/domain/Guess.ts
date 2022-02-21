@@ -1,9 +1,9 @@
 export class Guess {
-  readonly id: number;
+  readonly gameId: number;
   readonly guessingLetter: string;
 
-  constructor(id: number, guessingLetter: string) {
-    this.id = id;
+  constructor(gameId: number, guessingLetter: string) {
+    this.gameId = gameId;
     this.guessingLetter = guessingLetter;
   }
 }
