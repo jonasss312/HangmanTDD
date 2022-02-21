@@ -6,8 +6,9 @@ export default function useLetter(
   guessLetterController: GuessLetterController,
   setGameCallBack: (game: ViewGame | undefined) => void
 ): (game: ViewGuess) => void {
-  const updatedGame = (guess: ViewGuess) =>
+  const updatedGame = (guess: ViewGuess) => {
     guessLetterController.guessLetter(guess).subscribe(setGameCallBack);
+  };
 
   return updatedGame;
 }
