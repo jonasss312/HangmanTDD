@@ -5,6 +5,7 @@ import { Observable, of } from "rxjs";
 import { RestGamesGateway } from "./RestGamesGateway";
 import { SERVER_URL } from "../../constant/RestConstants";
 import { getObserverTemplate } from "../../constant/getObserverTemplate";
+import { Guess } from "domain/Guess";
 
 describe("RestGamesGateway", () => {
   let restGamesGateway: RestGamesGateway;
@@ -25,6 +26,24 @@ describe("RestGamesGateway", () => {
     const onNext = (game: Game) => {
       expect(client.post).toBeCalledWith(SERVER_URL);
       expect(game).toEqual(newGame);
+    };
+    const observer = getObserverTemplate(done, onNext);
+
+    observableGame.subscribe(observer);
+  });
+
+  it("Can guess letter", (done) => {
+    const updatedGame = new Game(1, ["T"], [], "T__T", 0, "IN_PROGRESS");
+    const guess = new Guess(1, "T");
+
+    client.patch.mockReturnValue(of(updatedGame));
+
+    const observableGame: Observable<Game> =
+      restGamesGateway.guessLetter(guess);
+
+    const onNext = (game: Game) => {
+      expect(client.patch).toBeCalledWith(SERVER_URL, guess);
+      expect(game).toEqual(updatedGame);
     };
     const observer = getObserverTemplate(done, onNext);
 
