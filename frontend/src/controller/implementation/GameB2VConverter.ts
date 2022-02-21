@@ -8,12 +8,12 @@ export class GameB2VConverter {
 
   private createGameView(game: BoundaryGame): ViewGame {
     return new BoundaryGame(
-      game.getId(),
-      game.getGuessedLetters(),
-      game.getWrongLetters(),
-      game.getHiddenWord(),
-      game.getGuesses(),
-      game.getStatus()
+      game.id,
+      game.guessedLetters,
+      game.wrongLetters,
+      game.hiddenWord,
+      game.guesses,
+      game.status
     );
   }
 }

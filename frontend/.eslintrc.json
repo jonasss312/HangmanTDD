@@ -1,7 +1,9 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": ["./tsconfig.eslint.json"]
+    "project": [
+      "./tsconfig.eslint.json"
+    ]
   },
   "extends": [
     "react-app",
@@ -27,7 +29,6 @@
       {
         "patterns": [
           "@material-ui/*/*",
-          "../*",
           "!@material-ui/core/styles",
           "!@material-ui/icons",
           "!@material-ui/core/colors",
@@ -36,7 +37,7 @@
         ]
       }
     ],
-    "rxjs/finnish":[
+    "rxjs/finnish": [
       "error",
       {
         "parameters": true,
@@ -59,7 +60,9 @@
     "rxjs/no-subclass": "error",
     "rxjs/no-sharereplay": [
       "error",
-      { "allowConfig": true }
+      {
+        "allowConfig": true
+      }
     ],
     "rxjs/no-redundant-notify": "error",
     "rxjs/no-nested-subscribe": "error",

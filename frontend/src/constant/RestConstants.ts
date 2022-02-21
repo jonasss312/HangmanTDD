@@ -1,4 +1,3 @@
-const port = 8080;
-const server = `http://localhost:${port}`;
+export const SERVER_URL: string = process.env.REACT_APP_API_URL + "/";
 
-export const CREATE_GAME_URL: string = server + "/api/games";
+export const GAMES_PATH: string = "games";
