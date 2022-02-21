@@ -30,8 +30,6 @@ describe("GuessLetterInteractor", () => {
 
     const onNext = (game: BoundaryGame) => {
       expect(game).toStrictEqual(updatedGameBoundary);
-      expect(gamesGW.guessLetter).toBeCalledWith(guess);
-      expect(gameD2BConverter.convert).toBeCalledWith(updatedGame);
     };
     const observer = getObserverTemplate(done, onNext);
 
