@@ -1,10 +1,13 @@
 import { ViewGame } from "../../controller/model/ViewGame";
 import { GameStatusDisplay } from "./GameStatusDisplay";
-import { GuessingLettersDisplay } from "./GuessingLettersDisplay";
+import { GuessingLettersDisplay } from "../container/game-window/GuessingLettersDisplay";
 import React from "react";
+import { GuessLetterController } from "controller/implementation/GuessLetterController";
 
 interface Props {
   game: ViewGame;
+  guessLetterController: GuessLetterController;
+  setGameCallBack: (game: ViewGame | undefined) => void;
 }
 
 export const GameView = (props: Props) => {
@@ -23,7 +26,12 @@ export const GameView = (props: Props) => {
     <div>
       {hiddenWord()}
 
-      <GuessingLettersDisplay allGuessedLetters={allGuessedLetters} />
+      <GuessingLettersDisplay
+        gameId={game.id}
+        allGuessedLetters={allGuessedLetters}
+        guessLetterController={props.guessLetterController}
+        setGameCallBack={props.setGameCallBack}
+      />
 
       {guessesCount()}
 

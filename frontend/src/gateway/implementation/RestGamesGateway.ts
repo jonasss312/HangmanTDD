@@ -17,6 +17,8 @@ export class RestGamesGateway implements GamesGateway {
   }
 
   guessLetter(guess: Guess): Observable<Game> {
-    return this.client.patch<Game>(GAMES_PATH, guess);
+    return this.client.patch<Game>(GAMES_PATH + "/" + guess.gameId, {
+      guessingLetter: guess.guessingLetter,
+    });
   }
 }
