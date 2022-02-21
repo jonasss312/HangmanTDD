@@ -5,6 +5,7 @@ import { Game } from '../../domain/Game';
 import { BoundaryGame } from '../model/BoundaryGame';
 import { GameD2BConverter } from './GameD2BConverter';
 import { BoundaryUpdate } from '../model/BoundaryUpdate';
+import { GameStatus } from '../../domain/GameStatus';
 
 export class UpsertGameInteractor implements UpsertGameUseCase {
     private readonly gamesGateway: GamesGateway;
@@ -17,9 +18,12 @@ export class UpsertGameInteractor implements UpsertGameUseCase {
 
     upsertGame(updateGameBoundary: BoundaryUpdate): BoundaryGame {
         const foundGame = this.gamesGateway.getGame(updateGameBoundary.getId())
-        if (foundGame)
-            return this.gameD2BConverter.convert(this.updateGame(updateGameBoundary, foundGame));
-        throw new Error(`No such game id: ${updateGameBoundary.getId()}`);
+        if (foundGame) {
+            if (foundGame.getStatus() === GameStatus.InProgress)
+                return this.gameD2BConverter.convert(this.updateGame(updateGameBoundary, foundGame));
+            throw new Error(`Game with id: {${updateGameBoundary.getId()}} has already ended.`);
+        }
+        throw new Error(`No such game id: {${updateGameBoundary.getId()}}`);
     }
 
     private updateGame(updateGameBoundary: BoundaryUpdate, foundGame: Game): Game {

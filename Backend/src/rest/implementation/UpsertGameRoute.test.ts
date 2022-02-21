@@ -44,22 +44,34 @@ describe("UpsertGameRoute", () => {
         expect(response.statusCode).toEqual(200);
     });
 
-    it("Throw error if game does not exist API Request", () => {
+    it("Throw error if game does not exist API Patch Request", () => {
+        const errorText = "No such game id: 4";
         const request = initializeRequest(5);
         const response = new MockExpressResponse();
 
-        upsertGameUC.upsertGame.mockImplementation(() => { throw new Error('No such game id: 4'); });
+        upsertGameUC.upsertGame.mockImplementation(() => { throw new Error(errorText); });
         updateConverter.convert.calledWith(request).mockReturnValue(UPDATE_BOUNDARY);
 
         upsertGameRoute.upsertGame(request, response);
 
-        expect(updateConverter.convert).toBeCalledWith(request);
-        expect(upsertGameUC.upsertGame).toBeCalledWith(UPDATE_BOUNDARY);
         expect(response.statusCode).toEqual(404);
-        expect(response._getJSON()).toEqual('No such game id: 4');
+        expect(response._getJSON()).toEqual(errorText);
     });
 
-    function initializeRequest(id : number) : typeof MockExpressRequest{
-        return new MockExpressRequest({ body: { id, guessingLetter: "T" } });
+    it("Throw error if game has ended API Patch Request", () => {
+        const errorText = "Game with id: 4 has already ended.";
+        const request = initializeRequest(4);
+        const response = new MockExpressResponse();
+
+        upsertGameUC.upsertGame.mockImplementation(() => { throw new Error(errorText); });
+
+        upsertGameRoute.upsertGame(request, response);
+
+        expect(response.statusCode).toEqual(403);
+        expect(response._getJSON()).toEqual(errorText);
+    });
+
+    function initializeRequest(id: number): typeof MockExpressRequest {
+        return new MockExpressRequest({ body: { guessingLetter: "T" }, params: { id: id } });
     }
 });

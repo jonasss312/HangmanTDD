@@ -24,7 +24,10 @@ export class UpsertGameRoute {
             const updatedGameBoundary: BoundaryGame = this.upsertGameUseCase.upsertGame(gameUpdateBoundary);
             const updatedRestModel: RestGame = this.gameB2RConverter.convert(updatedGameBoundary);
             response.status(200).json(updatedRestModel);
-        } catch (error){
+        } catch (error) {
+            const errorMessage = (error as Error).message;
+            if (errorMessage.includes("ended"))
+                return response.status(403).json((error as Error).message);
             response.status(404).json((error as Error).message);
         }
     }
