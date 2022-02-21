@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { renderHook, RenderHookResult } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react-hooks";
 import useCreateGame from "./useCreateGame";
 import { CreateGameController } from "../../../controller/implementation/CreateGameController";
 import { mock, MockProxy } from "jest-mock-extended";
