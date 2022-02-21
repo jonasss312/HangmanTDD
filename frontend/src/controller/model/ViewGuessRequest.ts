@@ -1,4 +1,4 @@
-export class GuessRequest {
+export class ViewGuessRequest {
   readonly gameId: number;
   readonly guessingLetter: string;
 

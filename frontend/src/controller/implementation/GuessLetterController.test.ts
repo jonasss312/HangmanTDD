@@ -7,27 +7,41 @@ import { of } from "rxjs";
 import { GuessLetterController } from "./GuessLetterController";
 import { GuessLetterUseCase } from "usecase/api/GuessLetterUseCase";
 import { Guess } from "domain/Guess";
-import { GuessRequest } from "controller/model/GuessRequest";
-import { GuessR2GConverter } from "./GuessR2GConverter";
+import { ViewGuessRequest } from "controller/model/ViewGuessRequest";
+import { GuessV2BConverter } from "./GuessV2BConverter";
 
 describe("GuessLetterController", () => {
   let guessLetterController: GuessLetterController;
   let guessLetterUseCase: MockProxy<GuessLetterUseCase>;
   let gameB2VConverter: MockProxy<GameB2VConverter>;
-  let guessR2GConverter: MockProxy<GuessR2GConverter>;
+  let guessV2BConverter: MockProxy<GuessV2BConverter>;
   beforeEach(() => {
     guessLetterUseCase = mock<GuessLetterUseCase>();
     gameB2VConverter = mock<GameB2VConverter>();
-    guessR2GConverter = mock<GuessR2GConverter>();
+    guessV2BConverter = mock<GuessV2BConverter>();
     guessLetterController = new GuessLetterController(
       guessLetterUseCase,
       gameB2VConverter,
-      guessR2GConverter
+      guessV2BConverter
     );
   });
 
   it("Can guess letter", (done) => {
-    const guessRequest = new GuessRequest(1, "T");
+    const [guessRequest, guess, gameView, gameBoundary] = setup();
+
+    const onNext = (game: ViewGame) => {
+      expect(guessV2BConverter.convert).toBeCalledWith(guessRequest);
+      expect(guessLetterUseCase.guessLetter).toBeCalledWith(guess);
+      expect(gameB2VConverter.convert).toBeCalledWith(gameBoundary);
+      expect(game).toStrictEqual(gameView);
+    };
+    const observer = getObserverTemplate(done, onNext);
+
+    guessLetterController.guessLetter(guessRequest).subscribe(observer);
+  });
+
+  function setup(): [ViewGuessRequest, Guess, ViewGame, BoundaryGame] {
+    const guessRequest = new ViewGuessRequest(1, "T");
     const guess = new Guess(1, "T");
     const gameView = new ViewGame(1, [], [], "____", 0, "IN_PROGRESS");
     const gameBoundary = new BoundaryGame(
@@ -39,18 +53,10 @@ describe("GuessLetterController", () => {
       "IN_PROGRESS"
     );
 
-    guessR2GConverter.convert.mockReturnValue(guess);
+    guessV2BConverter.convert.mockReturnValue(guess);
     guessLetterUseCase.guessLetter.mockReturnValue(of(gameBoundary));
     gameB2VConverter.convert.mockReturnValue(gameView);
 
-    const onNext = (game: ViewGame) => {
-      expect(guessR2GConverter.convert).toBeCalledWith(guessRequest);
-      expect(guessLetterUseCase.guessLetter).toBeCalledWith(guess);
-      expect(gameB2VConverter.convert).toBeCalledWith(gameBoundary);
-      expect(game).toStrictEqual(gameView);
-    };
-    const observer = getObserverTemplate(done, onNext);
-
-    guessLetterController.guessLetter(guessRequest).subscribe(observer);
-  });
+    return [guessRequest, guess, gameView, gameBoundary];
+  }
 });
