@@ -9,16 +9,13 @@ interface Props {
 export const GuessingLettersDisplay = (props: Props) => {
   const allGuessedLetters = props.allGuessedLetters;
 
-  const isLetterUsed = (allGuessedLetters: string[], letter: string): boolean =>
-    allGuessedLetters.includes(letter);
-
   return (
     <div>
       {ALPHABET.map((letter) => (
         <Button
           data-testid={letter}
           key={letter}
-          disabled={isLetterUsed(allGuessedLetters, letter)}
+          disabled={allGuessedLetters.includes(letter)}
         >
           {letter}
         </Button>
