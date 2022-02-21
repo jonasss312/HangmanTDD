@@ -30,9 +30,6 @@ describe("GuessLetterController", () => {
     const [guessRequest, guess, gameView, gameBoundary] = setup();
 
     const onNext = (game: ViewGame) => {
-      expect(guessV2BConverter.convert).toBeCalledWith(guessRequest);
-      expect(guessLetterUseCase.guessLetter).toBeCalledWith(guess);
-      expect(gameB2VConverter.convert).toBeCalledWith(gameBoundary);
       expect(game).toStrictEqual(gameView);
     };
     const observer = getObserverTemplate(done, onNext);
