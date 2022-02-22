@@ -1,8 +1,9 @@
-import { Button } from "@mui/material";
+import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
 import useCreateGame from "./useCreateGame";
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import { CreateGameController } from "../../../controller/implementation/CreateGameController";
 import { ViewGame } from "../../../controller/model/ViewGame";
+import { GameRulesDisplay } from "../../component/GameRulesDisplay";
 
 interface Props {
   createGameController: CreateGameController;
@@ -16,11 +17,20 @@ export const HomeWindow = (props: Props) => {
   );
 
   return (
-    <div>
-      <h1 data-testid="heading">HANGMAN</h1>
-      <Button data-testid="start_button" onClick={createGame}>
-        START
-      </Button>
-    </div>
+    <Stack
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+      spacing={2}>
+      <Grid>
+        <Typography variant="h1" data-testid="heading">
+          HANGMAN
+        </Typography>
+        <Button color="secondary" variant="contained" size="large" data-testid="start_button" onClick={createGame}>
+          BEGIN
+        </Button>
+      </Grid>
+      <GameRulesDisplay />
+    </Stack>
   );
 };
