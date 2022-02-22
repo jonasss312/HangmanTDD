@@ -7,7 +7,9 @@ export const themeOptions = createTheme({
             fontSize: '7rem',
             fontWeight: 4000,
             letterSpacing: '0.07em',
-            color: 'white'
+            background: "-webkit-linear-gradient(90deg, #FE6B8B 50%, #FF8E53 90%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent"
         },
         h2: {
             fontFamily: 'Roboto Condensed',
@@ -18,8 +20,7 @@ export const themeOptions = createTheme({
         },
         body1: {
             fontFamily: 'Roboto Condensed',
-            fontSize: '1.5rem',
-            color: "white"
+            fontSize: '1.2rem',
         }
     },
     palette: {
@@ -45,7 +46,7 @@ export const themeOptions = createTheme({
                     width: '100%',
                     backgroundColor: "#ed00d7",
                     ':hover': {
-                        backgroundColor: "#ffffff",
+                        backgroundColor: "#9cffe3",
                         color: "#ed00d7"
                     }
                 }
@@ -64,7 +65,7 @@ export const themeOptions = createTheme({
                     border: 0,
                     borderRadius: 3,
                     boxShadow: '0 0px 10px 10px #fc00d1',
-                    padding: '0 30px',
+                    padding: '20px 20px',
                 }
             }
         },
