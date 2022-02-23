@@ -47,7 +47,7 @@ export const themeOptions = createTheme({
                     backgroundColor: "#ed00d7",
                     ':hover': {
                         backgroundColor: "#9cffe3",
-                        color: "#ed00d7"
+                        color: "#ed00d7",
                     }
                 }
             },
@@ -89,9 +89,10 @@ export const themeOptions = createTheme({
                     props: { color: 'home' },
                     style: {
                         height: window.innerHeight.toString() + 'px',
-                        display: 'flex'
+                        display: 'flex',
                     }
-                }]
+                },
+            ]
         },
     },
 });

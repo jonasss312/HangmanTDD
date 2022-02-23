@@ -1,4 +1,4 @@
-import { List, ListItem, Paper, Typography } from "@mui/material";
+import { List, ListItem, Paper, Typography, Fade } from "@mui/material";
 import React from "react"
 
 export const GameRulesDisplay = () => {
