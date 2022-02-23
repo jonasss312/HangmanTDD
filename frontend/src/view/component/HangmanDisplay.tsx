@@ -73,16 +73,6 @@ export const HangmanDisplay = (props: Props) => {
         strokeWidth={bodyWidth}
         style={{ fillOpacity: 0 }}
       />
-      {/*body*/}
-      {wrongGuessesCount >= 2 ? (color = colorAfter) : (color = colorBefore)}
-      <line
-        x1="298"
-        y1="182"
-        x2="298"
-        y2="275"
-        stroke={color}
-        strokeWidth={bodyWidth}
-      />
       {/*left-hand*/}
       {wrongGuessesCount >= 3 ? (color = colorAfter) : (color = colorBefore)}
       <line
@@ -100,6 +90,16 @@ export const HangmanDisplay = (props: Props) => {
         y1="182"
         x2="318"
         y2="285"
+        stroke={color}
+        strokeWidth={bodyWidth}
+      />
+      {/*body*/}
+      {wrongGuessesCount >= 2 ? (color = colorAfter) : (color = colorBefore)}
+      <line
+        x1="298"
+        y1="181"
+        x2="298"
+        y2="275"
         stroke={color}
         strokeWidth={bodyWidth}
       />

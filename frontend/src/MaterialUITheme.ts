@@ -53,9 +53,16 @@ export const themeOptions = createTheme({
           },
         },
         {
-          props: { color: "primary" },
+          props: { size: "small" },
           style: {
-            backgroundColor: "#5a1ad4",
+            backgroundColor: "#ed00d7",
+            fontSize: "20px",
+            padding: "10px",
+            margin: "2px",
+            ":hover": {
+              backgroundColor: "#9cffe3",
+              color: "#ed00d7",
+            },
           },
         },
       ],

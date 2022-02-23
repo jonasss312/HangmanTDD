@@ -1,8 +1,8 @@
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { GuessLetterController } from "controller/implementation/GuessLetterController";
 import { ViewGame } from "controller/model/ViewGame";
 import { ViewGuess } from "controller/model/ViewGuess";
-import React, { useCallback } from "react";
+import React from "react";
 import { ALPHABET } from "../../../constant/Alphabet";
 import useLetter from "./useLetter";
 
@@ -18,16 +18,24 @@ export const GuessingLettersDisplay = (props: Props) => {
 
   return (
     <div>
-      {ALPHABET.map((letter) => (
-        <Button
-          onClick={() => guess(new ViewGuess(props.gameId, letter))}
-          data-testid={letter}
-          key={letter}
-          disabled={props.allGuessedLetters.includes(letter)}
-        >
-          {letter}
-        </Button>
-      ))}
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        {ALPHABET.map((letter) => (
+          <Button
+            key={letter}
+            size="small"
+            onClick={() => guess(new ViewGuess(props.gameId, letter))}
+            data-testid={letter}
+            disabled={props.allGuessedLetters.includes(letter)}
+          >
+            {letter}
+          </Button>
+        ))}
+      </Grid>
     </div>
   );
 };
