@@ -44,15 +44,15 @@ export class Game {
         if (this.thereIsNoMoreHiddenLetters())
             return GameStatus.Won;
         else
-            return this.wasGuessedTenTimesWrongly() ? GameStatus.Lost : GameStatus.InProgress
+            return this.atLeast10WrongGuesses() ? GameStatus.Lost : GameStatus.InProgress
     }
 
     private thereIsNoMoreHiddenLetters(): Boolean {
         return !this.hiddenWord.includes("_")
     }
 
-    private wasGuessedTenTimesWrongly(): Boolean {
-        return this.wrongLetters.length == 10
+    private atLeast10WrongGuesses(): Boolean {
+        return this.wrongLetters.length >= 10
     }
 
     getStatus(): GameStatus {
