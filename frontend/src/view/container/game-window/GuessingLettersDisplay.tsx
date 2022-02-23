@@ -17,25 +17,18 @@ export const GuessingLettersDisplay = (props: Props) => {
   const guess = useLetter(props.guessLetterController, props.setGameCallBack);
 
   return (
-    <div>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        {ALPHABET.map((letter) => (
-          <Button
-            key={letter}
-            size="small"
-            onClick={() => guess(new ViewGuess(props.gameId, letter))}
-            data-testid={letter}
-            disabled={props.allGuessedLetters.includes(letter)}
-          >
-            {letter}
-          </Button>
-        ))}
-      </Grid>
-    </div>
+    <Grid container direction="row" justifyContent="center" alignItems="center">
+      {ALPHABET.map((letter) => (
+        <Button
+          key={letter}
+          size="small"
+          onClick={() => guess(new ViewGuess(props.gameId, letter))}
+          data-testid={letter}
+          disabled={props.allGuessedLetters.includes(letter)}
+        >
+          {letter}
+        </Button>
+      ))}
+    </Grid>
   );
 };

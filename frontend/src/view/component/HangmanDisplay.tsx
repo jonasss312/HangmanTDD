@@ -2,11 +2,12 @@ import React from "react";
 
 interface Props {
   wrongGuessesCount: number;
+  colorState: string;
 }
 
 export const HangmanDisplay = (props: Props) => {
+  const colorState = props.colorState;
   const wrongGuessesCount = props.wrongGuessesCount;
-  const colorBefore: string = "#9cffe3";
   const colorAfter: string = "#ed00d7";
   const colorBase: string = "#33eaff";
   const baseWidth: string = "4%";
@@ -17,7 +18,7 @@ export const HangmanDisplay = (props: Props) => {
   let color;
 
   return (
-    <svg height="650" width="800" viewBox="100 70 400 350">
+    <svg height="650" width="800" viewBox="100 90 400 350">
       {/*bottom-line*/}
       <line
         x1="100"
@@ -64,7 +65,7 @@ export const HangmanDisplay = (props: Props) => {
         strokeWidth={ropeWidth}
       />
       {/*head*/}
-      {wrongGuessesCount >= 1 ? (color = colorAfter) : (color = colorBefore)}
+      {wrongGuessesCount >= 1 ? (color = colorAfter) : (color = colorState)}
       <circle
         cx="298"
         cy="165"
@@ -74,7 +75,7 @@ export const HangmanDisplay = (props: Props) => {
         style={{ fillOpacity: 0 }}
       />
       {/*left-hand*/}
-      {wrongGuessesCount >= 3 ? (color = colorAfter) : (color = colorBefore)}
+      {wrongGuessesCount >= 3 ? (color = colorAfter) : (color = colorState)}
       <line
         x1="298"
         y1="182"
@@ -84,7 +85,7 @@ export const HangmanDisplay = (props: Props) => {
         strokeWidth={bodyWidth}
       />
       {/*right-hand*/}
-      {wrongGuessesCount >= 4 ? (color = colorAfter) : (color = colorBefore)}
+      {wrongGuessesCount >= 4 ? (color = colorAfter) : (color = colorState)}
       <line
         x1="298"
         y1="182"
@@ -94,7 +95,7 @@ export const HangmanDisplay = (props: Props) => {
         strokeWidth={bodyWidth}
       />
       {/*body*/}
-      {wrongGuessesCount >= 2 ? (color = colorAfter) : (color = colorBefore)}
+      {wrongGuessesCount >= 2 ? (color = colorAfter) : (color = colorState)}
       <line
         x1="298"
         y1="181"
@@ -104,7 +105,7 @@ export const HangmanDisplay = (props: Props) => {
         strokeWidth={bodyWidth}
       />
       {/*right-leg*/}
-      {wrongGuessesCount >= 5 ? (color = colorAfter) : (color = colorBefore)}
+      {wrongGuessesCount >= 5 ? (color = colorAfter) : (color = colorState)}
       <line
         x1="298"
         y1="275"
@@ -114,7 +115,7 @@ export const HangmanDisplay = (props: Props) => {
         strokeWidth={bodyWidth}
       />
       {/*right-leg*/}
-      {wrongGuessesCount >= 6 ? (color = colorAfter) : (color = colorBefore)}
+      {wrongGuessesCount >= 6 ? (color = colorAfter) : (color = colorState)}
       <line
         x1="298"
         y1="275"
@@ -124,7 +125,7 @@ export const HangmanDisplay = (props: Props) => {
         strokeWidth={bodyWidth}
       />
       {/*left-eye-one*/}
-      {wrongGuessesCount >= 7 ? (color = colorAfter) : (color = colorBefore)}
+      {wrongGuessesCount >= 7 ? (color = colorAfter) : (color = colorState)}
       <line
         x1="288"
         y1="174"
@@ -134,7 +135,7 @@ export const HangmanDisplay = (props: Props) => {
         strokeWidth={eyeWidth}
       />
       {/*left-eye-two*/}
-      {wrongGuessesCount >= 8 ? (color = colorAfter) : (color = colorBefore)}
+      {wrongGuessesCount >= 8 ? (color = colorAfter) : (color = colorState)}
       <line
         x1="297"
         y1="174"
@@ -144,7 +145,7 @@ export const HangmanDisplay = (props: Props) => {
         strokeWidth={eyeWidth}
       />
       {/*right-eye-one*/}
-      {wrongGuessesCount >= 9 ? (color = colorAfter) : (color = colorBefore)}
+      {wrongGuessesCount >= 9 ? (color = colorAfter) : (color = colorState)}
       <line
         x1="308"
         y1="174"
@@ -154,7 +155,7 @@ export const HangmanDisplay = (props: Props) => {
         strokeWidth={eyeWidth}
       />
       {/*right-eye-two*/}
-      {wrongGuessesCount >= 10 ? (color = colorAfter) : (color = colorBefore)}
+      {wrongGuessesCount >= 10 ? (color = colorAfter) : (color = colorState)}
       <line
         x1="299"
         y1="174"

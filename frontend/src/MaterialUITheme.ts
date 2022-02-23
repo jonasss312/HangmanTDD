@@ -12,7 +12,6 @@ export const themeOptions = createTheme({
       WebkitTextFillColor: "transparent",
     },
     h2: {
-      fontFamily: "Roboto Condensed",
       fontSize: "3rem",
       fontWeight: 2000,
       color: "white",
@@ -20,6 +19,9 @@ export const themeOptions = createTheme({
     },
     body1: {
       fontFamily: "Roboto Condensed",
+      fontSize: "1.2rem",
+    },
+    overline: {
       fontSize: "1.2rem",
     },
   },
