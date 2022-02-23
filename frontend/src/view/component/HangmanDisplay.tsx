@@ -59,6 +59,7 @@ const renderLeftLine = () => (
     strokeWidth={BASE_WIDTH}
   />
 );
+
 const renderTopLine = () => (
   <line
     x1="175"
@@ -69,6 +70,7 @@ const renderTopLine = () => (
     strokeWidth={BASE_WIDTH}
   />
 );
+
 const renderRope = () => (
   <line
     x1="298"
@@ -79,6 +81,7 @@ const renderRope = () => (
     strokeWidth={ROPE_WIDTH}
   />
 );
+
 const renderHead = (wrongGuessesCount: number, colorState: string) => {
   wrongGuessesCount >= 1 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
   return (
@@ -120,6 +123,7 @@ const renderRightHand = (wrongGuessesCount: number, colorState: string) => {
     />
   );
 };
+
 const renderBody = (wrongGuessesCount: number, colorState: string) => {
   wrongGuessesCount >= 2 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
   return (
@@ -133,6 +137,7 @@ const renderBody = (wrongGuessesCount: number, colorState: string) => {
     />
   );
 };
+
 const renderLeftLeg = (wrongGuessesCount: number, colorState: string) => {
   wrongGuessesCount >= 5 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
   return (
@@ -146,6 +151,7 @@ const renderLeftLeg = (wrongGuessesCount: number, colorState: string) => {
     />
   );
 };
+
 const renderRightLeg = (wrongGuessesCount: number, colorState: string) => {
   wrongGuessesCount >= 6 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
   return (
@@ -159,6 +165,7 @@ const renderRightLeg = (wrongGuessesCount: number, colorState: string) => {
     />
   );
 };
+
 const renderLeftEyeOne = (wrongGuessesCount: number, colorState: string) => {
   wrongGuessesCount >= 7 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
   return (
@@ -172,6 +179,7 @@ const renderLeftEyeOne = (wrongGuessesCount: number, colorState: string) => {
     />
   );
 };
+
 const renderLeftEyeTwo = (wrongGuessesCount: number, colorState: string) => {
   wrongGuessesCount >= 8 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
   return (
@@ -185,6 +193,7 @@ const renderLeftEyeTwo = (wrongGuessesCount: number, colorState: string) => {
     />
   );
 };
+
 const renderRightEyeOne = (wrongGuessesCount: number, colorState: string) => {
   wrongGuessesCount >= 9 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
   return (
@@ -198,6 +207,7 @@ const renderRightEyeOne = (wrongGuessesCount: number, colorState: string) => {
     />
   );
 };
+
 const renderRightEyeTwo = (wrongGuessesCount: number, colorState: string) => {
   wrongGuessesCount >= 10 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
   return (
