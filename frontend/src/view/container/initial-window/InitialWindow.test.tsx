@@ -16,12 +16,7 @@ describe("InitialWindow", () => {
   });
 
   test("Can display heading and start button when game is not started", () => {
-    render(
-      <InitialWindow
-        createGameController={createGameController}
-        guessLetterController={guessLetterController}
-      />
-    );
+    renderWindow(createGameController, guessLetterController);
 
     expect(screen.getByTestId("home_window")).toBeInTheDocument();
   });
@@ -31,16 +26,20 @@ describe("InitialWindow", () => {
     const useStateMock: any = () => [game, jest.fn()];
     jest.spyOn(React, "useState").mockImplementation(useStateMock);
 
-    render(
-      <InitialWindow
-        createGameController={createGameController}
-        guessLetterController={guessLetterController}
-      />
-    );
+    renderWindow(createGameController, guessLetterController);
 
     expect(screen.getByTestId("game_view")).toBeInTheDocument();
   });
 });
+
+function renderWindow(createGameController: CreateGameController, guessLetterController: GuessLetterController) {
+  render(
+    <InitialWindow
+      createGameController={createGameController}
+      guessLetterController={guessLetterController}
+    />
+  );
+}
 
 jest.mock("../home-window/HomeWindow", () => ({
   HomeWindow: () => <div data-testid="home_window" />,
