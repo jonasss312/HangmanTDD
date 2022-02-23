@@ -24,5 +24,10 @@ describe("HomeWindow", () => {
 
     expect(screen.getByTestId("heading")).toBeInTheDocument();
     expect(screen.getByTestId("start_button")).toBeInTheDocument();
+    expect(screen.getByTestId("game_rules_display")).toBeInTheDocument();
   });
 });
+
+jest.mock("../../component/GameRulesDisplay", () => ({
+  GameRulesDisplay: () => <div data-testid="game_rules_display" />,
+}));
