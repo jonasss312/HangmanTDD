@@ -3,6 +3,8 @@ import { GameStatusDisplay } from "./GameStatusDisplay";
 import { GuessingLettersDisplay } from "../container/game-window/GuessingLettersDisplay";
 import React from "react";
 import { GuessLetterController } from "controller/implementation/GuessLetterController";
+import { WrappedCollapseComponent } from "view/container/game-window/WrappedCollapseComponent";
+import { HangmanDisplay } from "../component/HangmanDisplay";
 
 interface Props {
   game: ViewGame;
@@ -22,8 +24,10 @@ export const GameView = (props: Props) => {
     <p data-testid="guesses">Guesses: {game.guesses}</p>
   );
 
-  const renderGame = (game: ViewGame): JSX.Element => (
+  const renderGameView = (): JSX.Element => (
     <div>
+      <HangmanDisplay wrongGuessesCount={game.wrongLetters.length} />
+
       {hiddenWord()}
 
       <GuessingLettersDisplay
@@ -39,5 +43,7 @@ export const GameView = (props: Props) => {
     </div>
   );
 
-  return renderGame(game);
+  return (
+    <WrappedCollapseComponent>{renderGameView()}</WrappedCollapseComponent>
+  );
 };

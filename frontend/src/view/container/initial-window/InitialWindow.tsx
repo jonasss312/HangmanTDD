@@ -17,7 +17,7 @@ export const InitialWindow = (props: Props) => {
   return (
     <>
       {game === undefined ? (
-        <Container color='home'>
+        <Container color="home">
           <HomeWindow
             createGameController={props.createGameController}
             setGameCallBack={setGame}

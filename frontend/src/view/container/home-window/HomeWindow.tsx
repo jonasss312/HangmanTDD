@@ -22,20 +22,23 @@ export const HomeWindow = (props: Props) => {
         direction="row"
         justifyContent="center"
         alignItems="center"
-        spacing={2}>
+        spacing={2}
+      >
         <Grid>
           <Typography variant="h1" data-testid="heading">
             HANGMAN
           </Typography>
-          <Button color="secondary" variant="contained" size="large" data-testid="start_button" onClick={createGame}>
+          <Button
+            color="secondary"
+            variant="contained"
+            size="large"
+            data-testid="start_button"
+            onClick={createGame}
+          >
             BEGIN
           </Button>
         </Grid>
-        <Fade in={true} timeout={7000}>
-          <div>
-            <GameRulesDisplay />
-          </div>
-        </Fade>
+        <GameRulesDisplay />
       </Stack>
     </Fade>
   );
