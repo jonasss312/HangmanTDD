@@ -27,7 +27,7 @@ export class UpsertGameRoute {
         } catch (error) {
             const errorMessage = (error as Error).message;
             if (errorMessage.includes("ended"))
-                return response.status(403).json((error as Error).message);
+                return response.status(409).json((error as Error).message);
             response.status(404).json((error as Error).message);
         }
     }

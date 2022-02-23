@@ -67,7 +67,7 @@ describe("UpsertGameRoute", () => {
 
         upsertGameRoute.upsertGame(request, response);
 
-        expect(response.statusCode).toEqual(403);
+        expect(response.statusCode).toEqual(409);
         expect(response._getJSON()).toEqual(errorText);
     });
 
