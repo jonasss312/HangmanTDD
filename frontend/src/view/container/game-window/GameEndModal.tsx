@@ -57,7 +57,7 @@ export default function GameEndModal(props: Props) {
   };
 
   const displayButton = () => (
-    <Fade in={gameEnd()} timeout={3000}>
+    <Fade in={gameEnd()} timeout={2500}>
       <Button data-testid="new_game_button" size="large" onClick={createGame}>
         <Typography variant="h2">NEW GAME</Typography>
       </Button>

@@ -1,5 +1,6 @@
-import { purple, yellow } from "@mui/material/colors";
+import { purple } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
+import { BACKGROUND_COLOR } from "constant/Colors";
 
 export const themeOptions = createTheme({
   typography: {
@@ -37,7 +38,7 @@ export const themeOptions = createTheme({
   },
   palette: {
     background: {
-      default: "#1c1818",
+      default: BACKGROUND_COLOR,
       paper: "#040303",
     },
     text: {
@@ -67,6 +68,7 @@ export const themeOptions = createTheme({
         {
           props: { size: "small" },
           style: {
+            color: "white",
             backgroundColor: "#ed00d7",
             fontSize: "20px",
             padding: "10px",
