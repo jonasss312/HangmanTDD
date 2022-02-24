@@ -38,7 +38,7 @@ export const HangmanDisplay = (props: Props) => {
   );
 };
 
-const renderBottomLine = () =>
+const renderBottomLine = () => (
   <line
     x1="100"
     y1="400"
@@ -47,8 +47,9 @@ const renderBottomLine = () =>
     stroke={COLOR_BASE}
     strokeWidth={BASE_WIDTH}
   />
+);
 
-const renderLeftLine = () =>
+const renderLeftLine = () => (
   <line
     x1="150"
     y1="400"
@@ -57,8 +58,9 @@ const renderLeftLine = () =>
     stroke={COLOR_BASE}
     strokeWidth={BASE_WIDTH}
   />
+);
 
-const renderTopLine = () =>
+const renderTopLine = () => (
   <line
     x1="175"
     y1="100"
@@ -67,8 +69,9 @@ const renderTopLine = () =>
     stroke={COLOR_BASE}
     strokeWidth={BASE_WIDTH}
   />
+);
 
-const renderRope = () =>
+const renderRope = () => (
   <line
     x1="298"
     y1="100"
@@ -77,8 +80,9 @@ const renderRope = () =>
     stroke={COLOR_BASE}
     strokeWidth={ROPE_WIDTH}
   />
+);
 
-const renderHead = (color: string) =>
+const renderHead = (color: string) => (
   <circle
     cx="298"
     cy="165"
@@ -87,8 +91,9 @@ const renderHead = (color: string) =>
     strokeWidth={BODY_WIDTH}
     style={{ fillOpacity: 0 }}
   />
+);
 
-const renderBody = (color: string) =>
+const renderBody = (color: string) => (
   <line
     x1="298"
     y1="181"
@@ -97,8 +102,9 @@ const renderBody = (color: string) =>
     stroke={color}
     strokeWidth={BODY_WIDTH}
   />
+);
 
-const renderLeftHand = (color: string) =>
+const renderLeftHand = (color: string) => (
   <line
     x1="298"
     y1="182"
@@ -107,8 +113,9 @@ const renderLeftHand = (color: string) =>
     stroke={color}
     strokeWidth={BODY_WIDTH}
   />
+);
 
-const renderRightHand = (color: string) =>
+const renderRightHand = (color: string) => (
   <line
     x1="298"
     y1="182"
@@ -117,9 +124,9 @@ const renderRightHand = (color: string) =>
     stroke={color}
     strokeWidth={BODY_WIDTH}
   />
+);
 
-
-const renderLeftLeg = (color: string) =>
+const renderLeftLeg = (color: string) => (
   <line
     x1="298"
     y1="275"
@@ -128,8 +135,9 @@ const renderLeftLeg = (color: string) =>
     stroke={color}
     strokeWidth={BODY_WIDTH}
   />
+);
 
-const renderRightLeg = (color: string) =>
+const renderRightLeg = (color: string) => (
   <line
     x1="298"
     y1="275"
@@ -138,8 +146,9 @@ const renderRightLeg = (color: string) =>
     stroke={color}
     strokeWidth={BODY_WIDTH}
   />
+);
 
-const renderLeftEyeOne = (color: string) =>
+const renderLeftEyeOne = (color: string) => (
   <line
     x1="288"
     y1="174"
@@ -148,8 +157,9 @@ const renderLeftEyeOne = (color: string) =>
     stroke={color}
     strokeWidth={EYE_WIDTH}
   />
+);
 
-const renderLeftEyeTwo = (color: string) =>
+const renderLeftEyeTwo = (color: string) => (
   <line
     x1="297"
     y1="174"
@@ -158,8 +168,9 @@ const renderLeftEyeTwo = (color: string) =>
     stroke={color}
     strokeWidth={EYE_WIDTH}
   />
+);
 
-const renderRightEyeOne = (color: string) =>
+const renderRightEyeOne = (color: string) => (
   <line
     x1="308"
     y1="174"
@@ -168,8 +179,9 @@ const renderRightEyeOne = (color: string) =>
     stroke={color}
     strokeWidth={EYE_WIDTH}
   />
+);
 
-const renderRightEyeTwo = (color: string) =>
+const renderRightEyeTwo = (color: string) => (
   <line
     x1="299"
     y1="174"
@@ -178,3 +190,4 @@ const renderRightEyeTwo = (color: string) =>
     stroke={color}
     strokeWidth={EYE_WIDTH}
   />
+);
