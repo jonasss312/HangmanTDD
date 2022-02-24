@@ -4,6 +4,7 @@ import { GuessLetterController } from "../../../controller/implementation/GuessL
 import { GameView } from "../../component/GameView";
 import { ViewGame } from "../../../controller/model/ViewGame";
 import { HomeWindow } from "../home-window/HomeWindow";
+import { Container } from "@mui/material";
 
 interface Props {
   createGameController: CreateGameController;
@@ -16,16 +17,20 @@ export const InitialWindow = (props: Props) => {
   return (
     <>
       {game === undefined ? (
-        <HomeWindow
-          createGameController={props.createGameController}
-          setGameCallBack={setGame}
-        />
+        <Container color="home">
+          <HomeWindow
+            createGameController={props.createGameController}
+            setGameCallBack={setGame}
+          />
+        </Container>
       ) : (
-        <GameView
-          game={game}
-          setGameCallBack={setGame}
-          guessLetterController={props.guessLetterController}
-        />
+        <Container fixed>
+          <GameView
+            game={game}
+            setGameCallBack={setGame}
+            guessLetterController={props.guessLetterController}
+          />
+        </Container>
       )}
     </>
   );

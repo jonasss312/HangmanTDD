@@ -3,6 +3,10 @@ import { GameStatusDisplay } from "./GameStatusDisplay";
 import { GuessingLettersDisplay } from "../container/game-window/GuessingLettersDisplay";
 import React from "react";
 import { GuessLetterController } from "controller/implementation/GuessLetterController";
+import { WrappedCollapseComponent } from "view/container/game-window/WrappedCollapseComponent";
+import { HangmanDisplay } from "../component/HangmanDisplay";
+import { Grid, Typography } from "@mui/material";
+import { useColorChange } from "./useColorChange";
 
 interface Props {
   game: ViewGame;
@@ -11,19 +15,41 @@ interface Props {
 }
 
 export const GameView = (props: Props) => {
-  const game: ViewGame = props.game;
+  const colorState = useColorChange();
 
+  const game: ViewGame = props.game;
   const allGuessedLetters = game.guessedLetters.concat(game.wrongLetters);
 
   const hiddenWord = (): JSX.Element => (
-    <p data-testid="hidden_word">{game.hiddenWord}</p>
-  );
-  const guessesCount = (): JSX.Element => (
-    <p data-testid="guesses">Guesses: {game.guesses}</p>
+    <Typography variant="h2" data-testid="hidden_word" letterSpacing={"10px"}>
+      {game.hiddenWord}
+    </Typography>
   );
 
-  const renderGame = (game: ViewGame): JSX.Element => (
-    <div>
+  const guessesCount = (): JSX.Element => (
+    <Typography
+      variant="overline"
+      style={{ color: colorState }}
+      data-testid="guesses"
+    >
+      Guesses: {game.guesses}
+    </Typography>
+  );
+
+  const renderGameView = (): JSX.Element => (
+    <Grid
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      style={{ minHeight: "100vh" }}
+    >
+      <HangmanDisplay
+        wrongGuessesCount={game.wrongLetters.length}
+        colorState={colorState}
+      />
+
       {hiddenWord()}
 
       <GuessingLettersDisplay
@@ -36,8 +62,10 @@ export const GameView = (props: Props) => {
       {guessesCount()}
 
       <GameStatusDisplay status={game.status} gameId={game.id} />
-    </div>
+    </Grid>
   );
 
-  return renderGame(game);
+  return (
+    <WrappedCollapseComponent>{renderGameView()}</WrappedCollapseComponent>
+  );
 };

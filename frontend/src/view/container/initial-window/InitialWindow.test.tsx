@@ -32,7 +32,10 @@ describe("InitialWindow", () => {
   });
 });
 
-function renderWindow(createGameController: CreateGameController, guessLetterController: GuessLetterController) {
+function renderWindow(
+  createGameController: CreateGameController,
+  guessLetterController: GuessLetterController
+) {
   render(
     <InitialWindow
       createGameController={createGameController}
