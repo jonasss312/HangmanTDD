@@ -31,23 +31,16 @@ export default function GameEndModal(props: Props) {
     props.setGameCallBack
   );
 
-  const gameResult = () => {
-    if (props.status === "WON") return true;
-    if (props.status === "LOST") return false;
-    return undefined;
-  };
-
   const gameEnd = () => props.status !== "IN_PROGRESS";
 
   const displayGameResult = (): JSX.Element => {
-    let won = gameResult();
-    if (won)
+    if (props.status === "WON")
       return (
         <Typography data-testid="won_text" align="center" variant="h3">
           YOU WIN!
         </Typography>
       );
-    else if (!won)
+    if (props.status === "LOST")
       return (
         <Typography data-testid="lost_text" align="center" variant="h4">
           YOU LOSE!
@@ -77,7 +70,7 @@ export default function GameEndModal(props: Props) {
     >
       <Fade in={gameEnd()}>
         <Box sx={style}>
-          {gameResult() != undefined ? (
+          {gameEnd() ? (
             <>
               {displayGameResult()}
 
