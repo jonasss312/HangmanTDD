@@ -43,13 +43,13 @@ export default function GameEndModal(props: Props) {
     let won = gameResult();
     if (won)
       return (
-        <Typography align="center" variant="h3">
+        <Typography data-testid="won_text" align="center" variant="h3">
           YOU WIN!
         </Typography>
       );
     else if (!won)
       return (
-        <Typography align="center" variant="h4">
+        <Typography data-testid="lost_text" align="center" variant="h4">
           YOU LOSE!
         </Typography>
       );
@@ -58,7 +58,7 @@ export default function GameEndModal(props: Props) {
 
   const displayButton = () => (
     <Fade in={gameEnd()} timeout={3000}>
-      <Button size="large" onClick={createGame}>
+      <Button data-testid="new_game_button" size="large" onClick={createGame}>
         <Typography variant="h2">NEW GAME</Typography>
       </Button>
     </Fade>
