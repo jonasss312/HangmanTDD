@@ -24,11 +24,12 @@ export const InitialWindow = (props: Props) => {
           />
         </Container>
       ) : (
-        <Container fixed>
+        <Container>
           <GameView
             game={game}
             setGameCallBack={setGame}
             guessLetterController={props.guessLetterController}
+            createGameController={props.createGameController}
           />
         </Container>
       )}

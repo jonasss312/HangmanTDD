@@ -1,8 +1,7 @@
-import { colors } from "constant/Colors";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export const useColorChange = (): string => {
+export const useColorChange = (colors: string[]): string => {
   const [colorState, setState] = useState(colors[0]);
 
   let index = 1;

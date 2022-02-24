@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Fade, Grid } from "@mui/material";
 import { GuessLetterController } from "controller/implementation/GuessLetterController";
 import { ViewGame } from "controller/model/ViewGame";
 import { ViewGuess } from "controller/model/ViewGuess";
@@ -19,15 +19,20 @@ export const GuessingLettersDisplay = (props: Props) => {
   return (
     <Grid container direction="row" justifyContent="center" alignItems="center">
       {ALPHABET.map((letter) => (
-        <Button
+        <Fade
           key={letter}
-          size="small"
-          onClick={() => guess(new ViewGuess(props.gameId, letter))}
-          data-testid={letter}
-          disabled={props.allGuessedLetters.includes(letter)}
+          in={!props.allGuessedLetters.includes(letter)}
+          timeout={500}
         >
-          {letter}
-        </Button>
+          <Button
+            size="small"
+            onClick={() => guess(new ViewGuess(props.gameId, letter))}
+            data-testid={letter}
+            disabled={props.allGuessedLetters.includes(letter)}
+          >
+            {letter}
+          </Button>
+        </Fade>
       ))}
     </Grid>
   );

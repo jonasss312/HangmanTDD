@@ -1,21 +1,25 @@
 import { ViewGame } from "../../controller/model/ViewGame";
-import { GameStatusDisplay } from "./GameStatusDisplay";
 import { GuessingLettersDisplay } from "../container/game-window/GuessingLettersDisplay";
 import React from "react";
 import { GuessLetterController } from "controller/implementation/GuessLetterController";
 import { WrappedCollapseComponent } from "view/container/game-window/WrappedCollapseComponent";
 import { HangmanDisplay } from "../component/HangmanDisplay";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { useColorChange } from "./useColorChange";
+import GameEndModal from "../container/game-window/GameEndModal";
+import { CreateGameController } from "controller/implementation/CreateGameController";
+import { BACKGROUND_COLOR } from "constant/Colors";
 
 interface Props {
   game: ViewGame;
   guessLetterController: GuessLetterController;
+  createGameController: CreateGameController;
   setGameCallBack: (game: ViewGame | undefined) => void;
 }
 
 export const GameView = (props: Props) => {
-  const colorState = useColorChange();
+  const colorStateHangMan = useColorChange([BACKGROUND_COLOR, "#33eaff"]);
+  const colorStateGuessCount = useColorChange(["#33eaff", "red"]);
 
   const game: ViewGame = props.game;
   const allGuessedLetters = game.guessedLetters.concat(game.wrongLetters);
@@ -29,11 +33,17 @@ export const GameView = (props: Props) => {
   const guessesCount = (): JSX.Element => (
     <Typography
       variant="overline"
-      style={{ color: colorState }}
+      style={{ color: colorStateGuessCount }}
       data-testid="guesses"
     >
       Guesses: {game.guesses}
     </Typography>
+  );
+
+  const returntoMenuButton = (): JSX.Element => (
+    <Button size="small" onClick={() => props.setGameCallBack(undefined)}>
+      MAIN MENU
+    </Button>
   );
 
   const renderGameView = (): JSX.Element => (
@@ -47,7 +57,7 @@ export const GameView = (props: Props) => {
     >
       <HangmanDisplay
         wrongGuessesCount={game.wrongLetters.length}
-        colorState={colorState}
+        colorState={colorStateHangMan}
       />
 
       {hiddenWord()}
@@ -61,7 +71,13 @@ export const GameView = (props: Props) => {
 
       {guessesCount()}
 
-      <GameStatusDisplay status={game.status} gameId={game.id} />
+      {returntoMenuButton()}
+
+      <GameEndModal
+        status={game.status}
+        setGameCallBack={props.setGameCallBack}
+        createGameController={props.createGameController}
+      />
     </Grid>
   );
 
