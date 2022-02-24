@@ -11,29 +11,19 @@ export const GameRulesDisplay = () => {
       </Typography>
       <Typography variant="body1">
         <List>
-          <ListItem>
-            <DoubleArrowRoundedIcon />
-            Number of dashes equivalent to the number of letters in the word.
-          </ListItem>
-          <ListItem>
-            <DoubleArrowRoundedIcon />
-            If a guessing player suggests a letter that occurs in the word,
-            blanks with that letter fills in the right places.
-          </ListItem>
-          <ListItem>
-            <DoubleArrowRoundedIcon />
-            If the word does not contain the suggested letter, one element of a
-            hangman’s gallows is drawn.
-          </ListItem>
-          <ListItem>
-            <DoubleArrowRoundedIcon />
-            If player guessed 10 times incorrectly, game over.
-          </ListItem>
-          <ListItem>
-            <DoubleArrowRoundedIcon />
-            Player win if all word letters are revealed and hangman drawing is
-            not completed.
-          </ListItem>
+          {DisplayRule(
+            "Number of dashes equivalent to the number of letters in the word."
+          )}
+          {DisplayRule(
+            "If a guessing player suggests a letter that occurs in the word, blanks with that letter fills in the right places."
+          )}
+          {DisplayRule(
+            "If the word does not contain the suggested letter, one element of a hangman’s gallows is drawn."
+          )}
+          {DisplayRule("If player guessed 10 times incorrectly, game over.")}
+          {DisplayRule(
+            "Player win if all word letters are revealed and hangman drawing is not completed."
+          )}
         </List>
       </Typography>
     </div>
@@ -51,3 +41,10 @@ export const GameRulesDisplay = () => {
     </Fade>
   );
 };
+
+const DisplayRule = (text: string) => (
+  <ListItem>
+    <DoubleArrowRoundedIcon />
+    {text}
+  </ListItem>
+);
