@@ -35,7 +35,6 @@ describe("GuessingLettersDisplay", () => {
         allGuessedLetters={lettersArray}
         setGameCallBack={SET_GAME}
         gameId={0}
-        guessLetterController={guessLetterController}
       />
     );
   }

@@ -1,20 +1,15 @@
-import { Button, Fade, Grid, Paper, Stack, Typography } from "@mui/material";
+import { Button, Fade, Grid, Stack, Typography } from "@mui/material";
 import useCreateGame from "./useCreateGame";
 import React from "react";
-import { CreateGameController } from "../../../controller/implementation/CreateGameController";
 import { ViewGame } from "../../../controller/model/ViewGame";
 import { GameRulesDisplay } from "../../component/GameRulesDisplay";
 
 interface Props {
-  createGameController: CreateGameController;
   setGameCallBack: (game: ViewGame | undefined) => void;
 }
 
 export const HomeWindow = (props: Props) => {
-  const createGame = useCreateGame(
-    props.createGameController,
-    props.setGameCallBack
-  );
+  const createGame = useCreateGame(props.setGameCallBack);
 
   return (
     <Fade in={true} timeout={3000}>

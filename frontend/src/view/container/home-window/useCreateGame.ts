@@ -1,10 +1,11 @@
-import { CreateGameController } from "../../../controller/implementation/CreateGameController";
 import { ViewGame } from "../../../controller/model/ViewGame";
+import useControllerContext from "../game-window/useControllerContext";
 
 export default function useCreateGame(
-  createGameController: CreateGameController,
   setGameCallBack: (game: ViewGame | undefined) => void
 ): () => void {
+  const createGameController = useControllerContext().createGameController;
+
   const createGame = () =>
     createGameController.createNewGame().subscribe(setGameCallBack);
 

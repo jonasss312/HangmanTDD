@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import { ALPHABET } from "../../../constant/Alphabet";
 import { mock, MockProxy } from "jest-mock-extended";
 import GameEndModal from "./GameEndModal";
 import { CreateGameController } from "controller/implementation/CreateGameController";
@@ -35,11 +34,7 @@ describe("GameEndModal", () => {
     createGameController: CreateGameController
   ) {
     render(
-      <GameEndModal
-        status={status}
-        setGameCallBack={SET_GAME_CALL_BACK}
-        createGameController={createGameController}
-      />
+      <GameEndModal status={status} setGameCallBack={SET_GAME_CALL_BACK} />
     );
   }
 });
