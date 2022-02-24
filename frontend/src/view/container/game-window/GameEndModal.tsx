@@ -9,71 +9,71 @@ import { ViewGame } from "controller/model/ViewGame";
 import useCreateGame from "view/container/home-window/useCreateGame";
 
 const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    opacity: "100%",
-    width: "auto",
-    p: 4,
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  opacity: "100%",
+  width: "auto",
+  p: 4,
 };
 
 interface Props {
-    status: string;
-    setGameCallBack: (game: ViewGame | undefined) => void;
+  status: string;
+  setGameCallBack: (game: ViewGame | undefined) => void;
 }
 
 export default function GameEndModal(props: Props) {
-    const createGame = useCreateGame(props.setGameCallBack);
+  const createGame = useCreateGame(props.setGameCallBack);
 
-    const gameEnd = () => props.status !== "IN_PROGRESS";
+  const gameEnd = () => props.status !== "IN_PROGRESS";
 
-    const displayGameResult = (): JSX.Element => {
-        if (props.status === "WON")
-            return (
-                <Typography data-testid="won_text" align="center" variant="h3">
-                    YOU WIN!
-                </Typography>
-            );
-        return (
-            <Typography data-testid="lost_text" align="center" variant="h4">
-                YOU LOSE!
-            </Typography>
-        );
-    };
-
-    const displayButton = () => (
-        <Fade in={gameEnd()} timeout={2500}>
-            <Button data-testid="new_game_button" size="large" onClick={createGame}>
-                <Typography variant="h2">NEW GAME</Typography>
-            </Button>
-        </Fade>
-    );
-
+  const displayGameResult = (): JSX.Element => {
+    if (props.status === "WON")
+      return (
+        <Typography data-testid="won_text" align="center" variant="h3">
+          YOU WIN!
+        </Typography>
+      );
     return (
-        <Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            open={gameEnd()}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-                timeout: 500,
-            }}
-        >
-            <Fade in={gameEnd()}>
-                <Box sx={style}>
-                    {gameEnd() ? (
-                        <>
-                            {displayGameResult()}
-
-                            {displayButton()}
-                        </>
-                    ) : (
-                        <></>
-                    )}
-                </Box>
-            </Fade>
-        </Modal>
+      <Typography data-testid="lost_text" align="center" variant="h4">
+        YOU LOSE!
+      </Typography>
     );
+  };
+
+  const displayButton = () => (
+    <Fade in={gameEnd()} timeout={2500}>
+      <Button data-testid="new_game_button" size="large" onClick={createGame}>
+        <Typography variant="h2">NEW GAME</Typography>
+      </Button>
+    </Fade>
+  );
+
+  return (
+    <Modal
+      aria-labelledby="transition-modal-title"
+      aria-describedby="transition-modal-description"
+      open={gameEnd()}
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
+    >
+      <Fade in={gameEnd()}>
+        <Box sx={style}>
+          {gameEnd() ? (
+            <>
+              {displayGameResult()}
+
+              {displayButton()}
+            </>
+          ) : (
+            <></>
+          )}
+        </Box>
+      </Fade>
+    </Modal>
+  );
 }
