@@ -1,5 +1,4 @@
 import { ViewGame } from "../../controller/model/ViewGame";
-import { GameStatusDisplay } from "./GameStatusDisplay";
 import { GuessingLettersDisplay } from "../container/game-window/GuessingLettersDisplay";
 import React from "react";
 import { GuessLetterController } from "controller/implementation/GuessLetterController";
@@ -7,10 +6,13 @@ import { WrappedCollapseComponent } from "view/container/game-window/WrappedColl
 import { HangmanDisplay } from "../component/HangmanDisplay";
 import { Grid, Typography } from "@mui/material";
 import { useColorChange } from "./useColorChange";
+import GameEndModal from "../container/game-window/GameEndModal";
+import { CreateGameController } from "controller/implementation/CreateGameController";
 
 interface Props {
   game: ViewGame;
   guessLetterController: GuessLetterController;
+  createGameController: CreateGameController;
   setGameCallBack: (game: ViewGame | undefined) => void;
 }
 
@@ -61,7 +63,11 @@ export const GameView = (props: Props) => {
 
       {guessesCount()}
 
-      <GameStatusDisplay status={game.status} gameId={game.id} />
+      <GameEndModal
+        status={game.status}
+        setGameCallBack={props.setGameCallBack}
+        createGameController={props.createGameController}
+      />
     </Grid>
   );
 

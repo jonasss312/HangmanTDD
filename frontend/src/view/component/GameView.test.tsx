@@ -4,13 +4,16 @@ import React from "react";
 import { GameView } from "./GameView";
 import { GuessLetterController } from "controller/implementation/GuessLetterController";
 import { mock, MockProxy } from "jest-mock-extended";
+import { CreateGameController } from "controller/implementation/CreateGameController";
 
 describe("GameView", () => {
   const SET_GAME: () => void = jest.fn();
   let guessLetterController: MockProxy<GuessLetterController>;
+  let createGameController: MockProxy<CreateGameController>;
 
   beforeEach(() => {
     guessLetterController = mock<GuessLetterController>();
+    createGameController = mock<CreateGameController>();
   });
 
   test("Can display hidden word and guess count", () => {
@@ -29,6 +32,7 @@ describe("GameView", () => {
         game={game}
         setGameCallBack={SET_GAME}
         guessLetterController={guessLetterController}
+        createGameController={createGameController}
       />
     );
 

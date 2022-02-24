@@ -24,6 +24,16 @@ export const themeOptions = createTheme({
     overline: {
       fontSize: "1.2rem",
     },
+    h3: {
+      fontSize: "10rem",
+      fontWeight: 3000,
+      color: "#91ff35",
+    },
+    h4: {
+      fontSize: "10rem",
+      fontWeight: 3000,
+      color: "#e91e63",
+    },
   },
   palette: {
     background: {
