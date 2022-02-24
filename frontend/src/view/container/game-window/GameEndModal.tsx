@@ -35,12 +35,11 @@ export default function GameEndModal(props: Props) {
                     YOU WIN!
                 </Typography>
             );
-        else
-            return (
-                <Typography data-testid="lost_text" align="center" variant="h4">
-                    YOU LOSE!
-                </Typography>
-            );
+        return (
+            <Typography data-testid="lost_text" align="center" variant="h4">
+                YOU LOSE!
+            </Typography>
+        );
     };
 
     const displayButton = () => (
