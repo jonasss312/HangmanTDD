@@ -13,10 +13,9 @@ export const themeOptions = createTheme({
       WebkitTextFillColor: "transparent",
     },
     h2: {
-      fontSize: "3rem",
-      fontWeight: 2000,
+      fontSize: "4rem",
       color: "white",
-      paddingLeft: "14px",
+      fontFamily: "Rubik Mono One",
     },
     body1: {
       fontFamily: "Roboto Condensed",
