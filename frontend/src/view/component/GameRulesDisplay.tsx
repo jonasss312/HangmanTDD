@@ -11,17 +11,17 @@ export const GameRulesDisplay = () => {
       </Typography>
       <Typography variant="body1">
         <List>
-          {DisplayRule(
+          {displayRule(
             "Number of dashes equivalent to the number of letters in the word."
           )}
-          {DisplayRule(
+          {displayRule(
             "If a guessing player suggests a letter that occurs in the word, blanks with that letter fills in the right places."
           )}
-          {DisplayRule(
+          {displayRule(
             "If the word does not contain the suggested letter, one element of a hangman’s gallows is drawn."
           )}
-          {DisplayRule("If player guessed 10 times incorrectly, game over.")}
-          {DisplayRule(
+          {displayRule("If player guessed 10 times incorrectly, game over.")}
+          {displayRule(
             "Player win if all word letters are revealed and hangman drawing is not completed."
           )}
         </List>
@@ -42,7 +42,7 @@ export const GameRulesDisplay = () => {
   );
 };
 
-const DisplayRule = (text: string) => (
+const displayRule = (text: string) => (
   <ListItem>
     <DoubleArrowRoundedIcon />
     {text}
