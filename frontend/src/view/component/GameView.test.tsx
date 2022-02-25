@@ -6,8 +6,6 @@ import { GameView } from "./GameView";
 describe("GameView", () => {
   const SET_GAME: () => void = jest.fn();
 
-  beforeEach(() => {});
-
   test("Can display game data, button and game end modal window", () => {
     const guessCount = 2;
     const hiddenWord = "A___";
