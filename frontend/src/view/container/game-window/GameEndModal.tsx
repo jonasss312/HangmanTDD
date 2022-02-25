@@ -23,7 +23,7 @@ interface Props {
   setGameCallBack: (game: ViewGame | undefined) => void;
 }
 
-export default function GameEndModal(props: Props) {
+export const GameEndModal = (props: Props) => {
   const createGame = useCreateGame(props.setGameCallBack);
 
   const gameEnd = () => props.status !== "IN_PROGRESS";
@@ -76,4 +76,4 @@ export default function GameEndModal(props: Props) {
       </Fade>
     </Modal>
   );
-}
+};
