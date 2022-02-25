@@ -8,8 +8,11 @@ import { mock } from "jest-mock-extended";
 import { ViewGame } from "../../../controller/model/ViewGame";
 import { from } from "rxjs";
 import { Controllers } from "../context/ControllerContext";
-import * as useControllerContext from "../game-window/useControllerContext";
+import * as useControllerContext from "../context/useControllerContext";
 import { act } from "react-dom/test-utils";
+import * as Snackbar from "notistack";
+import * as useCeateObserver from "../observer/useCreateObserver";
+import { getObserverTemplate } from "constant/getObserverTemplate";
 
 describe("useCreateGame", () => {
   let hookCreateGame: any;
@@ -18,21 +21,27 @@ describe("useCreateGame", () => {
 
   beforeEach(() => {
     setGame = jest.fn();
+    jest.spyOn(Snackbar, "useSnackbar").mockReturnValue(mock<any>());
   });
 
-  test("Can set new game data with callback", () => {
+  test("Can set new game data with callback", (done) => {
     const controller = mockController();
     controller.createNewGame.mockReturnValue(from([VIEW_GAME]));
 
-    hookCreateGame = renderHook(() => useCreateGame(setGame));
+    jest
+      .spyOn(useCeateObserver, "default")
+      .mockReturnValue(
+        getObserverTemplate(done, (value: any) => setGame(value))
+      );
 
+    hookCreateGame = renderHook(() => useCreateGame(setGame));
     const createGameCallBack = hookCreateGame.result.current;
 
     act(() => {
       createGameCallBack();
     });
 
-    expect(setGame).toBeCalled();
+    expect(setGame).toBeCalledWith(VIEW_GAME);
   });
 
   function mockController() {

@@ -4,6 +4,7 @@ import { GuessingLettersDisplay } from "./GuessingLettersDisplay";
 import { ALPHABET } from "../../../constant/Alphabet";
 import { GuessLetterController } from "controller/implementation/GuessLetterController";
 import { mock, MockProxy } from "jest-mock-extended";
+import * as useLetter from "./useLetter";
 
 describe("GuessingLettersDisplay", () => {
   const SET_GAME: () => void = jest.fn();
@@ -11,6 +12,7 @@ describe("GuessingLettersDisplay", () => {
 
   beforeEach(() => {
     guessLetterController = mock<GuessLetterController>();
+    jest.spyOn(useLetter, "default").mockReturnValue(jest.fn());
   });
 
   test("Can display all enabled letters", () => {
