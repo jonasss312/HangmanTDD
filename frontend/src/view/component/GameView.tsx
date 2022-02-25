@@ -21,7 +21,12 @@ export const GameView = (props: Props) => {
   const allGuessedLetters = game.guessedLetters.concat(game.wrongLetters);
 
   const hiddenWord = (): JSX.Element => (
-    <Typography variant="h2" data-testid="hidden_word" letterSpacing={"10px"}>
+    <Typography
+      variant="h2"
+      data-testid="hidden_word"
+      letterSpacing={"10px"}
+      align={"center"}
+    >
       {game.hiddenWord}
     </Typography>
   );
