@@ -24,16 +24,16 @@ export const HangmanDisplay = (props: Props) => {
       {renderLeftLine()}
       {renderTopLine()}
       {renderRope()}
-      {renderHead(wrongGuessesCount, colorState)}
-      {renderLeftHand(wrongGuessesCount, colorState)}
-      {renderRightHand(wrongGuessesCount, colorState)}
-      {renderBody(wrongGuessesCount, colorState)}
-      {renderRightLeg(wrongGuessesCount, colorState)}
-      {renderLeftLeg(wrongGuessesCount, colorState)}
-      {renderLeftEyeTwo(wrongGuessesCount, colorState)}
-      {renderLeftEyeOne(wrongGuessesCount, colorState)}
-      {renderRightEyeTwo(wrongGuessesCount, colorState)}
-      {renderRightEyeOne(wrongGuessesCount, colorState)}
+      {renderHead(wrongGuessesCount >= 1 ? COLOR_AFTER : colorState)}
+      {renderLeftHand(wrongGuessesCount >= 3 ? COLOR_AFTER : colorState)}
+      {renderRightHand(wrongGuessesCount >= 4 ? COLOR_AFTER : colorState)}
+      {renderBody(wrongGuessesCount >= 2 ? COLOR_AFTER : colorState)}
+      {renderRightLeg(wrongGuessesCount >= 5 ? COLOR_AFTER : colorState)}
+      {renderLeftLeg(wrongGuessesCount >= 6 ? COLOR_AFTER : colorState)}
+      {renderLeftEyeOne(wrongGuessesCount >= 7 ? COLOR_AFTER : colorState)}
+      {renderLeftEyeTwo(wrongGuessesCount >= 8 ? COLOR_AFTER : colorState)}
+      {renderRightEyeOne(wrongGuessesCount >= 9 ? COLOR_AFTER : colorState)}
+      {renderRightEyeTwo(wrongGuessesCount >= 10 ? COLOR_AFTER : colorState)}
     </svg>
   );
 };
@@ -82,142 +82,112 @@ const renderRope = () => (
   />
 );
 
-const renderHead = (wrongGuessesCount: number, colorState: string) => {
-  wrongGuessesCount >= 1 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
-  return (
-    <circle
-      cx="298"
-      cy="165"
-      r="17"
-      stroke={COLOR}
-      strokeWidth={BODY_WIDTH}
-      style={{ fillOpacity: 0 }}
-    />
-  );
-};
+const renderHead = (color: string) => (
+  <circle
+    cx="298"
+    cy="165"
+    r="17"
+    stroke={color}
+    strokeWidth={BODY_WIDTH}
+    style={{ fillOpacity: 0 }}
+  />
+);
 
-const renderLeftHand = (wrongGuessesCount: number, colorState: string) => {
-  wrongGuessesCount >= 3 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
-  return (
-    <line
-      x1="298"
-      y1="182"
-      x2="278"
-      y2="285"
-      stroke={COLOR}
-      strokeWidth={BODY_WIDTH}
-    />
-  );
-};
+const renderBody = (color: string) => (
+  <line
+    x1="298"
+    y1="181"
+    x2="298"
+    y2="275"
+    stroke={color}
+    strokeWidth={BODY_WIDTH}
+  />
+);
 
-const renderRightHand = (wrongGuessesCount: number, colorState: string) => {
-  wrongGuessesCount >= 4 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
-  return (
-    <line
-      x1="298"
-      y1="182"
-      x2="318"
-      y2="285"
-      stroke={COLOR}
-      strokeWidth={BODY_WIDTH}
-    />
-  );
-};
+const renderLeftHand = (color: string) => (
+  <line
+    x1="298"
+    y1="182"
+    x2="278"
+    y2="285"
+    stroke={color}
+    strokeWidth={BODY_WIDTH}
+  />
+);
 
-const renderBody = (wrongGuessesCount: number, colorState: string) => {
-  wrongGuessesCount >= 2 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
-  return (
-    <line
-      x1="298"
-      y1="181"
-      x2="298"
-      y2="275"
-      stroke={COLOR}
-      strokeWidth={BODY_WIDTH}
-    />
-  );
-};
+const renderRightHand = (color: string) => (
+  <line
+    x1="298"
+    y1="182"
+    x2="318"
+    y2="285"
+    stroke={color}
+    strokeWidth={BODY_WIDTH}
+  />
+);
 
-const renderLeftLeg = (wrongGuessesCount: number, colorState: string) => {
-  wrongGuessesCount >= 5 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
-  return (
-    <line
-      x1="298"
-      y1="275"
-      x2="278"
-      y2="375"
-      stroke={COLOR}
-      strokeWidth={BODY_WIDTH}
-    />
-  );
-};
+const renderLeftLeg = (color: string) => (
+  <line
+    x1="298"
+    y1="275"
+    x2="278"
+    y2="375"
+    stroke={color}
+    strokeWidth={BODY_WIDTH}
+  />
+);
 
-const renderRightLeg = (wrongGuessesCount: number, colorState: string) => {
-  wrongGuessesCount >= 6 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
-  return (
-    <line
-      x1="298"
-      y1="275"
-      x2="318"
-      y2="375"
-      stroke={COLOR}
-      strokeWidth={BODY_WIDTH}
-    />
-  );
-};
+const renderRightLeg = (color: string) => (
+  <line
+    x1="298"
+    y1="275"
+    x2="318"
+    y2="375"
+    stroke={color}
+    strokeWidth={BODY_WIDTH}
+  />
+);
 
-const renderLeftEyeOne = (wrongGuessesCount: number, colorState: string) => {
-  wrongGuessesCount >= 7 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
-  return (
-    <line
-      x1="288"
-      y1="174"
-      x2="297"
-      y2="172"
-      stroke={COLOR}
-      strokeWidth={EYE_WIDTH}
-    />
-  );
-};
+const renderLeftEyeOne = (color: string) => (
+  <line
+    x1="288"
+    y1="174"
+    x2="297"
+    y2="172"
+    stroke={color}
+    strokeWidth={EYE_WIDTH}
+  />
+);
 
-const renderLeftEyeTwo = (wrongGuessesCount: number, colorState: string) => {
-  wrongGuessesCount >= 8 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
-  return (
-    <line
-      x1="297"
-      y1="174"
-      x2="288"
-      y2="172"
-      stroke={COLOR}
-      strokeWidth={EYE_WIDTH}
-    />
-  );
-};
+const renderLeftEyeTwo = (color: string) => (
+  <line
+    x1="297"
+    y1="174"
+    x2="288"
+    y2="172"
+    stroke={color}
+    strokeWidth={EYE_WIDTH}
+  />
+);
 
-const renderRightEyeOne = (wrongGuessesCount: number, colorState: string) => {
-  wrongGuessesCount >= 9 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
-  return (
-    <line
-      x1="308"
-      y1="174"
-      x2="299"
-      y2="172"
-      stroke={COLOR}
-      strokeWidth={EYE_WIDTH}
-    />
-  );
-};
+const renderRightEyeOne = (color: string) => (
+  <line
+    x1="308"
+    y1="174"
+    x2="299"
+    y2="172"
+    stroke={color}
+    strokeWidth={EYE_WIDTH}
+  />
+);
 
-const renderRightEyeTwo = (wrongGuessesCount: number, colorState: string) => {
-  wrongGuessesCount >= 10 ? (COLOR = COLOR_AFTER) : (COLOR = colorState);
-  return (
-    <line
-      x1="299"
-      y1="174"
-      x2="308"
-      y2="172"
-      stroke={COLOR}
-      strokeWidth={EYE_WIDTH}
-    />
-  );
-};
+const renderRightEyeTwo = (color: string) => (
+  <line
+    x1="299"
+    y1="174"
+    x2="308"
+    y2="172"
+    stroke={color}
+    strokeWidth={EYE_WIDTH}
+  />
+);
