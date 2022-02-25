@@ -44,7 +44,6 @@ describe("useLetter", () => {
       callBack(VIEW_GUESS);
     });
 
-    expect.assertions(1);
     expect(setGame).toBeCalledWith(VIEW_GAME);
   });
 
