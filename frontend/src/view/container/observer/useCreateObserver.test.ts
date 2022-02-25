@@ -9,6 +9,7 @@ import { from } from "rxjs";
 import useCreateObserver from "./useCreateObserver";
 import { act } from "react-dom/test-utils";
 import * as Snackbar from "notistack";
+import { Done } from "@mui/icons-material";
 
 describe("useCreateObserver", () => {
   let createObserverHook: any;
@@ -22,9 +23,12 @@ describe("useCreateObserver", () => {
       .mockReturnValue(mock<Snackbar.ProviderContext>());
   });
 
-  test("Can call set game state method with created observer", () => {
+  test("Can call set game state method with created observer", (done) => {
     createObserverHook = renderHook(() =>
-      useCreateObserver<ViewGame | undefined>(setGame)
+      useCreateObserver<ViewGame | undefined>((val) => {
+        setGame(val);
+        done();
+      })
     );
     let observable = from([VIEW_GAME]);
 
