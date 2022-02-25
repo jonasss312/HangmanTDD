@@ -5,7 +5,7 @@ import { WrappedCollapseComponent } from "view/container/game-window/WrappedColl
 import { HangmanDisplay } from "../component/HangmanDisplay";
 import { Button, Grid, Typography } from "@mui/material";
 import { useColorChange } from "./useColorChange";
-import GameEndModal from "../container/game-window/GameEndModal";
+import { GameEndModal } from "../container/game-window/GameEndModal";
 import { BACKGROUND_COLOR } from "constant/Colors";
 
 interface Props {
@@ -41,8 +41,12 @@ export const GameView = (props: Props) => {
     </Typography>
   );
 
-  const returntoMenuButton = (): JSX.Element => (
-    <Button size="small" onClick={() => props.setGameCallBack(undefined)}>
+  const menuButton = (): JSX.Element => (
+    <Button
+      size="small"
+      data-testid="menu_button"
+      onClick={() => props.setGameCallBack(undefined)}
+    >
       MAIN MENU
     </Button>
   );
@@ -71,7 +75,7 @@ export const GameView = (props: Props) => {
 
       {guessesCount()}
 
-      {returntoMenuButton()}
+      {menuButton()}
 
       <GameEndModal
         status={game.status}

@@ -6,15 +6,18 @@ import reportWebVitals from "./reportWebVitals";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import { themeOptions } from "MaterialUITheme";
+import { SnackbarProvider } from "notistack";
 
 const theme = themeOptions;
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <SnackbarProvider maxSnack={3}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </SnackbarProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
