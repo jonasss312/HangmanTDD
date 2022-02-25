@@ -30,10 +30,10 @@ export const HangmanDisplay = (props: Props) => {
       {renderBody(wrongGuessesCount, colorState)}
       {renderRightLeg(wrongGuessesCount, colorState)}
       {renderLeftLeg(wrongGuessesCount, colorState)}
-      {renderLeftEyeOne(wrongGuessesCount, colorState)}
       {renderLeftEyeTwo(wrongGuessesCount, colorState)}
-      {renderRightEyeOne(wrongGuessesCount, colorState)}
+      {renderLeftEyeOne(wrongGuessesCount, colorState)}
       {renderRightEyeTwo(wrongGuessesCount, colorState)}
+      {renderRightEyeOne(wrongGuessesCount, colorState)}
     </svg>
   );
 };
