@@ -27,14 +27,7 @@ describe("GameView", () => {
       guessCount,
       "IN_PROGRESS"
     );
-    render(
-      <GameView
-        game={game}
-        setGameCallBack={SET_GAME}
-        guessLetterController={guessLetterController}
-        createGameController={createGameController}
-      />
-    );
+    render(<GameView game={game} setGameCallBack={SET_GAME} />);
 
     expect(screen.getByTestId("hidden_word")).toHaveTextContent(hiddenWord);
     expect(screen.getByTestId("guesses")).toHaveTextContent(

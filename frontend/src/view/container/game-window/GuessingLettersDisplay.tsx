@@ -1,5 +1,4 @@
 import { Button, Fade, Grid } from "@mui/material";
-import { GuessLetterController } from "controller/implementation/GuessLetterController";
 import { ViewGame } from "controller/model/ViewGame";
 import { ViewGuess } from "controller/model/ViewGuess";
 import React from "react";
@@ -9,12 +8,11 @@ import useLetter from "./useLetter";
 interface Props {
   gameId: number;
   allGuessedLetters: string[];
-  guessLetterController: GuessLetterController;
   setGameCallBack: (game: ViewGame | undefined) => void;
 }
 
 export const GuessingLettersDisplay = (props: Props) => {
-  const guess = useLetter(props.guessLetterController, props.setGameCallBack);
+  const guess = useLetter(props.setGameCallBack);
 
   return (
     <Grid container direction="row" justifyContent="center" alignItems="center">

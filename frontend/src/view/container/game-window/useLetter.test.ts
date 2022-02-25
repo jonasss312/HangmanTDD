@@ -3,32 +3,46 @@
  */
 import { renderHook } from "@testing-library/react-hooks";
 import useLetter from "./useLetter";
-import { mock, MockProxy } from "jest-mock-extended";
 import { ViewGame } from "../../../controller/model/ViewGame";
-import { Observable, of } from "rxjs";
-import { GuessLetterController } from "controller/implementation/GuessLetterController";
 import { ViewGuess } from "controller/model/ViewGuess";
+import * as useControllerContext from "./useControllerContext";
+import { GuessLetterController } from "controller/implementation/GuessLetterController";
+import { mock } from "jest-mock-extended";
+import { Controllers } from "../context/ControllerContext";
+import { from, of } from "rxjs";
+import { act } from "react-dom/test-utils";
 
 describe("useLetter", () => {
-  let guessLetterController: MockProxy<GuessLetterController>;
   let hookUseLetter: any;
   let setGame: (game: ViewGame | undefined) => void;
-  const GAME = new ViewGame(1, ["T"], [], "T__T", 0, "IN_PROGRESS");
-  const OBSERVABLE_GAME: Observable<ViewGame> = of(GAME);
   const VIEW_GUESS: ViewGuess = new ViewGuess(1, "T");
+  const VIEW_GAME: ViewGame = mock<ViewGame>();
 
   beforeEach(() => {
-    guessLetterController = mock<GuessLetterController>();
     setGame = jest.fn();
-    guessLetterController.guessLetter.mockReturnValue(OBSERVABLE_GAME);
-    hookUseLetter = renderHook(() => useLetter(guessLetterController, setGame));
   });
 
-  test("Can set new game data with callback", () => {
+  test("Can set updated game data with callback", () => {
+    const controller = mockController();
+    controller.guessLetter.mockReturnValue(from([VIEW_GAME]));
+
+    hookUseLetter = renderHook(() => useLetter(setGame));
+
     const guessLetterCallBack = hookUseLetter.result.current;
 
-    guessLetterCallBack(VIEW_GUESS);
+    act(() => {
+      guessLetterCallBack(VIEW_GUESS);
+    });
 
-    expect(setGame).toBeCalled();
+    expect(setGame).toBeCalledWith(VIEW_GAME);
   });
+
+  function mockController() {
+    const controller = mock<GuessLetterController>();
+    const controllers: Controllers = mock<Controllers>({
+      guessLetterController: controller,
+    });
+    jest.spyOn(useControllerContext, "default").mockReturnValue(controllers);
+    return controller;
+  }
 });

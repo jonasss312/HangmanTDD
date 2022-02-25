@@ -5,7 +5,6 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { CreateGameController } from "controller/implementation/CreateGameController";
 import { ViewGame } from "controller/model/ViewGame";
 import useCreateGame from "view/container/home-window/useCreateGame";
 
@@ -22,14 +21,10 @@ const style = {
 interface Props {
   status: string;
   setGameCallBack: (game: ViewGame | undefined) => void;
-  createGameController: CreateGameController;
 }
 
 export default function GameEndModal(props: Props) {
-  const createGame = useCreateGame(
-    props.createGameController,
-    props.setGameCallBack
-  );
+  const createGame = useCreateGame(props.setGameCallBack);
 
   const gameEnd = () => props.status !== "IN_PROGRESS";
 

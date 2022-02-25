@@ -18,19 +18,11 @@ export const InitialWindow = (props: Props) => {
     <>
       {game === undefined ? (
         <Container color="home">
-          <HomeWindow
-            createGameController={props.createGameController}
-            setGameCallBack={setGame}
-          />
+          <HomeWindow setGameCallBack={setGame} />
         </Container>
       ) : (
         <Container>
-          <GameView
-            game={game}
-            setGameCallBack={setGame}
-            guessLetterController={props.guessLetterController}
-            createGameController={props.createGameController}
-          />
+          <GameView game={game} setGameCallBack={setGame} />
         </Container>
       )}
     </>
