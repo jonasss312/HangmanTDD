@@ -41,6 +41,7 @@ describe("useCreateGame", () => {
       createGameCallBack();
     });
 
+    expect.assertions(1);
     expect(setGame).toBeCalledWith(VIEW_GAME);
   });
 
