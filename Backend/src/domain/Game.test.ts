@@ -22,14 +22,15 @@ describe("Game", () => {
 
     test("Can check if game won", () => {
         const guessedAllWordLetters =
-            Array.from(TEST_WORD).filter(letter => letter!= ' ');
+            Array.from(TEST_WORD).filter(letter => letter != ' ');
         const game = createGame(guessedAllWordLetters, []);
         expect(game.getStatus()).toEqual(GameStatus.Won);
     });
 
-    test("Can check if game is lost", () => {
+    test("Can check if game is lost and reveal word", () => {
         const game = createGame([], ["t", "t", "t", "t", "t", "t", "t", "t", "t", "t"]);
         expect(game.getStatus()).toEqual(GameStatus.Lost);
+        expect(game.getHiddenWord()).toEqual(TEST_WORD);
     });
 
 });
