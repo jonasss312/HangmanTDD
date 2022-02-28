@@ -7,26 +7,33 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { ViewGame } from "controller/model/ViewGame";
 import useCreateGame from "view/container/home-window/useCreateGame";
+import { useColorChange } from "view/component/useColorChange";
 
 const style = {
   position: "absolute" as "absolute",
-  top: "50%",
+  top: "45%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   opacity: "100%",
   width: "auto",
-  p: 4,
 };
 
 interface Props {
   status: string;
   setGameCallBack: (game: ViewGame | undefined) => void;
+  word: string;
 }
 
 export const GameEndModal = (props: Props) => {
+  const colorState = useColorChange(["#e91e63", "#FFEB3B"]);
   const createGame = useCreateGame(props.setGameCallBack);
 
   const gameEnd = () => props.status !== "IN_PROGRESS";
+
+  const getBackgroundColor = (): string => {
+    if (props.status == "WON") return "black";
+    return "red";
+  };
 
   const displayGameResult = (): JSX.Element => {
     if (props.status === "WON")
@@ -36,11 +43,25 @@ export const GameEndModal = (props: Props) => {
         </Typography>
       );
     return (
-      <Typography data-testid="lost_text" align="center" variant="h4">
-        YOU LOSE!
-      </Typography>
+      <>
+        <Typography data-testid="lost_text" align="center" variant="h4">
+          YOU LOSE!
+        </Typography>
+        {displayHiddenWord()}
+      </>
     );
   };
+
+  const displayHiddenWord = () => (
+    <Typography
+      data-testid="hidden_word"
+      align="center"
+      variant="h5"
+      style={{ color: colorState }}
+    >
+      {props.word}
+    </Typography>
+  );
 
   const displayButton = () => (
     <Fade in={gameEnd()} timeout={2500}>
@@ -60,6 +81,7 @@ export const GameEndModal = (props: Props) => {
       BackdropProps={{
         timeout: 500,
       }}
+      sx={{ bgcolor: getBackgroundColor() }}
     >
       <Fade in={gameEnd()}>
         <Box sx={style}>

@@ -1,39 +1,51 @@
 import React from "react";
-
-interface Props {
-  wrongGuessesCount: number;
-  colorState: string;
-}
+import { useDegreeChange } from "./useDegreeChange";
 
 const COLOR_AFTER: string = "#ed00d7";
 const COLOR_BASE: string = "#33eaff";
+const COLOR_BODY = "#FFEB3B";
 const BASE_WIDTH: string = "4%";
 const ROPE_WIDTH: string = "0.5%";
 const BODY_WIDTH: string = "1%";
 const EYE_WIDTH: string = "0.3%";
 
-let COLOR;
+const DURATION: number = 1.5;
+const DEGREE: number = 0.5;
+
+const style = (degree: number) => {
+  return {
+    transform: `rotate(${degree}deg)`,
+    transformOrigin: "298px 100px",
+    transition: `transform ${DURATION}s`,
+  };
+};
+
+interface Props {
+  wrongGuessesCount: number;
+}
 
 export const HangmanDisplay = (props: Props) => {
-  const colorState = props.colorState;
   const wrongGuessesCount = props.wrongGuessesCount;
+  const degreeState = useDegreeChange(DEGREE, DURATION);
 
   return (
     <svg height="650" width="800" viewBox="100 90 400 350">
       {renderBottomLine()}
       {renderLeftLine()}
       {renderTopLine()}
-      {renderRope()}
-      {renderHead(wrongGuessesCount >= 1 ? COLOR_AFTER : colorState)}
-      {renderLeftHand(wrongGuessesCount >= 3 ? COLOR_AFTER : colorState)}
-      {renderRightHand(wrongGuessesCount >= 4 ? COLOR_AFTER : colorState)}
-      {renderBody(wrongGuessesCount >= 2 ? COLOR_AFTER : colorState)}
-      {renderRightLeg(wrongGuessesCount >= 5 ? COLOR_AFTER : colorState)}
-      {renderLeftLeg(wrongGuessesCount >= 6 ? COLOR_AFTER : colorState)}
-      {renderLeftEyeOne(wrongGuessesCount >= 7 ? COLOR_AFTER : colorState)}
-      {renderLeftEyeTwo(wrongGuessesCount >= 8 ? COLOR_AFTER : colorState)}
-      {renderRightEyeOne(wrongGuessesCount >= 9 ? COLOR_AFTER : colorState)}
-      {renderRightEyeTwo(wrongGuessesCount >= 10 ? COLOR_AFTER : colorState)}
+      <g fill="white" style={style(degreeState)}>
+        {renderRope()}
+        {renderHead(wrongGuessesCount >= 1 ? COLOR_AFTER : COLOR_BODY)}
+        {renderLeftHand(wrongGuessesCount >= 3 ? COLOR_AFTER : COLOR_BODY)}
+        {renderRightHand(wrongGuessesCount >= 4 ? COLOR_AFTER : COLOR_BODY)}
+        {renderBody(wrongGuessesCount >= 2 ? COLOR_AFTER : COLOR_BODY)}
+        {renderLeftLeg(wrongGuessesCount >= 6 ? COLOR_AFTER : COLOR_BODY)}
+        {renderRightLeg(wrongGuessesCount >= 5 ? COLOR_AFTER : COLOR_BODY)}
+        {renderLeftEyeOne(wrongGuessesCount >= 7 ? COLOR_AFTER : COLOR_BODY)}
+        {renderLeftEyeTwo(wrongGuessesCount >= 8 ? COLOR_AFTER : COLOR_BODY)}
+        {renderRightEyeOne(wrongGuessesCount >= 9 ? COLOR_AFTER : COLOR_BODY)}
+        {renderRightEyeTwo(wrongGuessesCount >= 10 ? COLOR_AFTER : COLOR_BODY)}
+      </g>
     </svg>
   );
 };

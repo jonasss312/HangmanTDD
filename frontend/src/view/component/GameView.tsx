@@ -4,9 +4,8 @@ import React from "react";
 import { WrappedCollapseComponent } from "view/container/game-window/WrappedCollapseComponent";
 import { HangmanDisplay } from "../component/HangmanDisplay";
 import { Button, Grid, Typography } from "@mui/material";
-import { useColorChange } from "./useColorChange";
 import { GameEndModal } from "../container/game-window/GameEndModal";
-import { BACKGROUND_COLOR } from "constant/Colors";
+import { GuessCountDisplay } from "./GuessCountDisplay";
 
 interface Props {
   game: ViewGame;
@@ -14,9 +13,6 @@ interface Props {
 }
 
 export const GameView = (props: Props) => {
-  const colorStateHangMan = useColorChange([BACKGROUND_COLOR, "#33eaff"]);
-  const colorStateGuessCount = useColorChange(["#33eaff", "red"]);
-
   const game: ViewGame = props.game;
   const allGuessedLetters = game.guessedLetters.concat(game.wrongLetters);
 
@@ -28,16 +24,6 @@ export const GameView = (props: Props) => {
       align={"center"}
     >
       {game.hiddenWord}
-    </Typography>
-  );
-
-  const guessesCount = (): JSX.Element => (
-    <Typography
-      variant="overline"
-      style={{ color: colorStateGuessCount }}
-      data-testid="guesses"
-    >
-      Guesses: {game.guesses}
     </Typography>
   );
 
@@ -60,10 +46,7 @@ export const GameView = (props: Props) => {
       justifyContent="center"
       style={{ minHeight: "100vh" }}
     >
-      <HangmanDisplay
-        wrongGuessesCount={game.wrongLetters.length}
-        colorState={colorStateHangMan}
-      />
+      <HangmanDisplay wrongGuessesCount={game.wrongLetters.length} />
 
       {hiddenWord()}
 
@@ -73,13 +56,14 @@ export const GameView = (props: Props) => {
         setGameCallBack={props.setGameCallBack}
       />
 
-      {guessesCount()}
+      <GuessCountDisplay guesses={game.guesses} />
 
       {menuButton()}
 
       <GameEndModal
         status={game.status}
         setGameCallBack={props.setGameCallBack}
+        word={game.hiddenWord}
       />
     </Grid>
   );

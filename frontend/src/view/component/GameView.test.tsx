@@ -21,9 +21,7 @@ describe("GameView", () => {
     render(<GameView game={game} setGameCallBack={SET_GAME} />);
 
     expect(screen.getByTestId("hidden_word")).toHaveTextContent(hiddenWord);
-    expect(screen.getByTestId("guesses")).toHaveTextContent(
-      guessCount.toString()
-    );
+    expect(screen.getByTestId("guess_count_display")).toBeInTheDocument();
     expect(screen.getByTestId("hangman_display")).toBeInTheDocument();
     expect(screen.getByTestId("guessing_letters_display")).toBeInTheDocument();
     expect(screen.getByTestId("game_end_modal")).toBeInTheDocument();
@@ -41,4 +39,8 @@ jest.mock("../container/game-window/GuessingLettersDisplay", () => ({
 
 jest.mock("../container/game-window/GameEndModal", () => ({
   GameEndModal: () => <div data-testid="game_end_modal" />,
+}));
+
+jest.mock("./GuessCountDisplay", () => ({
+  GuessCountDisplay: () => <div data-testid="guess_count_display" />,
 }));
