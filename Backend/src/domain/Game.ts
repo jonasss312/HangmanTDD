@@ -15,13 +15,19 @@ export class Game {
         this.guessedLetters = guessedLetters;
         this.wrongLetters = wrongLetters;
         this.word = word.toUpperCase();
-        this.hiddenWord = this.hideWord();
         this.guesses = this.getGuessesCount();
         this.status = this.decideGameStatus();
+        this.hiddenWord = this.hideOrRevealWord();
     }
 
     private getGuessesCount(): number {
         return this.guessedLetters.length + this.wrongLetters.length;
+    }
+
+    private hideOrRevealWord(): string {
+        if (this.status === GameStatus.InProgress)
+            return this.hideWord();
+        return this.word;
     }
 
     private hideWord(): string {
@@ -48,7 +54,7 @@ export class Game {
     }
 
     private thereIsNoMoreHiddenLetters(): Boolean {
-        return !this.hiddenWord.includes("_")
+        return !this.hideWord().includes("_")
     }
 
     private atLeast10WrongGuesses(): Boolean {
