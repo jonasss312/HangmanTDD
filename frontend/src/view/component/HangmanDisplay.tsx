@@ -10,7 +10,7 @@ const BODY_WIDTH: string = "1%";
 const EYE_WIDTH: string = "0.3%";
 
 const DURATION: number = 1.5;
-const DEGREE: number = 0.5;
+const DEGREE: number = 2;
 
 const style = (degree: number) => {
   return {
