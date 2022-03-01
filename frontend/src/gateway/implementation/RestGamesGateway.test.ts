@@ -21,7 +21,7 @@ describe("RestGamesGateway", () => {
 
     client.post.mockReturnValue(of(newGame));
 
-    const observableGame: Observable<Game> = restGamesGateway.createGame();
+    const observableGame$: Observable<Game> = restGamesGateway.createGame();
 
     const onNext = (game: Game) => {
       expect(client.post).toBeCalledWith(SERVER_URL);
@@ -29,7 +29,7 @@ describe("RestGamesGateway", () => {
     };
     const observer = getObserverTemplate(done, onNext);
 
-    observableGame.subscribe(observer);
+    observableGame$.subscribe(observer);
   });
 
   it("Can guess letter", (done) => {
@@ -38,7 +38,7 @@ describe("RestGamesGateway", () => {
 
     client.patch.mockReturnValue(of(updatedGame));
 
-    const observableGame: Observable<Game> =
+    const observableGame$: Observable<Game> =
       restGamesGateway.guessLetter(guess);
 
     const onNext = (game: Game) => {
@@ -47,6 +47,6 @@ describe("RestGamesGateway", () => {
     };
     const observer = getObserverTemplate(done, onNext);
 
-    observableGame.subscribe(observer);
+    observableGame$.subscribe(observer);
   });
 });

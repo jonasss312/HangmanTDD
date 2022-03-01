@@ -2,16 +2,12 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import { GuessingLettersDisplay } from "./GuessingLettersDisplay";
 import { ALPHABET } from "../../../constant/Alphabet";
-import { GuessLetterController } from "controller/implementation/GuessLetterController";
-import { mock, MockProxy } from "jest-mock-extended";
 import * as useLetter from "./useLetter";
 
 describe("GuessingLettersDisplay", () => {
   const SET_GAME: () => void = jest.fn();
-  let guessLetterController: MockProxy<GuessLetterController>;
 
   beforeEach(() => {
-    guessLetterController = mock<GuessLetterController>();
     jest.spyOn(useLetter, "default").mockReturnValue(jest.fn());
   });
 
