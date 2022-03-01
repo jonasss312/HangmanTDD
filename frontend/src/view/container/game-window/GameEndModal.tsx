@@ -25,7 +25,7 @@ interface Props {
 }
 
 export const GameEndModal = (props: Props) => {
-  const colorState = useColorChange(["#e91e63", "#FFEB3B"]);
+  const color = useColorChange(["#e91e63", "#FFEB3B"]);
   const createGame = useCreateGame(props.setGameCallBack);
 
   const gameEnd = () => props.status !== "IN_PROGRESS";
@@ -57,7 +57,7 @@ export const GameEndModal = (props: Props) => {
       data-testid="hidden_word"
       align="center"
       variant="h5"
-      style={{ color: colorState }}
+      style={{ color: color }}
     >
       {props.word}
     </Typography>
