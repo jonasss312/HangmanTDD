@@ -35,20 +35,27 @@ export const HangmanDisplay = (props: Props) => {
       {renderTopLine()}
       <g fill="white" style={style(degreeState)}>
         {renderRope()}
-        {renderHead(wrongGuessesCount >= 1 ? COLOR_AFTER : COLOR_BODY)}
-        {renderLeftHand(wrongGuessesCount >= 3 ? COLOR_AFTER : COLOR_BODY)}
-        {renderRightHand(wrongGuessesCount >= 4 ? COLOR_AFTER : COLOR_BODY)}
-        {renderBody(wrongGuessesCount >= 2 ? COLOR_AFTER : COLOR_BODY)}
-        {renderLeftLeg(wrongGuessesCount >= 6 ? COLOR_AFTER : COLOR_BODY)}
-        {renderRightLeg(wrongGuessesCount >= 5 ? COLOR_AFTER : COLOR_BODY)}
-        {renderLeftEyeOne(wrongGuessesCount >= 7 ? COLOR_AFTER : COLOR_BODY)}
-        {renderLeftEyeTwo(wrongGuessesCount >= 8 ? COLOR_AFTER : COLOR_BODY)}
-        {renderRightEyeOne(wrongGuessesCount >= 9 ? COLOR_AFTER : COLOR_BODY)}
-        {renderRightEyeTwo(wrongGuessesCount >= 10 ? COLOR_AFTER : COLOR_BODY)}
+        {renderHead(isWrongGuessesCountReached(wrongGuessesCount, 1))}
+        {renderLeftHand(isWrongGuessesCountReached(wrongGuessesCount, 3))}
+        {renderRightHand(isWrongGuessesCountReached(wrongGuessesCount, 4))}
+        {renderBody(isWrongGuessesCountReached(wrongGuessesCount, 2))}
+        {renderLeftLeg(isWrongGuessesCountReached(wrongGuessesCount, 6))}
+        {renderRightLeg(isWrongGuessesCountReached(wrongGuessesCount, 5))}
+        {renderLeftEyeOne(isWrongGuessesCountReached(wrongGuessesCount, 7))}
+        {renderLeftEyeTwo(isWrongGuessesCountReached(wrongGuessesCount, 8))}
+        {renderRightEyeOne(isWrongGuessesCountReached(wrongGuessesCount, 9))}
+        {renderRightEyeTwo(isWrongGuessesCountReached(wrongGuessesCount, 10))}
       </g>
     </svg>
   );
 };
+
+function isWrongGuessesCountReached(
+  currentWrongGuessesCount: number,
+  count: number
+): string {
+  return currentWrongGuessesCount >= count ? COLOR_AFTER : COLOR_BODY;
+}
 
 const renderBottomLine = () => (
   <line
