@@ -31,9 +31,19 @@ describe("GameEndModal", () => {
     expect(screen.getByTestId("new_game_button")).toBeInTheDocument();
   });
 
+  test("Can display hidden word when lost", () => {
+    renderWithStatus("LOST");
+
+    expect(screen.getByTestId("hidden_word")).toBeInTheDocument();
+  });
+
   function renderWithStatus(status: string) {
     render(
-      <GameEndModal status={status} setGameCallBack={SET_GAME_CALL_BACK} />
+      <GameEndModal
+        status={status}
+        setGameCallBack={SET_GAME_CALL_BACK}
+        word={"TEST"}
+      />
     );
   }
 });

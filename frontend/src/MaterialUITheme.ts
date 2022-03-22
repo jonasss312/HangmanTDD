@@ -34,6 +34,10 @@ export const themeOptions = createTheme({
       fontWeight: 3000,
       color: "#e91e63",
     },
+    h5: {
+      fontSize: "5rem",
+      fontWeight: 2000,
+    },
   },
   palette: {
     background: {
