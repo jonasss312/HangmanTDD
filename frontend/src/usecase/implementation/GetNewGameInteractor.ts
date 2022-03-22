@@ -1,6 +1,5 @@
-import { Game } from "domain/Game";
 import { GamesGateway } from "gateway/api/GamesGateway";
-import { map, Observable, take, find } from "rxjs";
+import { map, Observable } from "rxjs";
 import { GetNewGameUseCase } from "usecase/api/GetNewGameUseCase";
 import { BoundaryGame } from "usecase/model/BoundaryGame";
 import { GameD2BConverter } from "./GameD2BConverter";

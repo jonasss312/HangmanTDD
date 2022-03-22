@@ -20,7 +20,7 @@ describe("GetNewGameInteractor", () => {
 
   it("Can get new game", (done) => {
     const newGame = new Game(1, [], [], "____", 0, "IN_PROGRESS");
-    const observableNewGame: Observable<Game> = of(newGame);
+    const observableNewGame$: Observable<Game> = of(newGame);
     const newGameBoundary = new BoundaryGame(
       1,
       [],
@@ -30,7 +30,7 @@ describe("GetNewGameInteractor", () => {
       "IN_PROGRESS"
     );
 
-    gamesGW.createGame.mockReturnValue(observableNewGame);
+    gamesGW.createGame.mockReturnValue(observableNewGame$);
     gameD2BConverter.convert.mockReturnValue(newGameBoundary);
 
     const onNext = (game: BoundaryGame) => {

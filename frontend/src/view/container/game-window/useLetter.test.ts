@@ -27,9 +27,9 @@ describe("useLetter", () => {
   });
 
   test("Can use observable with callback", (done) => {
-    const observable = from([VIEW_GAME]);
+    const observable$ = from([VIEW_GAME]);
     const controller = mockController();
-    controller.guessLetter.mockReturnValue(observable);
+    controller.guessLetter.mockReturnValue(observable$);
 
     jest
       .spyOn(useCeateObserver, "default")

@@ -31,7 +31,7 @@ export const GameEndModal = (props: Props) => {
   const gameEnd = () => props.status !== "IN_PROGRESS";
 
   const getBackgroundColor = (): string => {
-    if (props.status == "WON") return "black";
+    if (props.status === "WON") return "black";
     return "red";
   };
 

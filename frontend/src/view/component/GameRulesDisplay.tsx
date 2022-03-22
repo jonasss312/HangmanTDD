@@ -9,7 +9,7 @@ export const GameRulesDisplay = () => {
 
   const renderGameRules = () => (
     <div>
-      <Typography variant="h2" paddingLeft={"12px"}>
+      <Typography variant="h2" paddingLeft="12px">
         Rules
       </Typography>
       <Typography variant="body1">
